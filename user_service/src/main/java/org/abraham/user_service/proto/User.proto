@@ -1,0 +1,50 @@
+
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "org.abraham.models";
+
+message User{
+  string id = 1;
+  string email = 2;
+  string username = 3;
+  string firstName = 4;
+  string lastName = 5;
+  string phoneNumber = 6;
+  string status = 7;
+  bool emailVerified = 8;
+  bool phoneVerified = 9;
+  string emailVerificationToken = 10;
+  string emailVerificationExpiresAt = 11;
+  string phoneVerificationToken = 12;
+  string phoneVerificationExpiresAt = 13;
+  string passwordResetToken =14;
+  string passwordResetTokenExpiresAt = 15;
+  string LastLogIn = 16;
+  string createdAt = 17;
+  string updatedAt = 18;
+}
+
+
+//CREATE TABLE users
+//        (
+//                id                            UUID PRIMARY KEY          DEFAULT gen_random_uuid(),
+//email                         VARCHAR(255)     NOT NULL UNIQUE,
+//username                      VARCHAR(50) UNIQUE,
+//password_hash                 VARCHAR(255)     NOT NULL,
+//first_name                    VARCHAR(100),
+//last_name                     VARCHAR(100),
+//phone_number                  VARCHAR(20),
+//status                        user_status_enum NOT NULL DEFAULT 'PENDING_VERIFICATION',
+//email_verified                BOOLEAN          NOT NULL DEFAULT FALSE,
+//phone_verified                BOOLEAN          NOT NULL DEFAULT FALSE,
+//email_verification_token      VARCHAR(255),
+//email_verification_expires_at TIMESTAMPTZ,
+//phone_verification_token      VARCHAR(10),
+//phone_verification_expires_at TIMESTAMPTZ,
+//password_reset_token          VARCHAR(255),
+//password_reset_expires_at     TIMESTAMPTZ,
+//last_login_at                 TIMESTAMPTZ,
+//created_at                    TIMESTAMPTZ      NOT NULL DEFAULT CURRENT_TIMESTAMP,
+//updated_at                    TIMESTAMPTZ      NOT NULL DEFAULT CURRENT_TIMESTAMP
+//);

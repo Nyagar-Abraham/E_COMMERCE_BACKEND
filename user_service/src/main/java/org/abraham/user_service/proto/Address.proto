@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "org.abraham.models"
+
+
+//CREATE TABLE addresses
+//        (
+//                id             UUID PRIMARY KEY                  DEFAULT gen_random_uuid(),
+//user_id        UUID                     NOT NULL,
+//type           address_type_enum        NOT NULL DEFAULT 'BOTH',
+//is_default     BOOLEAN                  NOT NULL DEFAULT FALSE,
+//address_line_1 VARCHAR(255)             NOT NULL,
+//address_line_2 VARCHAR(255),
+//city           VARCHAR(100)             NOT NULL,
+//state          VARCHAR(100)             NOT NULL,
+//postal_code    VARCHAR(20)              NOT NULL,
+//country        VARCHAR(2)               NOT NULL, -- ISO 3166-1 alpha-2 country code
+//created_at     TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP,
+//updated_at     TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP
+//);

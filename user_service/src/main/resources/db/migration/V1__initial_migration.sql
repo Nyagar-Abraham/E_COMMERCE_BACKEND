@@ -99,6 +99,30 @@ CREATE TABLE addresses
     updated_at     TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
+-- ===========================================
+-- RELATIONS
+-- ===========================================
+
+-- user profile to user(one to one)
+ALTER TABLE user_profiles
+ADD CONSTRAINT fk_user_profiles_user
+FOREIGN KEY (user_id)
+REFERENCES users (id)
+ON DELETE CASCADE;
+
+-- user preferences to user(one to one)
+ALTER TABLE user_preferences
+ADD CONSTRAINT fk_user_preferences_user
+FOREIGN KEY (user_id)
+REFERENCES users (id)
+ON DELETE CASCADE ;
+
+-- addresses to user (many to one)
+ALTER TABLE addresses
+ADD CONSTRAINT fk_addresses
+FOREIGN KEY (user_id)
+REFERENCES users (id)
+ON DELETE CASCADE ;
 
 
 -- ===========================================

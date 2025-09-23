@@ -1,0 +1,125 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+
+option java_multiple_files = true;
+option java_package = "org.abraham.models";
+
+// =========================================
+// Enums
+// =========================================
+enum UserStatus {
+  ACTIVE = 0;
+  INACTIVE = 1;
+  SUSPENDED = 2;
+  PENDING_VERIFICATION = 3;
+}
+
+enum AddressType {
+  BILLING = 0;
+  SHIPPING = 1;
+  BOTH = 2;
+}
+
+// ==============================================
+// MESSAGES
+// ==============================================
+
+message User {
+  string id = 1;
+  string email = 2;
+  string username = 3;
+  string first_name = 4;
+  string last_name = 5;
+  string phone_number = 6;
+  UserStatus status = 7;
+  bool email_verified = 8;
+  bool phone_verified = 9;
+  string email_verification_token = 10;
+  string email_verification_expires_at = 11;
+  string phone_verification_token = 12;
+  string phone_verification_expires_at = 13;
+  string password_reset_token = 14;
+  string password_reset_token_expires_at = 15;
+  google.protobuf.Timestamp last_login = 16;
+  google.protobuf.Timestamp created_at = 17;
+  google.protobuf.Timestamp updated_at = 18;
+  UserPreference preferences =19;
+  UserProfile profile = 20;
+  repeated Address addresses = 21;
+}
+
+message Address {
+  string id = 1;
+  string user_id = 2;
+  AddressType type = 3;
+  bool is_default = 4;
+  string address_line1 = 5;
+  string address_line2 = 6;
+  string city = 7;
+  string state = 8;
+  string postal_code = 9;
+  string country = 10;
+  google.protobuf.Timestamp created_at = 11;
+  google.protobuf.Timestamp updated_at = 12;
+}
+
+message UserPreference {
+  string id = 1;
+  string user_id = 2;
+  string currency = 3;
+  string language = 4;
+  bool marketing_emails = 5;
+  bool order_notifications = 6;
+  bool newsletter = 7;
+  google.protobuf.Timestamp created_at = 8;
+  google.protobuf.Timestamp updated_at = 9;
+}
+
+message UserProfile {
+  string id = 1;
+  string user_id = 2;
+  string avatar = 3;
+  string bio = 4;
+  string website = 5;
+  string facebook = 6;
+  string twitter = 7;
+  string instagram = 8;
+  string linkedin = 9;
+  google.protobuf.Timestamp created_at = 10;
+  google.protobuf.Timestamp updated_at = 11;
+}
+
+// =============================
+//   REQUEST OBJECTS
+// =============================
+message RegisterUserRequest {
+  string email = 1;
+  string username = 2;
+  string first_name = 3;
+  string last_name = 4;
+  string password = 5;
+  string phone_number = 6;
+}
+
+message LoginRequest {
+  string email = 1;
+  string password = 2;
+}
+
+// =================================
+//   RESPONSE OBJECT
+// =================================
+message LoginResponse {
+  string access_token = 1;
+  string refresh_token = 2;
+}
+
+// ===================================
+//   SERVICE APIS
+// ===================================
+service AuthService {
+  rpc registerUser(RegisterUserRequest) returns (User) {}
+  rpc loginUser(LoginRequest) returns (LoginResponse) {}
+  // rpc getCurrentUser() returns (User) {}
+}

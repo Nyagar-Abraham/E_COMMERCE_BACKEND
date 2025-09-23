@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 import java.util.UUID;
 
 @Repository
-public interface Address extends ReactiveCrudRepository<Address, UUID> {
+public interface AddressRepository extends ReactiveCrudRepository<AddressRepository, UUID> {
 }
