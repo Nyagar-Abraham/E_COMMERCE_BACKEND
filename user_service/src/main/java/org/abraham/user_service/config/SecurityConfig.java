@@ -1,6 +1,7 @@
 package org.abraham.user_service.config;
 
-import org.abraham.user_service.service.UserService;
+import lombok.AllArgsConstructor;
+import org.abraham.user_service.service.UserDetailService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.grpc.server.GlobalServerInterceptor;
@@ -13,14 +14,15 @@ import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.reactive.config.EnableWebFlux;
+
 
 
 @Configuration
 @EnableWebFluxSecurity
+@AllArgsConstructor
 public class SecurityConfig {
 
-    private  UserService userService;
+    private UserDetailService userService;
 
     @Bean
     AuthenticationManager authenticationManager() {
@@ -34,17 +36,21 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
+
+
     @Bean
     @GlobalServerInterceptor
     AuthenticationProcessInterceptor jwtSecurityFilterChain(GrpcSecurity grpc) throws Exception {
         return grpc
                 .authorizeRequests(requests -> requests
-                        .methods("UserService/*").authenticated()
+//                        .methods("UserService/*").authenticated()
                         .methods("AuthService/*").permitAll()
                         .methods("grpc.*/*").permitAll()
-                        .allRequests().denyAll())
+                        .allRequests().permitAll()
+                )
                 .httpBasic(Customizer.withDefaults())
                 .preauth(Customizer.withDefaults())
+                .authenticationManager(authenticationManager())
                 .build();
     }
 }

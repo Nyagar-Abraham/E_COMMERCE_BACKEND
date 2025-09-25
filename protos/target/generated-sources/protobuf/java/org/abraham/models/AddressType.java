@@ -95,7 +95,7 @@ public enum AddressType
   }
   public static final com.google.protobuf.Descriptors.EnumDescriptor
       getDescriptor() {
-    return org.abraham.models.UserService.getDescriptor().getEnumTypes().get(1);
+    return org.abraham.models.UserServiceOuterClass.getDescriptor().getEnumTypes().get(1);
   }
 
   private static final AddressType[] VALUES = values();

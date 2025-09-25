@@ -1,0 +1,13 @@
+
+
+spring:
+  application:
+    name: apigateway
+  grpc:
+    client:
+      channels:
+        AuthChannel:
+          address: 0.0.0.0:9090
+
+server:
+  port: 8086

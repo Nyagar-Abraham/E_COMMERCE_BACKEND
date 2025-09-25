@@ -4,8 +4,8 @@
 // Protobuf Java Version: 3.25.5
 package org.abraham.models;
 
-public final class UserService {
-  private UserService() {}
+public final class UserServiceOuterClass {
+  private UserServiceOuterClass() {}
   public static void registerAllExtensions(
       com.google.protobuf.ExtensionRegistryLite registry) {
   }
@@ -60,61 +60,65 @@ public final class UserService {
   static {
     java.lang.String[] descriptorData = {
       "\n\021UserService.proto\032\037google/protobuf/tim" +
-      "estamp.proto\"\210\005\n\004User\022\n\n\002id\030\001 \001(\t\022\r\n\005ema" +
-      "il\030\002 \001(\t\022\020\n\010username\030\003 \001(\t\022\022\n\nfirst_name" +
-      "\030\004 \001(\t\022\021\n\tlast_name\030\005 \001(\t\022\024\n\014phone_numbe" +
-      "r\030\006 \001(\t\022\033\n\006status\030\007 \001(\0162\013.UserStatus\022\026\n\016" +
-      "email_verified\030\010 \001(\010\022\026\n\016phone_verified\030\t" +
-      " \001(\010\022 \n\030email_verification_token\030\n \001(\t\022%" +
-      "\n\035email_verification_expires_at\030\013 \001(\t\022 \n" +
-      "\030phone_verification_token\030\014 \001(\t\022%\n\035phone" +
-      "_verification_expires_at\030\r \001(\t\022\034\n\024passwo" +
-      "rd_reset_token\030\016 \001(\t\022\'\n\037password_reset_t" +
-      "oken_expires_at\030\017 \001(\t\022.\n\nlast_login\030\020 \001(" +
-      "\0132\032.google.protobuf.Timestamp\022.\n\ncreated" +
-      "_at\030\021 \001(\0132\032.google.protobuf.Timestamp\022.\n" +
-      "\nupdated_at\030\022 \001(\0132\032.google.protobuf.Time" +
-      "stamp\022$\n\013preferences\030\023 \001(\0132\017.UserPrefere" +
-      "nce\022\035\n\007profile\030\024 \001(\0132\014.UserProfile\022\033\n\tad" +
-      "dresses\030\025 \003(\0132\010.Address\"\247\002\n\007Address\022\n\n\002i" +
-      "d\030\001 \001(\t\022\017\n\007user_id\030\002 \001(\t\022\032\n\004type\030\003 \001(\0162\014" +
-      ".AddressType\022\022\n\nis_default\030\004 \001(\010\022\025\n\raddr" +
-      "ess_line1\030\005 \001(\t\022\025\n\raddress_line2\030\006 \001(\t\022\014" +
-      "\n\004city\030\007 \001(\t\022\r\n\005state\030\010 \001(\t\022\023\n\013postal_co" +
-      "de\030\t \001(\t\022\017\n\007country\030\n \001(\t\022.\n\ncreated_at\030" +
-      "\013 \001(\0132\032.google.protobuf.Timestamp\022.\n\nupd" +
-      "ated_at\030\014 \001(\0132\032.google.protobuf.Timestam" +
-      "p\"\374\001\n\016UserPreference\022\n\n\002id\030\001 \001(\t\022\017\n\007user" +
-      "_id\030\002 \001(\t\022\020\n\010currency\030\003 \001(\t\022\020\n\010language\030" +
-      "\004 \001(\t\022\030\n\020marketing_emails\030\005 \001(\010\022\033\n\023order" +
-      "_notifications\030\006 \001(\010\022\022\n\nnewsletter\030\007 \001(\010" +
-      "\022.\n\ncreated_at\030\010 \001(\0132\032.google.protobuf.T" +
-      "imestamp\022.\n\nupdated_at\030\t \001(\0132\032.google.pr" +
-      "otobuf.Timestamp\"\200\002\n\013UserProfile\022\n\n\002id\030\001" +
-      " \001(\t\022\017\n\007user_id\030\002 \001(\t\022\016\n\006avatar\030\003 \001(\t\022\013\n" +
-      "\003bio\030\004 \001(\t\022\017\n\007website\030\005 \001(\t\022\020\n\010facebook\030" +
-      "\006 \001(\t\022\017\n\007twitter\030\007 \001(\t\022\021\n\tinstagram\030\010 \001(" +
-      "\t\022\020\n\010linkedin\030\t \001(\t\022.\n\ncreated_at\030\n \001(\0132" +
-      "\032.google.protobuf.Timestamp\022.\n\nupdated_a" +
-      "t\030\013 \001(\0132\032.google.protobuf.Timestamp\"\205\001\n\023" +
-      "RegisterUserRequest\022\r\n\005email\030\001 \001(\t\022\020\n\010us" +
-      "ername\030\002 \001(\t\022\022\n\nfirst_name\030\003 \001(\t\022\021\n\tlast" +
-      "_name\030\004 \001(\t\022\020\n\010password\030\005 \001(\t\022\024\n\014phone_n" +
-      "umber\030\006 \001(\t\"/\n\014LoginRequest\022\r\n\005email\030\001 \001" +
-      "(\t\022\020\n\010password\030\002 \001(\t\"<\n\rLoginResponse\022\024\n" +
-      "\014access_token\030\001 \001(\t\022\025\n\rrefresh_token\030\002 \001" +
-      "(\t*O\n\nUserStatus\022\n\n\006ACTIVE\020\000\022\014\n\010INACTIVE" +
-      "\020\001\022\r\n\tSUSPENDED\020\002\022\030\n\024PENDING_VERIFICATIO" +
-      "N\020\003*2\n\013AddressType\022\013\n\007BILLING\020\000\022\014\n\010SHIPP" +
-      "ING\020\001\022\010\n\004BOTH\020\0022j\n\013AuthService\022-\n\014regist" +
-      "erUser\022\024.RegisterUserRequest\032\005.User\"\000\022,\n" +
-      "\tloginUser\022\r.LoginRequest\032\016.LoginRespons" +
-      "e\"\000B\026\n\022org.abraham.modelsP\001b\006proto3"
+      "estamp.proto\032\033google/protobuf/empty.prot" +
+      "o\"\210\005\n\004User\022\n\n\002id\030\001 \001(\t\022\r\n\005email\030\002 \001(\t\022\020\n" +
+      "\010username\030\003 \001(\t\022\022\n\nfirst_name\030\004 \001(\t\022\021\n\tl" +
+      "ast_name\030\005 \001(\t\022\024\n\014phone_number\030\006 \001(\t\022\033\n\006" +
+      "status\030\007 \001(\0162\013.UserStatus\022\026\n\016email_verif" +
+      "ied\030\010 \001(\010\022\026\n\016phone_verified\030\t \001(\010\022 \n\030ema" +
+      "il_verification_token\030\n \001(\t\022%\n\035email_ver" +
+      "ification_expires_at\030\013 \001(\t\022 \n\030phone_veri" +
+      "fication_token\030\014 \001(\t\022%\n\035phone_verificati" +
+      "on_expires_at\030\r \001(\t\022\034\n\024password_reset_to" +
+      "ken\030\016 \001(\t\022\'\n\037password_reset_token_expire" +
+      "s_at\030\017 \001(\t\022.\n\nlast_login\030\020 \001(\0132\032.google." +
+      "protobuf.Timestamp\022.\n\ncreated_at\030\021 \001(\0132\032" +
+      ".google.protobuf.Timestamp\022.\n\nupdated_at" +
+      "\030\022 \001(\0132\032.google.protobuf.Timestamp\022$\n\013pr" +
+      "eferences\030\023 \001(\0132\017.UserPreference\022\035\n\007prof" +
+      "ile\030\024 \001(\0132\014.UserProfile\022\033\n\taddresses\030\025 \003" +
+      "(\0132\010.Address\"\247\002\n\007Address\022\n\n\002id\030\001 \001(\t\022\017\n\007" +
+      "user_id\030\002 \001(\t\022\032\n\004type\030\003 \001(\0162\014.AddressTyp" +
+      "e\022\022\n\nis_default\030\004 \001(\010\022\025\n\raddress_line1\030\005" +
+      " \001(\t\022\025\n\raddress_line2\030\006 \001(\t\022\014\n\004city\030\007 \001(" +
+      "\t\022\r\n\005state\030\010 \001(\t\022\023\n\013postal_code\030\t \001(\t\022\017\n" +
+      "\007country\030\n \001(\t\022.\n\ncreated_at\030\013 \001(\0132\032.goo" +
+      "gle.protobuf.Timestamp\022.\n\nupdated_at\030\014 \001" +
+      "(\0132\032.google.protobuf.Timestamp\"\374\001\n\016UserP" +
+      "reference\022\n\n\002id\030\001 \001(\t\022\017\n\007user_id\030\002 \001(\t\022\020" +
+      "\n\010currency\030\003 \001(\t\022\020\n\010language\030\004 \001(\t\022\030\n\020ma" +
+      "rketing_emails\030\005 \001(\010\022\033\n\023order_notificati" +
+      "ons\030\006 \001(\010\022\022\n\nnewsletter\030\007 \001(\010\022.\n\ncreated" +
+      "_at\030\010 \001(\0132\032.google.protobuf.Timestamp\022.\n" +
+      "\nupdated_at\030\t \001(\0132\032.google.protobuf.Time" +
+      "stamp\"\200\002\n\013UserProfile\022\n\n\002id\030\001 \001(\t\022\017\n\007use" +
+      "r_id\030\002 \001(\t\022\016\n\006avatar\030\003 \001(\t\022\013\n\003bio\030\004 \001(\t\022" +
+      "\017\n\007website\030\005 \001(\t\022\020\n\010facebook\030\006 \001(\t\022\017\n\007tw" +
+      "itter\030\007 \001(\t\022\021\n\tinstagram\030\010 \001(\t\022\020\n\010linked" +
+      "in\030\t \001(\t\022.\n\ncreated_at\030\n \001(\0132\032.google.pr" +
+      "otobuf.Timestamp\022.\n\nupdated_at\030\013 \001(\0132\032.g" +
+      "oogle.protobuf.Timestamp\"\205\001\n\023RegisterUse" +
+      "rRequest\022\r\n\005email\030\001 \001(\t\022\020\n\010username\030\002 \001(" +
+      "\t\022\022\n\nfirst_name\030\003 \001(\t\022\021\n\tlast_name\030\004 \001(\t" +
+      "\022\020\n\010password\030\005 \001(\t\022\024\n\014phone_number\030\006 \001(\t" +
+      "\"/\n\014LoginRequest\022\r\n\005email\030\001 \001(\t\022\020\n\010passw" +
+      "ord\030\002 \001(\t\"<\n\rLoginResponse\022\024\n\014access_tok" +
+      "en\030\001 \001(\t\022\025\n\rrefresh_token\030\002 \001(\t*O\n\nUserS" +
+      "tatus\022\n\n\006ACTIVE\020\000\022\014\n\010INACTIVE\020\001\022\r\n\tSUSPE" +
+      "NDED\020\002\022\030\n\024PENDING_VERIFICATION\020\003*2\n\013Addr" +
+      "essType\022\013\n\007BILLING\020\000\022\014\n\010SHIPPING\020\001\022\010\n\004BO" +
+      "TH\020\0022j\n\013AuthService\022-\n\014registerUser\022\024.Re" +
+      "gisterUserRequest\032\005.User\"\000\022,\n\tloginUser\022" +
+      "\r.LoginRequest\032\016.LoginResponse\"\0002@\n\013User" +
+      "Service\0221\n\016getCurrentUser\022\026.google.proto" +
+      "buf.Empty\032\005.User\"\000B\026\n\022org.abraham.models" +
+      "P\001b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
           com.google.protobuf.TimestampProto.getDescriptor(),
+          com.google.protobuf.EmptyProto.getDescriptor(),
         });
     internal_static_User_descriptor =
       getDescriptor().getMessageTypes().get(0);
@@ -159,6 +163,7 @@ public final class UserService {
         internal_static_LoginResponse_descriptor,
         new java.lang.String[] { "AccessToken", "RefreshToken", });
     com.google.protobuf.TimestampProto.getDescriptor();
+    com.google.protobuf.EmptyProto.getDescriptor();
   }
 
   // @@protoc_insertion_point(outer_class_scope)

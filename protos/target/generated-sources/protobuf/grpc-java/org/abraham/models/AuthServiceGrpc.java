@@ -398,7 +398,7 @@ public final class AuthServiceGrpc {
 
     @java.lang.Override
     public com.google.protobuf.Descriptors.FileDescriptor getFileDescriptor() {
-      return org.abraham.models.UserService.getDescriptor();
+      return org.abraham.models.UserServiceOuterClass.getDescriptor();
     }
 
     @java.lang.Override

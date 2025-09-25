@@ -1,6 +1,7 @@
 syntax = "proto3";
 
 import "google/protobuf/timestamp.proto";
+import "google/protobuf/empty.proto";
 
 option java_multiple_files = true;
 option java_package = "org.abraham.models";
@@ -121,5 +122,8 @@ message LoginResponse {
 service AuthService {
   rpc registerUser(RegisterUserRequest) returns (User) {}
   rpc loginUser(LoginRequest) returns (LoginResponse) {}
-  // rpc getCurrentUser() returns (User) {}
+}
+
+service UserService{
+   rpc getCurrentUser(google.protobuf.Empty) returns (User) {}
 }

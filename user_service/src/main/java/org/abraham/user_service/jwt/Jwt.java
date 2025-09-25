@@ -1,0 +1,42 @@
+package org.abraham.user_service.jwt;
+
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
+import org.abraham.user_service.dto.UserRoles;
+
+import javax.crypto.SecretKey;
+import java.util.Date;
+
+public class Jwt {
+    private final Claims claims;
+    private final SecretKey secretKey;
+
+    public Jwt(Claims claims, SecretKey secretKey) {
+        this.claims = claims;
+        this.secretKey = secretKey;
+    }
+
+    public boolean isExpired(){
+        return claims.getExpiration().before(new Date());
+    }
+
+    public String getUserId(){
+        return claims.getSubject();
+    }
+
+    public UserRoles getRole(){
+        return  UserRoles.valueOf(claims.get("role", String.class));
+    }
+
+    public String getEmail(){
+        return claims.get("email", String.class);
+    }
+
+    public String getUsername(){
+        return claims.get("username", String.class);
+    }
+
+    public String toString(){
+        return Jwts.builder().claims(claims).signWith(secretKey).compact();
+    }
+}

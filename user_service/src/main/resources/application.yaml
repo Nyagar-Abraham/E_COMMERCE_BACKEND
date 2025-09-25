@@ -1,13 +1,10 @@
 server:
   port: 8085
 
-# application.yml
 spring:
-  config:
-    import: optional:file:.env[.properties]
   grpc:
     server:
-      port: 8082
+      port: 9090
   application:
     name: user_service
   flyway:
@@ -15,14 +12,14 @@ spring:
     user: postgres
     password: pass1234
   r2dbc:
-    url: r2dbc:postgresql://localhost:5434/user_service_db
+#    url: r2dbc:postgresql://localhost:5434/user_service_db
     username: postgres
     password: pass1234
+  jwt:
+    secret: 8df235b60454947172088a5fe1082fcbf9cfa5b431d50216bcbdd6b03a70ff63
+    accessTokenExpiration: 10
+    refreshTokenExpiration: 60
 
-jwt:
-  secret: ${JWT_REFRESH_TOKEN_EXPIRATION}
-  accessTokenExpiration: ${JWT_REFRESH_TOKEN_EXPIRATION}
-  refreshTokenExpiration: ${JWT_REFRESH_TOKEN_EXPIRATION}
 
 logging:
   level:

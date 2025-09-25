@@ -1,6 +1,10 @@
 package org.abraham.user_service;
 
 import lombok.extern.slf4j.Slf4j;
+import org.abraham.user_service.dto.UserRoles;
+import org.abraham.user_service.entity.UserEntity;
+import org.abraham.user_service.jwt.JwtProperties;
+import org.abraham.user_service.jwt.JwtUtil;
 import org.abraham.user_service.repository.AddressRepository;
 import org.abraham.user_service.repository.UserPreferenceRepository;
 import org.abraham.user_service.repository.UserProfileRepository;
@@ -8,29 +12,44 @@ import org.abraham.user_service.repository.UserRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
+
+import java.util.UUID;
 
 @Slf4j
 @SpringBootApplication
+@EnableConfigurationProperties(JwtProperties.class)
 public class UserServiceApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(UserServiceApplication.class, args);
+
+     var context =   SpringApplication.run(UserServiceApplication.class, args);
+//        var user = UserEntity.builder()
+//                .id(UUID.randomUUID())
+//                .username("username")
+//                .email("email@gmail.com")
+//                .role(UserRoles.ADMIN)
+//                .phoneNumber("0746537543")
+//                .build();
+//        var accessToken =  context.getBean(JwtUtil.class).generateAccessToken(user);
+//        var refreshToken =  context.getBean(JwtUtil.class).generateAccessToken(user);
+//        log.info("accessToken: {}", accessToken);
+//        log.info("refreshtoken: {}", refreshToken);
+
 	}
 
     @Bean
     public CommandLineRunner init(UserRepository userRepository, UserProfileRepository userProfileRepository, UserPreferenceRepository userPreferenceRepository, AddressRepository addressRepository) {
         return args -> {
-//            var user = new User();
-//            user.setFirstName("John");
-//            user.setLastName("Doe");
-//            user.setEmail("user2@gmail.com");
-//            user.setUsername("johndoe2");
-//            user.setPasswordHash("password");
-//            user.setEmailVerified(true);
-//            user.setPhoneVerified(true);
-//            user.setCreatedAt(LocalDateTime.now());
-//            user.setUpdatedAt(LocalDateTime.now());
+
+
+
+
+
+
+
+
 
 
 

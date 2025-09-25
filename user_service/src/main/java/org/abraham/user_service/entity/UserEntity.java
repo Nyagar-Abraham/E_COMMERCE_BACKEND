@@ -37,8 +37,10 @@ public class UserEntity {
     @Column("phone_number")
     private String phoneNumber;
 
+    @Column("status")
     private UserStatus status;
 
+    @Column("role")
     private UserRoles role;
 
     @Column("email_verified")

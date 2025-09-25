@@ -1,7 +1,7 @@
 -- ==============================
 --     Roles Enum
 -- ==============================
-CREATE TABLE user_roles AS ENUM (
+CREATE TYPE user_roles AS ENUM (
     'CUSTOMER',
     'MERCHANT',
     'ADMIN',
@@ -13,4 +13,4 @@ CREATE TABLE user_roles AS ENUM (
 -- ================================
 
 ALTER TABLE users
-ADD COLUMN role user_roles NOT NULL DEFAULT 'CUSTOMER'
+ADD COLUMN role user_roles NOT NULL DEFAULT 'CUSTOMER';

@@ -30,13 +30,13 @@ private static final long serialVersionUID = 0L;
 
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return org.abraham.models.UserService.internal_static_LoginRequest_descriptor;
+    return org.abraham.models.UserServiceOuterClass.internal_static_LoginRequest_descriptor;
   }
 
   @java.lang.Override
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return org.abraham.models.UserService.internal_static_LoginRequest_fieldAccessorTable
+    return org.abraham.models.UserServiceOuterClass.internal_static_LoginRequest_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
             org.abraham.models.LoginRequest.class, org.abraham.models.LoginRequest.Builder.class);
   }
@@ -294,13 +294,13 @@ private static final long serialVersionUID = 0L;
       org.abraham.models.LoginRequestOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return org.abraham.models.UserService.internal_static_LoginRequest_descriptor;
+      return org.abraham.models.UserServiceOuterClass.internal_static_LoginRequest_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return org.abraham.models.UserService.internal_static_LoginRequest_fieldAccessorTable
+      return org.abraham.models.UserServiceOuterClass.internal_static_LoginRequest_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
               org.abraham.models.LoginRequest.class, org.abraham.models.LoginRequest.Builder.class);
     }
@@ -327,7 +327,7 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return org.abraham.models.UserService.internal_static_LoginRequest_descriptor;
+      return org.abraham.models.UserServiceOuterClass.internal_static_LoginRequest_descriptor;
     }
 
     @java.lang.Override

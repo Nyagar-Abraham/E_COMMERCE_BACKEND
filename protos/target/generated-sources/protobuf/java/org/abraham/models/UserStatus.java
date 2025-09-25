@@ -110,7 +110,7 @@ public enum UserStatus
   }
   public static final com.google.protobuf.Descriptors.EnumDescriptor
       getDescriptor() {
-    return org.abraham.models.UserService.getDescriptor().getEnumTypes().get(0);
+    return org.abraham.models.UserServiceOuterClass.getDescriptor().getEnumTypes().get(0);
   }
 
   private static final UserStatus[] VALUES = values();

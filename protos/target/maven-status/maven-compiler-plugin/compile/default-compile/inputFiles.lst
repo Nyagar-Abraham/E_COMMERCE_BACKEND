@@ -1,5 +1,7 @@
 /home/abrahamnyagar/IdeaProjects/E_COMMERCE_BACKEND/protos/src/main/java/org/abraham/Main.java
+/home/abrahamnyagar/IdeaProjects/E_COMMERCE_BACKEND/protos/src/main/java/org/abraham/constants/Constants.java
 /home/abrahamnyagar/IdeaProjects/E_COMMERCE_BACKEND/protos/target/generated-sources/protobuf/grpc-java/org/abraham/models/AuthServiceGrpc.java
+/home/abrahamnyagar/IdeaProjects/E_COMMERCE_BACKEND/protos/target/generated-sources/protobuf/grpc-java/org/abraham/models/UserServiceGrpc.java
 /home/abrahamnyagar/IdeaProjects/E_COMMERCE_BACKEND/protos/target/generated-sources/protobuf/java/org/abraham/models/Address.java
 /home/abrahamnyagar/IdeaProjects/E_COMMERCE_BACKEND/protos/target/generated-sources/protobuf/java/org/abraham/models/AddressOrBuilder.java
 /home/abrahamnyagar/IdeaProjects/E_COMMERCE_BACKEND/protos/target/generated-sources/protobuf/java/org/abraham/models/AddressType.java
@@ -15,5 +17,5 @@
 /home/abrahamnyagar/IdeaProjects/E_COMMERCE_BACKEND/protos/target/generated-sources/protobuf/java/org/abraham/models/UserPreferenceOrBuilder.java
 /home/abrahamnyagar/IdeaProjects/E_COMMERCE_BACKEND/protos/target/generated-sources/protobuf/java/org/abraham/models/UserProfile.java
 /home/abrahamnyagar/IdeaProjects/E_COMMERCE_BACKEND/protos/target/generated-sources/protobuf/java/org/abraham/models/UserProfileOrBuilder.java
-/home/abrahamnyagar/IdeaProjects/E_COMMERCE_BACKEND/protos/target/generated-sources/protobuf/java/org/abraham/models/UserService.java
+/home/abrahamnyagar/IdeaProjects/E_COMMERCE_BACKEND/protos/target/generated-sources/protobuf/java/org/abraham/models/UserServiceOuterClass.java
 /home/abrahamnyagar/IdeaProjects/E_COMMERCE_BACKEND/protos/target/generated-sources/protobuf/java/org/abraham/models/UserStatus.java
