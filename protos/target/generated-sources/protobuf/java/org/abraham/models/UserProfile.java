@@ -22,10 +22,6 @@ private static final long serialVersionUID = 0L;
     avatar_ = "";
     bio_ = "";
     website_ = "";
-    facebook_ = "";
-    twitter_ = "";
-    instagram_ = "";
-    linkedin_ = "";
   }
 
   @java.lang.Override
@@ -244,174 +240,44 @@ private static final long serialVersionUID = 0L;
     }
   }
 
-  public static final int FACEBOOK_FIELD_NUMBER = 6;
-  @SuppressWarnings("serial")
-  private volatile java.lang.Object facebook_ = "";
+  public static final int SOCIAL_LINKS_FIELD_NUMBER = 6;
+  private org.abraham.models.SocialLink socialLinks_;
   /**
-   * <code>string facebook = 6;</code>
-   * @return The facebook.
+   * <code>.SocialLink social_links = 6;</code>
+   * @return Whether the socialLinks field is set.
    */
   @java.lang.Override
-  public java.lang.String getFacebook() {
-    java.lang.Object ref = facebook_;
-    if (ref instanceof java.lang.String) {
-      return (java.lang.String) ref;
-    } else {
-      com.google.protobuf.ByteString bs = 
-          (com.google.protobuf.ByteString) ref;
-      java.lang.String s = bs.toStringUtf8();
-      facebook_ = s;
-      return s;
-    }
+  public boolean hasSocialLinks() {
+    return ((bitField0_ & 0x00000001) != 0);
   }
   /**
-   * <code>string facebook = 6;</code>
-   * @return The bytes for facebook.
+   * <code>.SocialLink social_links = 6;</code>
+   * @return The socialLinks.
    */
   @java.lang.Override
-  public com.google.protobuf.ByteString
-      getFacebookBytes() {
-    java.lang.Object ref = facebook_;
-    if (ref instanceof java.lang.String) {
-      com.google.protobuf.ByteString b = 
-          com.google.protobuf.ByteString.copyFromUtf8(
-              (java.lang.String) ref);
-      facebook_ = b;
-      return b;
-    } else {
-      return (com.google.protobuf.ByteString) ref;
-    }
+  public org.abraham.models.SocialLink getSocialLinks() {
+    return socialLinks_ == null ? org.abraham.models.SocialLink.getDefaultInstance() : socialLinks_;
+  }
+  /**
+   * <code>.SocialLink social_links = 6;</code>
+   */
+  @java.lang.Override
+  public org.abraham.models.SocialLinkOrBuilder getSocialLinksOrBuilder() {
+    return socialLinks_ == null ? org.abraham.models.SocialLink.getDefaultInstance() : socialLinks_;
   }
 
-  public static final int TWITTER_FIELD_NUMBER = 7;
-  @SuppressWarnings("serial")
-  private volatile java.lang.Object twitter_ = "";
-  /**
-   * <code>string twitter = 7;</code>
-   * @return The twitter.
-   */
-  @java.lang.Override
-  public java.lang.String getTwitter() {
-    java.lang.Object ref = twitter_;
-    if (ref instanceof java.lang.String) {
-      return (java.lang.String) ref;
-    } else {
-      com.google.protobuf.ByteString bs = 
-          (com.google.protobuf.ByteString) ref;
-      java.lang.String s = bs.toStringUtf8();
-      twitter_ = s;
-      return s;
-    }
-  }
-  /**
-   * <code>string twitter = 7;</code>
-   * @return The bytes for twitter.
-   */
-  @java.lang.Override
-  public com.google.protobuf.ByteString
-      getTwitterBytes() {
-    java.lang.Object ref = twitter_;
-    if (ref instanceof java.lang.String) {
-      com.google.protobuf.ByteString b = 
-          com.google.protobuf.ByteString.copyFromUtf8(
-              (java.lang.String) ref);
-      twitter_ = b;
-      return b;
-    } else {
-      return (com.google.protobuf.ByteString) ref;
-    }
-  }
-
-  public static final int INSTAGRAM_FIELD_NUMBER = 8;
-  @SuppressWarnings("serial")
-  private volatile java.lang.Object instagram_ = "";
-  /**
-   * <code>string instagram = 8;</code>
-   * @return The instagram.
-   */
-  @java.lang.Override
-  public java.lang.String getInstagram() {
-    java.lang.Object ref = instagram_;
-    if (ref instanceof java.lang.String) {
-      return (java.lang.String) ref;
-    } else {
-      com.google.protobuf.ByteString bs = 
-          (com.google.protobuf.ByteString) ref;
-      java.lang.String s = bs.toStringUtf8();
-      instagram_ = s;
-      return s;
-    }
-  }
-  /**
-   * <code>string instagram = 8;</code>
-   * @return The bytes for instagram.
-   */
-  @java.lang.Override
-  public com.google.protobuf.ByteString
-      getInstagramBytes() {
-    java.lang.Object ref = instagram_;
-    if (ref instanceof java.lang.String) {
-      com.google.protobuf.ByteString b = 
-          com.google.protobuf.ByteString.copyFromUtf8(
-              (java.lang.String) ref);
-      instagram_ = b;
-      return b;
-    } else {
-      return (com.google.protobuf.ByteString) ref;
-    }
-  }
-
-  public static final int LINKEDIN_FIELD_NUMBER = 9;
-  @SuppressWarnings("serial")
-  private volatile java.lang.Object linkedin_ = "";
-  /**
-   * <code>string linkedin = 9;</code>
-   * @return The linkedin.
-   */
-  @java.lang.Override
-  public java.lang.String getLinkedin() {
-    java.lang.Object ref = linkedin_;
-    if (ref instanceof java.lang.String) {
-      return (java.lang.String) ref;
-    } else {
-      com.google.protobuf.ByteString bs = 
-          (com.google.protobuf.ByteString) ref;
-      java.lang.String s = bs.toStringUtf8();
-      linkedin_ = s;
-      return s;
-    }
-  }
-  /**
-   * <code>string linkedin = 9;</code>
-   * @return The bytes for linkedin.
-   */
-  @java.lang.Override
-  public com.google.protobuf.ByteString
-      getLinkedinBytes() {
-    java.lang.Object ref = linkedin_;
-    if (ref instanceof java.lang.String) {
-      com.google.protobuf.ByteString b = 
-          com.google.protobuf.ByteString.copyFromUtf8(
-              (java.lang.String) ref);
-      linkedin_ = b;
-      return b;
-    } else {
-      return (com.google.protobuf.ByteString) ref;
-    }
-  }
-
-  public static final int CREATED_AT_FIELD_NUMBER = 10;
+  public static final int CREATED_AT_FIELD_NUMBER = 7;
   private com.google.protobuf.Timestamp createdAt_;
   /**
-   * <code>.google.protobuf.Timestamp created_at = 10;</code>
+   * <code>.google.protobuf.Timestamp created_at = 7;</code>
    * @return Whether the createdAt field is set.
    */
   @java.lang.Override
   public boolean hasCreatedAt() {
-    return ((bitField0_ & 0x00000001) != 0);
+    return ((bitField0_ & 0x00000002) != 0);
   }
   /**
-   * <code>.google.protobuf.Timestamp created_at = 10;</code>
+   * <code>.google.protobuf.Timestamp created_at = 7;</code>
    * @return The createdAt.
    */
   @java.lang.Override
@@ -419,25 +285,25 @@ private static final long serialVersionUID = 0L;
     return createdAt_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : createdAt_;
   }
   /**
-   * <code>.google.protobuf.Timestamp created_at = 10;</code>
+   * <code>.google.protobuf.Timestamp created_at = 7;</code>
    */
   @java.lang.Override
   public com.google.protobuf.TimestampOrBuilder getCreatedAtOrBuilder() {
     return createdAt_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : createdAt_;
   }
 
-  public static final int UPDATED_AT_FIELD_NUMBER = 11;
+  public static final int UPDATED_AT_FIELD_NUMBER = 8;
   private com.google.protobuf.Timestamp updatedAt_;
   /**
-   * <code>.google.protobuf.Timestamp updated_at = 11;</code>
+   * <code>.google.protobuf.Timestamp updated_at = 8;</code>
    * @return Whether the updatedAt field is set.
    */
   @java.lang.Override
   public boolean hasUpdatedAt() {
-    return ((bitField0_ & 0x00000002) != 0);
+    return ((bitField0_ & 0x00000004) != 0);
   }
   /**
-   * <code>.google.protobuf.Timestamp updated_at = 11;</code>
+   * <code>.google.protobuf.Timestamp updated_at = 8;</code>
    * @return The updatedAt.
    */
   @java.lang.Override
@@ -445,7 +311,7 @@ private static final long serialVersionUID = 0L;
     return updatedAt_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : updatedAt_;
   }
   /**
-   * <code>.google.protobuf.Timestamp updated_at = 11;</code>
+   * <code>.google.protobuf.Timestamp updated_at = 8;</code>
    */
   @java.lang.Override
   public com.google.protobuf.TimestampOrBuilder getUpdatedAtOrBuilder() {
@@ -481,23 +347,14 @@ private static final long serialVersionUID = 0L;
     if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(website_)) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 5, website_);
     }
-    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(facebook_)) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 6, facebook_);
-    }
-    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(twitter_)) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 7, twitter_);
-    }
-    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(instagram_)) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 8, instagram_);
-    }
-    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(linkedin_)) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 9, linkedin_);
-    }
     if (((bitField0_ & 0x00000001) != 0)) {
-      output.writeMessage(10, getCreatedAt());
+      output.writeMessage(6, getSocialLinks());
     }
     if (((bitField0_ & 0x00000002) != 0)) {
-      output.writeMessage(11, getUpdatedAt());
+      output.writeMessage(7, getCreatedAt());
+    }
+    if (((bitField0_ & 0x00000004) != 0)) {
+      output.writeMessage(8, getUpdatedAt());
     }
     getUnknownFields().writeTo(output);
   }
@@ -523,25 +380,17 @@ private static final long serialVersionUID = 0L;
     if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(website_)) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, website_);
     }
-    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(facebook_)) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(6, facebook_);
-    }
-    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(twitter_)) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(7, twitter_);
-    }
-    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(instagram_)) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(8, instagram_);
-    }
-    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(linkedin_)) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(9, linkedin_);
-    }
     if (((bitField0_ & 0x00000001) != 0)) {
       size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(10, getCreatedAt());
+        .computeMessageSize(6, getSocialLinks());
     }
     if (((bitField0_ & 0x00000002) != 0)) {
       size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(11, getUpdatedAt());
+        .computeMessageSize(7, getCreatedAt());
+    }
+    if (((bitField0_ & 0x00000004) != 0)) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(8, getUpdatedAt());
     }
     size += getUnknownFields().getSerializedSize();
     memoizedSize = size;
@@ -568,14 +417,11 @@ private static final long serialVersionUID = 0L;
         .equals(other.getBio())) return false;
     if (!getWebsite()
         .equals(other.getWebsite())) return false;
-    if (!getFacebook()
-        .equals(other.getFacebook())) return false;
-    if (!getTwitter()
-        .equals(other.getTwitter())) return false;
-    if (!getInstagram()
-        .equals(other.getInstagram())) return false;
-    if (!getLinkedin()
-        .equals(other.getLinkedin())) return false;
+    if (hasSocialLinks() != other.hasSocialLinks()) return false;
+    if (hasSocialLinks()) {
+      if (!getSocialLinks()
+          .equals(other.getSocialLinks())) return false;
+    }
     if (hasCreatedAt() != other.hasCreatedAt()) return false;
     if (hasCreatedAt()) {
       if (!getCreatedAt()
@@ -607,14 +453,10 @@ private static final long serialVersionUID = 0L;
     hash = (53 * hash) + getBio().hashCode();
     hash = (37 * hash) + WEBSITE_FIELD_NUMBER;
     hash = (53 * hash) + getWebsite().hashCode();
-    hash = (37 * hash) + FACEBOOK_FIELD_NUMBER;
-    hash = (53 * hash) + getFacebook().hashCode();
-    hash = (37 * hash) + TWITTER_FIELD_NUMBER;
-    hash = (53 * hash) + getTwitter().hashCode();
-    hash = (37 * hash) + INSTAGRAM_FIELD_NUMBER;
-    hash = (53 * hash) + getInstagram().hashCode();
-    hash = (37 * hash) + LINKEDIN_FIELD_NUMBER;
-    hash = (53 * hash) + getLinkedin().hashCode();
+    if (hasSocialLinks()) {
+      hash = (37 * hash) + SOCIAL_LINKS_FIELD_NUMBER;
+      hash = (53 * hash) + getSocialLinks().hashCode();
+    }
     if (hasCreatedAt()) {
       hash = (37 * hash) + CREATED_AT_FIELD_NUMBER;
       hash = (53 * hash) + getCreatedAt().hashCode();
@@ -753,6 +595,7 @@ private static final long serialVersionUID = 0L;
     private void maybeForceBuilderInitialization() {
       if (com.google.protobuf.GeneratedMessageV3
               .alwaysUseFieldBuilders) {
+        getSocialLinksFieldBuilder();
         getCreatedAtFieldBuilder();
         getUpdatedAtFieldBuilder();
       }
@@ -766,10 +609,11 @@ private static final long serialVersionUID = 0L;
       avatar_ = "";
       bio_ = "";
       website_ = "";
-      facebook_ = "";
-      twitter_ = "";
-      instagram_ = "";
-      linkedin_ = "";
+      socialLinks_ = null;
+      if (socialLinksBuilder_ != null) {
+        socialLinksBuilder_.dispose();
+        socialLinksBuilder_ = null;
+      }
       createdAt_ = null;
       if (createdAtBuilder_ != null) {
         createdAtBuilder_.dispose();
@@ -828,30 +672,24 @@ private static final long serialVersionUID = 0L;
       if (((from_bitField0_ & 0x00000010) != 0)) {
         result.website_ = website_;
       }
+      int to_bitField0_ = 0;
       if (((from_bitField0_ & 0x00000020) != 0)) {
-        result.facebook_ = facebook_;
+        result.socialLinks_ = socialLinksBuilder_ == null
+            ? socialLinks_
+            : socialLinksBuilder_.build();
+        to_bitField0_ |= 0x00000001;
       }
       if (((from_bitField0_ & 0x00000040) != 0)) {
-        result.twitter_ = twitter_;
-      }
-      if (((from_bitField0_ & 0x00000080) != 0)) {
-        result.instagram_ = instagram_;
-      }
-      if (((from_bitField0_ & 0x00000100) != 0)) {
-        result.linkedin_ = linkedin_;
-      }
-      int to_bitField0_ = 0;
-      if (((from_bitField0_ & 0x00000200) != 0)) {
         result.createdAt_ = createdAtBuilder_ == null
             ? createdAt_
             : createdAtBuilder_.build();
-        to_bitField0_ |= 0x00000001;
+        to_bitField0_ |= 0x00000002;
       }
-      if (((from_bitField0_ & 0x00000400) != 0)) {
+      if (((from_bitField0_ & 0x00000080) != 0)) {
         result.updatedAt_ = updatedAtBuilder_ == null
             ? updatedAt_
             : updatedAtBuilder_.build();
-        to_bitField0_ |= 0x00000002;
+        to_bitField0_ |= 0x00000004;
       }
       result.bitField0_ |= to_bitField0_;
     }
@@ -925,25 +763,8 @@ private static final long serialVersionUID = 0L;
         bitField0_ |= 0x00000010;
         onChanged();
       }
-      if (!other.getFacebook().isEmpty()) {
-        facebook_ = other.facebook_;
-        bitField0_ |= 0x00000020;
-        onChanged();
-      }
-      if (!other.getTwitter().isEmpty()) {
-        twitter_ = other.twitter_;
-        bitField0_ |= 0x00000040;
-        onChanged();
-      }
-      if (!other.getInstagram().isEmpty()) {
-        instagram_ = other.instagram_;
-        bitField0_ |= 0x00000080;
-        onChanged();
-      }
-      if (!other.getLinkedin().isEmpty()) {
-        linkedin_ = other.linkedin_;
-        bitField0_ |= 0x00000100;
-        onChanged();
+      if (other.hasSocialLinks()) {
+        mergeSocialLinks(other.getSocialLinks());
       }
       if (other.hasCreatedAt()) {
         mergeCreatedAt(other.getCreatedAt());
@@ -1003,39 +824,26 @@ private static final long serialVersionUID = 0L;
               break;
             } // case 42
             case 50: {
-              facebook_ = input.readStringRequireUtf8();
+              input.readMessage(
+                  getSocialLinksFieldBuilder().getBuilder(),
+                  extensionRegistry);
               bitField0_ |= 0x00000020;
               break;
             } // case 50
             case 58: {
-              twitter_ = input.readStringRequireUtf8();
+              input.readMessage(
+                  getCreatedAtFieldBuilder().getBuilder(),
+                  extensionRegistry);
               bitField0_ |= 0x00000040;
               break;
             } // case 58
             case 66: {
-              instagram_ = input.readStringRequireUtf8();
-              bitField0_ |= 0x00000080;
-              break;
-            } // case 66
-            case 74: {
-              linkedin_ = input.readStringRequireUtf8();
-              bitField0_ |= 0x00000100;
-              break;
-            } // case 74
-            case 82: {
-              input.readMessage(
-                  getCreatedAtFieldBuilder().getBuilder(),
-                  extensionRegistry);
-              bitField0_ |= 0x00000200;
-              break;
-            } // case 82
-            case 90: {
               input.readMessage(
                   getUpdatedAtFieldBuilder().getBuilder(),
                   extensionRegistry);
-              bitField0_ |= 0x00000400;
+              bitField0_ |= 0x00000080;
               break;
-            } // case 90
+            } // case 66
             default: {
               if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                 done = true; // was an endgroup tag
@@ -1413,306 +1221,139 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private java.lang.Object facebook_ = "";
+    private org.abraham.models.SocialLink socialLinks_;
+    private com.google.protobuf.SingleFieldBuilderV3<
+        org.abraham.models.SocialLink, org.abraham.models.SocialLink.Builder, org.abraham.models.SocialLinkOrBuilder> socialLinksBuilder_;
     /**
-     * <code>string facebook = 6;</code>
-     * @return The facebook.
+     * <code>.SocialLink social_links = 6;</code>
+     * @return Whether the socialLinks field is set.
      */
-    public java.lang.String getFacebook() {
-      java.lang.Object ref = facebook_;
-      if (!(ref instanceof java.lang.String)) {
-        com.google.protobuf.ByteString bs =
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        facebook_ = s;
-        return s;
+    public boolean hasSocialLinks() {
+      return ((bitField0_ & 0x00000020) != 0);
+    }
+    /**
+     * <code>.SocialLink social_links = 6;</code>
+     * @return The socialLinks.
+     */
+    public org.abraham.models.SocialLink getSocialLinks() {
+      if (socialLinksBuilder_ == null) {
+        return socialLinks_ == null ? org.abraham.models.SocialLink.getDefaultInstance() : socialLinks_;
       } else {
-        return (java.lang.String) ref;
+        return socialLinksBuilder_.getMessage();
       }
     }
     /**
-     * <code>string facebook = 6;</code>
-     * @return The bytes for facebook.
+     * <code>.SocialLink social_links = 6;</code>
      */
-    public com.google.protobuf.ByteString
-        getFacebookBytes() {
-      java.lang.Object ref = facebook_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        facebook_ = b;
-        return b;
+    public Builder setSocialLinks(org.abraham.models.SocialLink value) {
+      if (socialLinksBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        socialLinks_ = value;
       } else {
-        return (com.google.protobuf.ByteString) ref;
+        socialLinksBuilder_.setMessage(value);
       }
-    }
-    /**
-     * <code>string facebook = 6;</code>
-     * @param value The facebook to set.
-     * @return This builder for chaining.
-     */
-    public Builder setFacebook(
-        java.lang.String value) {
-      if (value == null) { throw new NullPointerException(); }
-      facebook_ = value;
       bitField0_ |= 0x00000020;
       onChanged();
       return this;
     }
     /**
-     * <code>string facebook = 6;</code>
-     * @return This builder for chaining.
+     * <code>.SocialLink social_links = 6;</code>
      */
-    public Builder clearFacebook() {
-      facebook_ = getDefaultInstance().getFacebook();
+    public Builder setSocialLinks(
+        org.abraham.models.SocialLink.Builder builderForValue) {
+      if (socialLinksBuilder_ == null) {
+        socialLinks_ = builderForValue.build();
+      } else {
+        socialLinksBuilder_.setMessage(builderForValue.build());
+      }
+      bitField0_ |= 0x00000020;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>.SocialLink social_links = 6;</code>
+     */
+    public Builder mergeSocialLinks(org.abraham.models.SocialLink value) {
+      if (socialLinksBuilder_ == null) {
+        if (((bitField0_ & 0x00000020) != 0) &&
+          socialLinks_ != null &&
+          socialLinks_ != org.abraham.models.SocialLink.getDefaultInstance()) {
+          getSocialLinksBuilder().mergeFrom(value);
+        } else {
+          socialLinks_ = value;
+        }
+      } else {
+        socialLinksBuilder_.mergeFrom(value);
+      }
+      if (socialLinks_ != null) {
+        bitField0_ |= 0x00000020;
+        onChanged();
+      }
+      return this;
+    }
+    /**
+     * <code>.SocialLink social_links = 6;</code>
+     */
+    public Builder clearSocialLinks() {
       bitField0_ = (bitField0_ & ~0x00000020);
+      socialLinks_ = null;
+      if (socialLinksBuilder_ != null) {
+        socialLinksBuilder_.dispose();
+        socialLinksBuilder_ = null;
+      }
       onChanged();
       return this;
     }
     /**
-     * <code>string facebook = 6;</code>
-     * @param value The bytes for facebook to set.
-     * @return This builder for chaining.
+     * <code>.SocialLink social_links = 6;</code>
      */
-    public Builder setFacebookBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) { throw new NullPointerException(); }
-      checkByteStringIsUtf8(value);
-      facebook_ = value;
+    public org.abraham.models.SocialLink.Builder getSocialLinksBuilder() {
       bitField0_ |= 0x00000020;
       onChanged();
-      return this;
+      return getSocialLinksFieldBuilder().getBuilder();
     }
-
-    private java.lang.Object twitter_ = "";
     /**
-     * <code>string twitter = 7;</code>
-     * @return The twitter.
+     * <code>.SocialLink social_links = 6;</code>
      */
-    public java.lang.String getTwitter() {
-      java.lang.Object ref = twitter_;
-      if (!(ref instanceof java.lang.String)) {
-        com.google.protobuf.ByteString bs =
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        twitter_ = s;
-        return s;
+    public org.abraham.models.SocialLinkOrBuilder getSocialLinksOrBuilder() {
+      if (socialLinksBuilder_ != null) {
+        return socialLinksBuilder_.getMessageOrBuilder();
       } else {
-        return (java.lang.String) ref;
+        return socialLinks_ == null ?
+            org.abraham.models.SocialLink.getDefaultInstance() : socialLinks_;
       }
     }
     /**
-     * <code>string twitter = 7;</code>
-     * @return The bytes for twitter.
+     * <code>.SocialLink social_links = 6;</code>
      */
-    public com.google.protobuf.ByteString
-        getTwitterBytes() {
-      java.lang.Object ref = twitter_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        twitter_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
+    private com.google.protobuf.SingleFieldBuilderV3<
+        org.abraham.models.SocialLink, org.abraham.models.SocialLink.Builder, org.abraham.models.SocialLinkOrBuilder> 
+        getSocialLinksFieldBuilder() {
+      if (socialLinksBuilder_ == null) {
+        socialLinksBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            org.abraham.models.SocialLink, org.abraham.models.SocialLink.Builder, org.abraham.models.SocialLinkOrBuilder>(
+                getSocialLinks(),
+                getParentForChildren(),
+                isClean());
+        socialLinks_ = null;
       }
-    }
-    /**
-     * <code>string twitter = 7;</code>
-     * @param value The twitter to set.
-     * @return This builder for chaining.
-     */
-    public Builder setTwitter(
-        java.lang.String value) {
-      if (value == null) { throw new NullPointerException(); }
-      twitter_ = value;
-      bitField0_ |= 0x00000040;
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>string twitter = 7;</code>
-     * @return This builder for chaining.
-     */
-    public Builder clearTwitter() {
-      twitter_ = getDefaultInstance().getTwitter();
-      bitField0_ = (bitField0_ & ~0x00000040);
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>string twitter = 7;</code>
-     * @param value The bytes for twitter to set.
-     * @return This builder for chaining.
-     */
-    public Builder setTwitterBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) { throw new NullPointerException(); }
-      checkByteStringIsUtf8(value);
-      twitter_ = value;
-      bitField0_ |= 0x00000040;
-      onChanged();
-      return this;
-    }
-
-    private java.lang.Object instagram_ = "";
-    /**
-     * <code>string instagram = 8;</code>
-     * @return The instagram.
-     */
-    public java.lang.String getInstagram() {
-      java.lang.Object ref = instagram_;
-      if (!(ref instanceof java.lang.String)) {
-        com.google.protobuf.ByteString bs =
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        instagram_ = s;
-        return s;
-      } else {
-        return (java.lang.String) ref;
-      }
-    }
-    /**
-     * <code>string instagram = 8;</code>
-     * @return The bytes for instagram.
-     */
-    public com.google.protobuf.ByteString
-        getInstagramBytes() {
-      java.lang.Object ref = instagram_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        instagram_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-    /**
-     * <code>string instagram = 8;</code>
-     * @param value The instagram to set.
-     * @return This builder for chaining.
-     */
-    public Builder setInstagram(
-        java.lang.String value) {
-      if (value == null) { throw new NullPointerException(); }
-      instagram_ = value;
-      bitField0_ |= 0x00000080;
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>string instagram = 8;</code>
-     * @return This builder for chaining.
-     */
-    public Builder clearInstagram() {
-      instagram_ = getDefaultInstance().getInstagram();
-      bitField0_ = (bitField0_ & ~0x00000080);
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>string instagram = 8;</code>
-     * @param value The bytes for instagram to set.
-     * @return This builder for chaining.
-     */
-    public Builder setInstagramBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) { throw new NullPointerException(); }
-      checkByteStringIsUtf8(value);
-      instagram_ = value;
-      bitField0_ |= 0x00000080;
-      onChanged();
-      return this;
-    }
-
-    private java.lang.Object linkedin_ = "";
-    /**
-     * <code>string linkedin = 9;</code>
-     * @return The linkedin.
-     */
-    public java.lang.String getLinkedin() {
-      java.lang.Object ref = linkedin_;
-      if (!(ref instanceof java.lang.String)) {
-        com.google.protobuf.ByteString bs =
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        linkedin_ = s;
-        return s;
-      } else {
-        return (java.lang.String) ref;
-      }
-    }
-    /**
-     * <code>string linkedin = 9;</code>
-     * @return The bytes for linkedin.
-     */
-    public com.google.protobuf.ByteString
-        getLinkedinBytes() {
-      java.lang.Object ref = linkedin_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        linkedin_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-    /**
-     * <code>string linkedin = 9;</code>
-     * @param value The linkedin to set.
-     * @return This builder for chaining.
-     */
-    public Builder setLinkedin(
-        java.lang.String value) {
-      if (value == null) { throw new NullPointerException(); }
-      linkedin_ = value;
-      bitField0_ |= 0x00000100;
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>string linkedin = 9;</code>
-     * @return This builder for chaining.
-     */
-    public Builder clearLinkedin() {
-      linkedin_ = getDefaultInstance().getLinkedin();
-      bitField0_ = (bitField0_ & ~0x00000100);
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>string linkedin = 9;</code>
-     * @param value The bytes for linkedin to set.
-     * @return This builder for chaining.
-     */
-    public Builder setLinkedinBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) { throw new NullPointerException(); }
-      checkByteStringIsUtf8(value);
-      linkedin_ = value;
-      bitField0_ |= 0x00000100;
-      onChanged();
-      return this;
+      return socialLinksBuilder_;
     }
 
     private com.google.protobuf.Timestamp createdAt_;
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> createdAtBuilder_;
     /**
-     * <code>.google.protobuf.Timestamp created_at = 10;</code>
+     * <code>.google.protobuf.Timestamp created_at = 7;</code>
      * @return Whether the createdAt field is set.
      */
     public boolean hasCreatedAt() {
-      return ((bitField0_ & 0x00000200) != 0);
+      return ((bitField0_ & 0x00000040) != 0);
     }
     /**
-     * <code>.google.protobuf.Timestamp created_at = 10;</code>
+     * <code>.google.protobuf.Timestamp created_at = 7;</code>
      * @return The createdAt.
      */
     public com.google.protobuf.Timestamp getCreatedAt() {
@@ -1723,7 +1364,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>.google.protobuf.Timestamp created_at = 10;</code>
+     * <code>.google.protobuf.Timestamp created_at = 7;</code>
      */
     public Builder setCreatedAt(com.google.protobuf.Timestamp value) {
       if (createdAtBuilder_ == null) {
@@ -1734,12 +1375,12 @@ private static final long serialVersionUID = 0L;
       } else {
         createdAtBuilder_.setMessage(value);
       }
-      bitField0_ |= 0x00000200;
+      bitField0_ |= 0x00000040;
       onChanged();
       return this;
     }
     /**
-     * <code>.google.protobuf.Timestamp created_at = 10;</code>
+     * <code>.google.protobuf.Timestamp created_at = 7;</code>
      */
     public Builder setCreatedAt(
         com.google.protobuf.Timestamp.Builder builderForValue) {
@@ -1748,16 +1389,16 @@ private static final long serialVersionUID = 0L;
       } else {
         createdAtBuilder_.setMessage(builderForValue.build());
       }
-      bitField0_ |= 0x00000200;
+      bitField0_ |= 0x00000040;
       onChanged();
       return this;
     }
     /**
-     * <code>.google.protobuf.Timestamp created_at = 10;</code>
+     * <code>.google.protobuf.Timestamp created_at = 7;</code>
      */
     public Builder mergeCreatedAt(com.google.protobuf.Timestamp value) {
       if (createdAtBuilder_ == null) {
-        if (((bitField0_ & 0x00000200) != 0) &&
+        if (((bitField0_ & 0x00000040) != 0) &&
           createdAt_ != null &&
           createdAt_ != com.google.protobuf.Timestamp.getDefaultInstance()) {
           getCreatedAtBuilder().mergeFrom(value);
@@ -1768,16 +1409,16 @@ private static final long serialVersionUID = 0L;
         createdAtBuilder_.mergeFrom(value);
       }
       if (createdAt_ != null) {
-        bitField0_ |= 0x00000200;
+        bitField0_ |= 0x00000040;
         onChanged();
       }
       return this;
     }
     /**
-     * <code>.google.protobuf.Timestamp created_at = 10;</code>
+     * <code>.google.protobuf.Timestamp created_at = 7;</code>
      */
     public Builder clearCreatedAt() {
-      bitField0_ = (bitField0_ & ~0x00000200);
+      bitField0_ = (bitField0_ & ~0x00000040);
       createdAt_ = null;
       if (createdAtBuilder_ != null) {
         createdAtBuilder_.dispose();
@@ -1787,15 +1428,15 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.google.protobuf.Timestamp created_at = 10;</code>
+     * <code>.google.protobuf.Timestamp created_at = 7;</code>
      */
     public com.google.protobuf.Timestamp.Builder getCreatedAtBuilder() {
-      bitField0_ |= 0x00000200;
+      bitField0_ |= 0x00000040;
       onChanged();
       return getCreatedAtFieldBuilder().getBuilder();
     }
     /**
-     * <code>.google.protobuf.Timestamp created_at = 10;</code>
+     * <code>.google.protobuf.Timestamp created_at = 7;</code>
      */
     public com.google.protobuf.TimestampOrBuilder getCreatedAtOrBuilder() {
       if (createdAtBuilder_ != null) {
@@ -1806,7 +1447,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>.google.protobuf.Timestamp created_at = 10;</code>
+     * <code>.google.protobuf.Timestamp created_at = 7;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> 
@@ -1826,14 +1467,14 @@ private static final long serialVersionUID = 0L;
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> updatedAtBuilder_;
     /**
-     * <code>.google.protobuf.Timestamp updated_at = 11;</code>
+     * <code>.google.protobuf.Timestamp updated_at = 8;</code>
      * @return Whether the updatedAt field is set.
      */
     public boolean hasUpdatedAt() {
-      return ((bitField0_ & 0x00000400) != 0);
+      return ((bitField0_ & 0x00000080) != 0);
     }
     /**
-     * <code>.google.protobuf.Timestamp updated_at = 11;</code>
+     * <code>.google.protobuf.Timestamp updated_at = 8;</code>
      * @return The updatedAt.
      */
     public com.google.protobuf.Timestamp getUpdatedAt() {
@@ -1844,7 +1485,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>.google.protobuf.Timestamp updated_at = 11;</code>
+     * <code>.google.protobuf.Timestamp updated_at = 8;</code>
      */
     public Builder setUpdatedAt(com.google.protobuf.Timestamp value) {
       if (updatedAtBuilder_ == null) {
@@ -1855,12 +1496,12 @@ private static final long serialVersionUID = 0L;
       } else {
         updatedAtBuilder_.setMessage(value);
       }
-      bitField0_ |= 0x00000400;
+      bitField0_ |= 0x00000080;
       onChanged();
       return this;
     }
     /**
-     * <code>.google.protobuf.Timestamp updated_at = 11;</code>
+     * <code>.google.protobuf.Timestamp updated_at = 8;</code>
      */
     public Builder setUpdatedAt(
         com.google.protobuf.Timestamp.Builder builderForValue) {
@@ -1869,16 +1510,16 @@ private static final long serialVersionUID = 0L;
       } else {
         updatedAtBuilder_.setMessage(builderForValue.build());
       }
-      bitField0_ |= 0x00000400;
+      bitField0_ |= 0x00000080;
       onChanged();
       return this;
     }
     /**
-     * <code>.google.protobuf.Timestamp updated_at = 11;</code>
+     * <code>.google.protobuf.Timestamp updated_at = 8;</code>
      */
     public Builder mergeUpdatedAt(com.google.protobuf.Timestamp value) {
       if (updatedAtBuilder_ == null) {
-        if (((bitField0_ & 0x00000400) != 0) &&
+        if (((bitField0_ & 0x00000080) != 0) &&
           updatedAt_ != null &&
           updatedAt_ != com.google.protobuf.Timestamp.getDefaultInstance()) {
           getUpdatedAtBuilder().mergeFrom(value);
@@ -1889,16 +1530,16 @@ private static final long serialVersionUID = 0L;
         updatedAtBuilder_.mergeFrom(value);
       }
       if (updatedAt_ != null) {
-        bitField0_ |= 0x00000400;
+        bitField0_ |= 0x00000080;
         onChanged();
       }
       return this;
     }
     /**
-     * <code>.google.protobuf.Timestamp updated_at = 11;</code>
+     * <code>.google.protobuf.Timestamp updated_at = 8;</code>
      */
     public Builder clearUpdatedAt() {
-      bitField0_ = (bitField0_ & ~0x00000400);
+      bitField0_ = (bitField0_ & ~0x00000080);
       updatedAt_ = null;
       if (updatedAtBuilder_ != null) {
         updatedAtBuilder_.dispose();
@@ -1908,15 +1549,15 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.google.protobuf.Timestamp updated_at = 11;</code>
+     * <code>.google.protobuf.Timestamp updated_at = 8;</code>
      */
     public com.google.protobuf.Timestamp.Builder getUpdatedAtBuilder() {
-      bitField0_ |= 0x00000400;
+      bitField0_ |= 0x00000080;
       onChanged();
       return getUpdatedAtFieldBuilder().getBuilder();
     }
     /**
-     * <code>.google.protobuf.Timestamp updated_at = 11;</code>
+     * <code>.google.protobuf.Timestamp updated_at = 8;</code>
      */
     public com.google.protobuf.TimestampOrBuilder getUpdatedAtOrBuilder() {
       if (updatedAtBuilder_ != null) {
@@ -1927,7 +1568,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>.google.protobuf.Timestamp updated_at = 11;</code>
+     * <code>.google.protobuf.Timestamp updated_at = 8;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> 

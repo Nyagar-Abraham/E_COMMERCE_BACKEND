@@ -30,15 +30,15 @@ public class UserProfile {
     private String bio;
 
     private String website;
-    private String facebook;
-    private String twitter;
-    private String instagram;
-    private String linkedin;
 
     @Column("created_at")
     private LocalDateTime createdAt;
     @Column("updated_at")
     private LocalDateTime updatedAt;
+
+    @Transient
+    @ToString.Exclude
+    private SocialLink socialLink;
 }
 //CREATE TABLE user_profiles
 //        (

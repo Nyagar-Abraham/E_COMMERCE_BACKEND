@@ -285,6 +285,17 @@ private static final long serialVersionUID = 0L;
     }
   }
 
+  public static final int ENABLE_MFA_FIELD_NUMBER = 7;
+  private boolean enableMfa_ = false;
+  /**
+   * <code>bool enable_mfa = 7;</code>
+   * @return The enableMfa.
+   */
+  @java.lang.Override
+  public boolean getEnableMfa() {
+    return enableMfa_;
+  }
+
   private byte memoizedIsInitialized = -1;
   @java.lang.Override
   public final boolean isInitialized() {
@@ -317,6 +328,9 @@ private static final long serialVersionUID = 0L;
     if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(phoneNumber_)) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 6, phoneNumber_);
     }
+    if (enableMfa_ != false) {
+      output.writeBool(7, enableMfa_);
+    }
     getUnknownFields().writeTo(output);
   }
 
@@ -343,6 +357,10 @@ private static final long serialVersionUID = 0L;
     }
     if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(phoneNumber_)) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(6, phoneNumber_);
+    }
+    if (enableMfa_ != false) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeBoolSize(7, enableMfa_);
     }
     size += getUnknownFields().getSerializedSize();
     memoizedSize = size;
@@ -371,6 +389,8 @@ private static final long serialVersionUID = 0L;
         .equals(other.getPassword())) return false;
     if (!getPhoneNumber()
         .equals(other.getPhoneNumber())) return false;
+    if (getEnableMfa()
+        != other.getEnableMfa()) return false;
     if (!getUnknownFields().equals(other.getUnknownFields())) return false;
     return true;
   }
@@ -394,6 +414,9 @@ private static final long serialVersionUID = 0L;
     hash = (53 * hash) + getPassword().hashCode();
     hash = (37 * hash) + PHONE_NUMBER_FIELD_NUMBER;
     hash = (53 * hash) + getPhoneNumber().hashCode();
+    hash = (37 * hash) + ENABLE_MFA_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+        getEnableMfa());
     hash = (29 * hash) + getUnknownFields().hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -537,6 +560,7 @@ private static final long serialVersionUID = 0L;
       lastName_ = "";
       password_ = "";
       phoneNumber_ = "";
+      enableMfa_ = false;
       return this;
     }
 
@@ -587,6 +611,9 @@ private static final long serialVersionUID = 0L;
       }
       if (((from_bitField0_ & 0x00000020) != 0)) {
         result.phoneNumber_ = phoneNumber_;
+      }
+      if (((from_bitField0_ & 0x00000040) != 0)) {
+        result.enableMfa_ = enableMfa_;
       }
     }
 
@@ -664,6 +691,9 @@ private static final long serialVersionUID = 0L;
         bitField0_ |= 0x00000020;
         onChanged();
       }
+      if (other.getEnableMfa() != false) {
+        setEnableMfa(other.getEnableMfa());
+      }
       this.mergeUnknownFields(other.getUnknownFields());
       onChanged();
       return this;
@@ -720,6 +750,11 @@ private static final long serialVersionUID = 0L;
               bitField0_ |= 0x00000020;
               break;
             } // case 50
+            case 56: {
+              enableMfa_ = input.readBool();
+              bitField0_ |= 0x00000040;
+              break;
+            } // case 56
             default: {
               if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                 done = true; // was an endgroup tag
@@ -1165,6 +1200,38 @@ private static final long serialVersionUID = 0L;
       checkByteStringIsUtf8(value);
       phoneNumber_ = value;
       bitField0_ |= 0x00000020;
+      onChanged();
+      return this;
+    }
+
+    private boolean enableMfa_ ;
+    /**
+     * <code>bool enable_mfa = 7;</code>
+     * @return The enableMfa.
+     */
+    @java.lang.Override
+    public boolean getEnableMfa() {
+      return enableMfa_;
+    }
+    /**
+     * <code>bool enable_mfa = 7;</code>
+     * @param value The enableMfa to set.
+     * @return This builder for chaining.
+     */
+    public Builder setEnableMfa(boolean value) {
+
+      enableMfa_ = value;
+      bitField0_ |= 0x00000040;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>bool enable_mfa = 7;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearEnableMfa() {
+      bitField0_ = (bitField0_ & ~0x00000040);
+      enableMfa_ = false;
       onChanged();
       return this;
     }

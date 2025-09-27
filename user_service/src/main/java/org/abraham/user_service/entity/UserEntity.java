@@ -43,6 +43,9 @@ public class UserEntity {
     @Column("role")
     private UserRoles role;
 
+    @Column("enable_mfa")
+    private Boolean enableMfa;
+
     @Column("email_verified")
     private Boolean emailVerified;
 

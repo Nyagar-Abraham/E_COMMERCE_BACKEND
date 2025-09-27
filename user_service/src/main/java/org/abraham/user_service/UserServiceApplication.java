@@ -1,10 +1,7 @@
 package org.abraham.user_service;
 
 import lombok.extern.slf4j.Slf4j;
-import org.abraham.user_service.dto.UserRoles;
-import org.abraham.user_service.entity.UserEntity;
-import org.abraham.user_service.jwt.JwtProperties;
-import org.abraham.user_service.jwt.JwtUtil;
+import org.abraham.user_service.auth.jwt.JwtProperties;
 import org.abraham.user_service.repository.AddressRepository;
 import org.abraham.user_service.repository.UserPreferenceRepository;
 import org.abraham.user_service.repository.UserProfileRepository;
@@ -14,8 +11,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
-
-import java.util.UUID;
 
 @Slf4j
 @SpringBootApplication

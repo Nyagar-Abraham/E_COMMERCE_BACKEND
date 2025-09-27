@@ -273,4 +273,10 @@ public interface UserOrBuilder extends
    */
   org.abraham.models.AddressOrBuilder getAddressesOrBuilder(
       int index);
+
+  /**
+   * <code>bool enable_mfa = 22;</code>
+   * @return The enableMfa.
+   */
+  boolean getEnableMfa();
 }

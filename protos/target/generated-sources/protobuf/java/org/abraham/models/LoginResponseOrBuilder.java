@@ -31,4 +31,16 @@ public interface LoginResponseOrBuilder extends
    */
   com.google.protobuf.ByteString
       getRefreshTokenBytes();
+
+  /**
+   * <code>string qr_code_image = 3;</code>
+   * @return The qrCodeImage.
+   */
+  java.lang.String getQrCodeImage();
+  /**
+   * <code>string qr_code_image = 3;</code>
+   * @return The bytes for qrCodeImage.
+   */
+  com.google.protobuf.ByteString
+      getQrCodeImageBytes();
 }

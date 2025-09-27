@@ -1,6 +1,6 @@
 package org.abraham.apigateway;
 
-import org.abraham.apigateway.datafetchers.AuthDataFetcher;
+import org.abraham.apigateway.service.userservice.AuthService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
@@ -14,14 +14,8 @@ public class ApigatewayApplication {
 
     public static void main(String[] args) {
       var context =   SpringApplication.run(ApigatewayApplication.class, args);
-        AuthDataFetcher authDataFetcher = context.getBean(AuthDataFetcher.class);
-        authDataFetcher
-                .registerUser()
-                .publishOn(Schedulers.boundedElastic())
-                .subscribe(
-                        user -> {log.info("New User , {}",user);},
-                        err -> log.error("error: {}",err.getMessage())
-                );
+//        AuthService authDataFetcher = context.getBean(AuthService.class);
+
     }
 
 

@@ -733,6 +733,17 @@ private static final long serialVersionUID = 0L;
     return addresses_.get(index);
   }
 
+  public static final int ENABLE_MFA_FIELD_NUMBER = 22;
+  private boolean enableMfa_ = false;
+  /**
+   * <code>bool enable_mfa = 22;</code>
+   * @return The enableMfa.
+   */
+  @java.lang.Override
+  public boolean getEnableMfa() {
+    return enableMfa_;
+  }
+
   private byte memoizedIsInitialized = -1;
   @java.lang.Override
   public final boolean isInitialized() {
@@ -809,6 +820,9 @@ private static final long serialVersionUID = 0L;
     }
     for (int i = 0; i < addresses_.size(); i++) {
       output.writeMessage(21, addresses_.get(i));
+    }
+    if (enableMfa_ != false) {
+      output.writeBool(22, enableMfa_);
     }
     getUnknownFields().writeTo(output);
   }
@@ -891,6 +905,10 @@ private static final long serialVersionUID = 0L;
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(21, addresses_.get(i));
     }
+    if (enableMfa_ != false) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeBoolSize(22, enableMfa_);
+    }
     size += getUnknownFields().getSerializedSize();
     memoizedSize = size;
     return size;
@@ -962,6 +980,8 @@ private static final long serialVersionUID = 0L;
     }
     if (!getAddressesList()
         .equals(other.getAddressesList())) return false;
+    if (getEnableMfa()
+        != other.getEnableMfa()) return false;
     if (!getUnknownFields().equals(other.getUnknownFields())) return false;
     return true;
   }
@@ -1029,6 +1049,9 @@ private static final long serialVersionUID = 0L;
       hash = (37 * hash) + ADDRESSES_FIELD_NUMBER;
       hash = (53 * hash) + getAddressesList().hashCode();
     }
+    hash = (37 * hash) + ENABLE_MFA_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+        getEnableMfa());
     hash = (29 * hash) + getUnknownFields().hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -1218,6 +1241,7 @@ private static final long serialVersionUID = 0L;
         addressesBuilder_.clear();
       }
       bitField0_ = (bitField0_ & ~0x00100000);
+      enableMfa_ = false;
       return this;
     }
 
@@ -1339,6 +1363,9 @@ private static final long serialVersionUID = 0L;
             ? profile_
             : profileBuilder_.build();
         to_bitField0_ |= 0x00000010;
+      }
+      if (((from_bitField0_ & 0x00200000) != 0)) {
+        result.enableMfa_ = enableMfa_;
       }
       result.bitField0_ |= to_bitField0_;
     }
@@ -1497,6 +1524,9 @@ private static final long serialVersionUID = 0L;
           }
         }
       }
+      if (other.getEnableMfa() != false) {
+        setEnableMfa(other.getEnableMfa());
+      }
       this.mergeUnknownFields(other.getUnknownFields());
       onChanged();
       return this;
@@ -1646,6 +1676,11 @@ private static final long serialVersionUID = 0L;
               }
               break;
             } // case 170
+            case 176: {
+              enableMfa_ = input.readBool();
+              bitField0_ |= 0x00200000;
+              break;
+            } // case 176
             default: {
               if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                 done = true; // was an endgroup tag
@@ -3487,6 +3522,38 @@ private static final long serialVersionUID = 0L;
         addresses_ = null;
       }
       return addressesBuilder_;
+    }
+
+    private boolean enableMfa_ ;
+    /**
+     * <code>bool enable_mfa = 22;</code>
+     * @return The enableMfa.
+     */
+    @java.lang.Override
+    public boolean getEnableMfa() {
+      return enableMfa_;
+    }
+    /**
+     * <code>bool enable_mfa = 22;</code>
+     * @param value The enableMfa to set.
+     * @return This builder for chaining.
+     */
+    public Builder setEnableMfa(boolean value) {
+
+      enableMfa_ = value;
+      bitField0_ |= 0x00200000;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>bool enable_mfa = 22;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearEnableMfa() {
+      bitField0_ = (bitField0_ & ~0x00200000);
+      enableMfa_ = false;
+      onChanged();
+      return this;
     }
     @java.lang.Override
     public final Builder setUnknownFields(

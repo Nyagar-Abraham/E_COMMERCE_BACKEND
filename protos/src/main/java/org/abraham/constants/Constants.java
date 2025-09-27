@@ -13,4 +13,6 @@ public class Constants {
     public static final Context.Key<String> USER_EMAIL = Context.key("USER_EMAIL");
     public static final Set<String> PUBLIC_METHODS = ImmutableSet.of("loginUser", "registerUser");
     public static final String BEARER = "Bearer ";
+    public static final String JWT_TOKEN = "Jwt";
+    public static final String AUTHORIZATION_HEADER = "Authorization";
 }

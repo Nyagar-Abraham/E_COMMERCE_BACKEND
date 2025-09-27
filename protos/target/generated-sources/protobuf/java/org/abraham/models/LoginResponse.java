@@ -25,6 +25,7 @@ private static final long serialVersionUID = 0L;
   private LoginResponse() {
     accessToken_ = "";
     refreshToken_ = "";
+    qrCodeImage_ = "";
   }
 
   @java.lang.Override
@@ -125,6 +126,45 @@ private static final long serialVersionUID = 0L;
     }
   }
 
+  public static final int QR_CODE_IMAGE_FIELD_NUMBER = 3;
+  @SuppressWarnings("serial")
+  private volatile java.lang.Object qrCodeImage_ = "";
+  /**
+   * <code>string qr_code_image = 3;</code>
+   * @return The qrCodeImage.
+   */
+  @java.lang.Override
+  public java.lang.String getQrCodeImage() {
+    java.lang.Object ref = qrCodeImage_;
+    if (ref instanceof java.lang.String) {
+      return (java.lang.String) ref;
+    } else {
+      com.google.protobuf.ByteString bs = 
+          (com.google.protobuf.ByteString) ref;
+      java.lang.String s = bs.toStringUtf8();
+      qrCodeImage_ = s;
+      return s;
+    }
+  }
+  /**
+   * <code>string qr_code_image = 3;</code>
+   * @return The bytes for qrCodeImage.
+   */
+  @java.lang.Override
+  public com.google.protobuf.ByteString
+      getQrCodeImageBytes() {
+    java.lang.Object ref = qrCodeImage_;
+    if (ref instanceof java.lang.String) {
+      com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString.copyFromUtf8(
+              (java.lang.String) ref);
+      qrCodeImage_ = b;
+      return b;
+    } else {
+      return (com.google.protobuf.ByteString) ref;
+    }
+  }
+
   private byte memoizedIsInitialized = -1;
   @java.lang.Override
   public final boolean isInitialized() {
@@ -145,6 +185,9 @@ private static final long serialVersionUID = 0L;
     if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(refreshToken_)) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 2, refreshToken_);
     }
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(qrCodeImage_)) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 3, qrCodeImage_);
+    }
     getUnknownFields().writeTo(output);
   }
 
@@ -159,6 +202,9 @@ private static final long serialVersionUID = 0L;
     }
     if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(refreshToken_)) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, refreshToken_);
+    }
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(qrCodeImage_)) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, qrCodeImage_);
     }
     size += getUnknownFields().getSerializedSize();
     memoizedSize = size;
@@ -179,6 +225,8 @@ private static final long serialVersionUID = 0L;
         .equals(other.getAccessToken())) return false;
     if (!getRefreshToken()
         .equals(other.getRefreshToken())) return false;
+    if (!getQrCodeImage()
+        .equals(other.getQrCodeImage())) return false;
     if (!getUnknownFields().equals(other.getUnknownFields())) return false;
     return true;
   }
@@ -194,6 +242,8 @@ private static final long serialVersionUID = 0L;
     hash = (53 * hash) + getAccessToken().hashCode();
     hash = (37 * hash) + REFRESH_TOKEN_FIELD_NUMBER;
     hash = (53 * hash) + getRefreshToken().hashCode();
+    hash = (37 * hash) + QR_CODE_IMAGE_FIELD_NUMBER;
+    hash = (53 * hash) + getQrCodeImage().hashCode();
     hash = (29 * hash) + getUnknownFields().hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -333,6 +383,7 @@ private static final long serialVersionUID = 0L;
       bitField0_ = 0;
       accessToken_ = "";
       refreshToken_ = "";
+      qrCodeImage_ = "";
       return this;
     }
 
@@ -371,6 +422,9 @@ private static final long serialVersionUID = 0L;
       }
       if (((from_bitField0_ & 0x00000002) != 0)) {
         result.refreshToken_ = refreshToken_;
+      }
+      if (((from_bitField0_ & 0x00000004) != 0)) {
+        result.qrCodeImage_ = qrCodeImage_;
       }
     }
 
@@ -428,6 +482,11 @@ private static final long serialVersionUID = 0L;
         bitField0_ |= 0x00000002;
         onChanged();
       }
+      if (!other.getQrCodeImage().isEmpty()) {
+        qrCodeImage_ = other.qrCodeImage_;
+        bitField0_ |= 0x00000004;
+        onChanged();
+      }
       this.mergeUnknownFields(other.getUnknownFields());
       onChanged();
       return this;
@@ -464,6 +523,11 @@ private static final long serialVersionUID = 0L;
               bitField0_ |= 0x00000002;
               break;
             } // case 18
+            case 26: {
+              qrCodeImage_ = input.readStringRequireUtf8();
+              bitField0_ |= 0x00000004;
+              break;
+            } // case 26
             default: {
               if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                 done = true; // was an endgroup tag
@@ -621,6 +685,78 @@ private static final long serialVersionUID = 0L;
       checkByteStringIsUtf8(value);
       refreshToken_ = value;
       bitField0_ |= 0x00000002;
+      onChanged();
+      return this;
+    }
+
+    private java.lang.Object qrCodeImage_ = "";
+    /**
+     * <code>string qr_code_image = 3;</code>
+     * @return The qrCodeImage.
+     */
+    public java.lang.String getQrCodeImage() {
+      java.lang.Object ref = qrCodeImage_;
+      if (!(ref instanceof java.lang.String)) {
+        com.google.protobuf.ByteString bs =
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        qrCodeImage_ = s;
+        return s;
+      } else {
+        return (java.lang.String) ref;
+      }
+    }
+    /**
+     * <code>string qr_code_image = 3;</code>
+     * @return The bytes for qrCodeImage.
+     */
+    public com.google.protobuf.ByteString
+        getQrCodeImageBytes() {
+      java.lang.Object ref = qrCodeImage_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        qrCodeImage_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    /**
+     * <code>string qr_code_image = 3;</code>
+     * @param value The qrCodeImage to set.
+     * @return This builder for chaining.
+     */
+    public Builder setQrCodeImage(
+        java.lang.String value) {
+      if (value == null) { throw new NullPointerException(); }
+      qrCodeImage_ = value;
+      bitField0_ |= 0x00000004;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>string qr_code_image = 3;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearQrCodeImage() {
+      qrCodeImage_ = getDefaultInstance().getQrCodeImage();
+      bitField0_ = (bitField0_ & ~0x00000004);
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>string qr_code_image = 3;</code>
+     * @param value The bytes for qrCodeImage to set.
+     * @return This builder for chaining.
+     */
+    public Builder setQrCodeImageBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) { throw new NullPointerException(); }
+      checkByteStringIsUtf8(value);
+      qrCodeImage_ = value;
+      bitField0_ |= 0x00000004;
       onChanged();
       return this;
     }

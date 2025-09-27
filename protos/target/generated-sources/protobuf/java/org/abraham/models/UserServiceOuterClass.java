@@ -36,6 +36,11 @@ public final class UserServiceOuterClass {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_UserProfile_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_SocialLink_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_SocialLink_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
     internal_static_RegisterUserRequest_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -61,7 +66,7 @@ public final class UserServiceOuterClass {
     java.lang.String[] descriptorData = {
       "\n\021UserService.proto\032\037google/protobuf/tim" +
       "estamp.proto\032\033google/protobuf/empty.prot" +
-      "o\"\210\005\n\004User\022\n\n\002id\030\001 \001(\t\022\r\n\005email\030\002 \001(\t\022\020\n" +
+      "o\"\234\005\n\004User\022\n\n\002id\030\001 \001(\t\022\r\n\005email\030\002 \001(\t\022\020\n" +
       "\010username\030\003 \001(\t\022\022\n\nfirst_name\030\004 \001(\t\022\021\n\tl" +
       "ast_name\030\005 \001(\t\022\024\n\014phone_number\030\006 \001(\t\022\033\n\006" +
       "status\030\007 \001(\0162\013.UserStatus\022\026\n\016email_verif" +
@@ -77,42 +82,45 @@ public final class UserServiceOuterClass {
       "\030\022 \001(\0132\032.google.protobuf.Timestamp\022$\n\013pr" +
       "eferences\030\023 \001(\0132\017.UserPreference\022\035\n\007prof" +
       "ile\030\024 \001(\0132\014.UserProfile\022\033\n\taddresses\030\025 \003" +
-      "(\0132\010.Address\"\247\002\n\007Address\022\n\n\002id\030\001 \001(\t\022\017\n\007" +
-      "user_id\030\002 \001(\t\022\032\n\004type\030\003 \001(\0162\014.AddressTyp" +
-      "e\022\022\n\nis_default\030\004 \001(\010\022\025\n\raddress_line1\030\005" +
-      " \001(\t\022\025\n\raddress_line2\030\006 \001(\t\022\014\n\004city\030\007 \001(" +
-      "\t\022\r\n\005state\030\010 \001(\t\022\023\n\013postal_code\030\t \001(\t\022\017\n" +
-      "\007country\030\n \001(\t\022.\n\ncreated_at\030\013 \001(\0132\032.goo" +
-      "gle.protobuf.Timestamp\022.\n\nupdated_at\030\014 \001" +
-      "(\0132\032.google.protobuf.Timestamp\"\374\001\n\016UserP" +
-      "reference\022\n\n\002id\030\001 \001(\t\022\017\n\007user_id\030\002 \001(\t\022\020" +
-      "\n\010currency\030\003 \001(\t\022\020\n\010language\030\004 \001(\t\022\030\n\020ma" +
-      "rketing_emails\030\005 \001(\010\022\033\n\023order_notificati" +
-      "ons\030\006 \001(\010\022\022\n\nnewsletter\030\007 \001(\010\022.\n\ncreated" +
-      "_at\030\010 \001(\0132\032.google.protobuf.Timestamp\022.\n" +
-      "\nupdated_at\030\t \001(\0132\032.google.protobuf.Time" +
-      "stamp\"\200\002\n\013UserProfile\022\n\n\002id\030\001 \001(\t\022\017\n\007use" +
-      "r_id\030\002 \001(\t\022\016\n\006avatar\030\003 \001(\t\022\013\n\003bio\030\004 \001(\t\022" +
-      "\017\n\007website\030\005 \001(\t\022\020\n\010facebook\030\006 \001(\t\022\017\n\007tw" +
-      "itter\030\007 \001(\t\022\021\n\tinstagram\030\010 \001(\t\022\020\n\010linked" +
-      "in\030\t \001(\t\022.\n\ncreated_at\030\n \001(\0132\032.google.pr" +
-      "otobuf.Timestamp\022.\n\nupdated_at\030\013 \001(\0132\032.g" +
-      "oogle.protobuf.Timestamp\"\205\001\n\023RegisterUse" +
-      "rRequest\022\r\n\005email\030\001 \001(\t\022\020\n\010username\030\002 \001(" +
-      "\t\022\022\n\nfirst_name\030\003 \001(\t\022\021\n\tlast_name\030\004 \001(\t" +
-      "\022\020\n\010password\030\005 \001(\t\022\024\n\014phone_number\030\006 \001(\t" +
-      "\"/\n\014LoginRequest\022\r\n\005email\030\001 \001(\t\022\020\n\010passw" +
-      "ord\030\002 \001(\t\"<\n\rLoginResponse\022\024\n\014access_tok" +
-      "en\030\001 \001(\t\022\025\n\rrefresh_token\030\002 \001(\t*O\n\nUserS" +
-      "tatus\022\n\n\006ACTIVE\020\000\022\014\n\010INACTIVE\020\001\022\r\n\tSUSPE" +
-      "NDED\020\002\022\030\n\024PENDING_VERIFICATION\020\003*2\n\013Addr" +
-      "essType\022\013\n\007BILLING\020\000\022\014\n\010SHIPPING\020\001\022\010\n\004BO" +
-      "TH\020\0022j\n\013AuthService\022-\n\014registerUser\022\024.Re" +
-      "gisterUserRequest\032\005.User\"\000\022,\n\tloginUser\022" +
-      "\r.LoginRequest\032\016.LoginResponse\"\0002@\n\013User" +
-      "Service\0221\n\016getCurrentUser\022\026.google.proto" +
-      "buf.Empty\032\005.User\"\000B\026\n\022org.abraham.models" +
-      "P\001b\006proto3"
+      "(\0132\010.Address\022\022\n\nenable_mfa\030\026 \001(\010\"\247\002\n\007Add" +
+      "ress\022\n\n\002id\030\001 \001(\t\022\017\n\007user_id\030\002 \001(\t\022\032\n\004typ" +
+      "e\030\003 \001(\0162\014.AddressType\022\022\n\nis_default\030\004 \001(" +
+      "\010\022\025\n\raddress_line1\030\005 \001(\t\022\025\n\raddress_line" +
+      "2\030\006 \001(\t\022\014\n\004city\030\007 \001(\t\022\r\n\005state\030\010 \001(\t\022\023\n\013" +
+      "postal_code\030\t \001(\t\022\017\n\007country\030\n \001(\t\022.\n\ncr" +
+      "eated_at\030\013 \001(\0132\032.google.protobuf.Timesta" +
+      "mp\022.\n\nupdated_at\030\014 \001(\0132\032.google.protobuf" +
+      ".Timestamp\"\374\001\n\016UserPreference\022\n\n\002id\030\001 \001(" +
+      "\t\022\017\n\007user_id\030\002 \001(\t\022\020\n\010currency\030\003 \001(\t\022\020\n\010" +
+      "language\030\004 \001(\t\022\030\n\020marketing_emails\030\005 \001(\010" +
+      "\022\033\n\023order_notifications\030\006 \001(\010\022\022\n\nnewslet" +
+      "ter\030\007 \001(\010\022.\n\ncreated_at\030\010 \001(\0132\032.google.p" +
+      "rotobuf.Timestamp\022.\n\nupdated_at\030\t \001(\0132\032." +
+      "google.protobuf.Timestamp\"\333\001\n\013UserProfil" +
+      "e\022\n\n\002id\030\001 \001(\t\022\017\n\007user_id\030\002 \001(\t\022\016\n\006avatar" +
+      "\030\003 \001(\t\022\013\n\003bio\030\004 \001(\t\022\017\n\007website\030\005 \001(\t\022!\n\014" +
+      "social_links\030\006 \001(\0132\013.SocialLink\022.\n\ncreat" +
+      "ed_at\030\007 \001(\0132\032.google.protobuf.Timestamp\022" +
+      ".\n\nupdated_at\030\010 \001(\0132\032.google.protobuf.Ti" +
+      "mestamp\"y\n\nSocialLink\022\n\n\002id\030\001 \001(\t\022\027\n\017use" +
+      "r_profile_id\030\002 \001(\t\022\020\n\010facebook\030\003 \001(\t\022\017\n\007" +
+      "twitter\030\004 \001(\t\022\021\n\tinstagram\030\005 \001(\t\022\020\n\010link" +
+      "edin\030\006 \001(\t\"\231\001\n\023RegisterUserRequest\022\r\n\005em" +
+      "ail\030\001 \001(\t\022\020\n\010username\030\002 \001(\t\022\022\n\nfirst_nam" +
+      "e\030\003 \001(\t\022\021\n\tlast_name\030\004 \001(\t\022\020\n\010password\030\005" +
+      " \001(\t\022\024\n\014phone_number\030\006 \001(\t\022\022\n\nenable_mfa" +
+      "\030\007 \001(\010\"/\n\014LoginRequest\022\r\n\005email\030\001 \001(\t\022\020\n" +
+      "\010password\030\002 \001(\t\"S\n\rLoginResponse\022\024\n\014acce" +
+      "ss_token\030\001 \001(\t\022\025\n\rrefresh_token\030\002 \001(\t\022\025\n" +
+      "\rqr_code_image\030\003 \001(\t*O\n\nUserStatus\022\n\n\006AC" +
+      "TIVE\020\000\022\014\n\010INACTIVE\020\001\022\r\n\tSUSPENDED\020\002\022\030\n\024P" +
+      "ENDING_VERIFICATION\020\003*2\n\013AddressType\022\013\n\007" +
+      "BILLING\020\000\022\014\n\010SHIPPING\020\001\022\010\n\004BOTH\020\0022j\n\013Aut" +
+      "hService\022-\n\014registerUser\022\024.RegisterUserR" +
+      "equest\032\005.User\"\000\022,\n\tloginUser\022\r.LoginRequ" +
+      "est\032\016.LoginResponse\"\0002@\n\013UserService\0221\n\016" +
+      "getCurrentUser\022\026.google.protobuf.Empty\032\005" +
+      ".User\"\000B\026\n\022org.abraham.modelsP\001b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -125,7 +133,7 @@ public final class UserServiceOuterClass {
     internal_static_User_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_User_descriptor,
-        new java.lang.String[] { "Id", "Email", "Username", "FirstName", "LastName", "PhoneNumber", "Status", "EmailVerified", "PhoneVerified", "EmailVerificationToken", "EmailVerificationExpiresAt", "PhoneVerificationToken", "PhoneVerificationExpiresAt", "PasswordResetToken", "PasswordResetTokenExpiresAt", "LastLogin", "CreatedAt", "UpdatedAt", "Preferences", "Profile", "Addresses", });
+        new java.lang.String[] { "Id", "Email", "Username", "FirstName", "LastName", "PhoneNumber", "Status", "EmailVerified", "PhoneVerified", "EmailVerificationToken", "EmailVerificationExpiresAt", "PhoneVerificationToken", "PhoneVerificationExpiresAt", "PasswordResetToken", "PasswordResetTokenExpiresAt", "LastLogin", "CreatedAt", "UpdatedAt", "Preferences", "Profile", "Addresses", "EnableMfa", });
     internal_static_Address_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_Address_fieldAccessorTable = new
@@ -143,25 +151,31 @@ public final class UserServiceOuterClass {
     internal_static_UserProfile_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_UserProfile_descriptor,
-        new java.lang.String[] { "Id", "UserId", "Avatar", "Bio", "Website", "Facebook", "Twitter", "Instagram", "Linkedin", "CreatedAt", "UpdatedAt", });
-    internal_static_RegisterUserRequest_descriptor =
+        new java.lang.String[] { "Id", "UserId", "Avatar", "Bio", "Website", "SocialLinks", "CreatedAt", "UpdatedAt", });
+    internal_static_SocialLink_descriptor =
       getDescriptor().getMessageTypes().get(4);
+    internal_static_SocialLink_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_SocialLink_descriptor,
+        new java.lang.String[] { "Id", "UserProfileId", "Facebook", "Twitter", "Instagram", "Linkedin", });
+    internal_static_RegisterUserRequest_descriptor =
+      getDescriptor().getMessageTypes().get(5);
     internal_static_RegisterUserRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_RegisterUserRequest_descriptor,
-        new java.lang.String[] { "Email", "Username", "FirstName", "LastName", "Password", "PhoneNumber", });
+        new java.lang.String[] { "Email", "Username", "FirstName", "LastName", "Password", "PhoneNumber", "EnableMfa", });
     internal_static_LoginRequest_descriptor =
-      getDescriptor().getMessageTypes().get(5);
+      getDescriptor().getMessageTypes().get(6);
     internal_static_LoginRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_LoginRequest_descriptor,
         new java.lang.String[] { "Email", "Password", });
     internal_static_LoginResponse_descriptor =
-      getDescriptor().getMessageTypes().get(6);
+      getDescriptor().getMessageTypes().get(7);
     internal_static_LoginResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_LoginResponse_descriptor,
-        new java.lang.String[] { "AccessToken", "RefreshToken", });
+        new java.lang.String[] { "AccessToken", "RefreshToken", "QrCodeImage", });
     com.google.protobuf.TimestampProto.getDescriptor();
     com.google.protobuf.EmptyProto.getDescriptor();
   }

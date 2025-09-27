@@ -11,6 +11,8 @@
 /home/abrahamnyagar/IdeaProjects/E_COMMERCE_BACKEND/protos/target/generated-sources/protobuf/java/org/abraham/models/LoginResponseOrBuilder.java
 /home/abrahamnyagar/IdeaProjects/E_COMMERCE_BACKEND/protos/target/generated-sources/protobuf/java/org/abraham/models/RegisterUserRequest.java
 /home/abrahamnyagar/IdeaProjects/E_COMMERCE_BACKEND/protos/target/generated-sources/protobuf/java/org/abraham/models/RegisterUserRequestOrBuilder.java
+/home/abrahamnyagar/IdeaProjects/E_COMMERCE_BACKEND/protos/target/generated-sources/protobuf/java/org/abraham/models/SocialLink.java
+/home/abrahamnyagar/IdeaProjects/E_COMMERCE_BACKEND/protos/target/generated-sources/protobuf/java/org/abraham/models/SocialLinkOrBuilder.java
 /home/abrahamnyagar/IdeaProjects/E_COMMERCE_BACKEND/protos/target/generated-sources/protobuf/java/org/abraham/models/User.java
 /home/abrahamnyagar/IdeaProjects/E_COMMERCE_BACKEND/protos/target/generated-sources/protobuf/java/org/abraham/models/UserOrBuilder.java
 /home/abrahamnyagar/IdeaProjects/E_COMMERCE_BACKEND/protos/target/generated-sources/protobuf/java/org/abraham/models/UserPreference.java

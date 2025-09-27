@@ -69,80 +69,47 @@ public interface UserProfileOrBuilder extends
       getWebsiteBytes();
 
   /**
-   * <code>string facebook = 6;</code>
-   * @return The facebook.
+   * <code>.SocialLink social_links = 6;</code>
+   * @return Whether the socialLinks field is set.
    */
-  java.lang.String getFacebook();
+  boolean hasSocialLinks();
   /**
-   * <code>string facebook = 6;</code>
-   * @return The bytes for facebook.
+   * <code>.SocialLink social_links = 6;</code>
+   * @return The socialLinks.
    */
-  com.google.protobuf.ByteString
-      getFacebookBytes();
+  org.abraham.models.SocialLink getSocialLinks();
+  /**
+   * <code>.SocialLink social_links = 6;</code>
+   */
+  org.abraham.models.SocialLinkOrBuilder getSocialLinksOrBuilder();
 
   /**
-   * <code>string twitter = 7;</code>
-   * @return The twitter.
-   */
-  java.lang.String getTwitter();
-  /**
-   * <code>string twitter = 7;</code>
-   * @return The bytes for twitter.
-   */
-  com.google.protobuf.ByteString
-      getTwitterBytes();
-
-  /**
-   * <code>string instagram = 8;</code>
-   * @return The instagram.
-   */
-  java.lang.String getInstagram();
-  /**
-   * <code>string instagram = 8;</code>
-   * @return The bytes for instagram.
-   */
-  com.google.protobuf.ByteString
-      getInstagramBytes();
-
-  /**
-   * <code>string linkedin = 9;</code>
-   * @return The linkedin.
-   */
-  java.lang.String getLinkedin();
-  /**
-   * <code>string linkedin = 9;</code>
-   * @return The bytes for linkedin.
-   */
-  com.google.protobuf.ByteString
-      getLinkedinBytes();
-
-  /**
-   * <code>.google.protobuf.Timestamp created_at = 10;</code>
+   * <code>.google.protobuf.Timestamp created_at = 7;</code>
    * @return Whether the createdAt field is set.
    */
   boolean hasCreatedAt();
   /**
-   * <code>.google.protobuf.Timestamp created_at = 10;</code>
+   * <code>.google.protobuf.Timestamp created_at = 7;</code>
    * @return The createdAt.
    */
   com.google.protobuf.Timestamp getCreatedAt();
   /**
-   * <code>.google.protobuf.Timestamp created_at = 10;</code>
+   * <code>.google.protobuf.Timestamp created_at = 7;</code>
    */
   com.google.protobuf.TimestampOrBuilder getCreatedAtOrBuilder();
 
   /**
-   * <code>.google.protobuf.Timestamp updated_at = 11;</code>
+   * <code>.google.protobuf.Timestamp updated_at = 8;</code>
    * @return Whether the updatedAt field is set.
    */
   boolean hasUpdatedAt();
   /**
-   * <code>.google.protobuf.Timestamp updated_at = 11;</code>
+   * <code>.google.protobuf.Timestamp updated_at = 8;</code>
    * @return The updatedAt.
    */
   com.google.protobuf.Timestamp getUpdatedAt();
   /**
-   * <code>.google.protobuf.Timestamp updated_at = 11;</code>
+   * <code>.google.protobuf.Timestamp updated_at = 8;</code>
    */
   com.google.protobuf.TimestampOrBuilder getUpdatedAtOrBuilder();
 }

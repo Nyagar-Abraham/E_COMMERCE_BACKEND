@@ -1,6 +1,5 @@
-package org.abraham.user_service.jwt;
+package org.abraham.user_service.auth.jwt;
 
-import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import lombok.Data;
 

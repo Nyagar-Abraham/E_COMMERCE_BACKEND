@@ -4,15 +4,11 @@ package org.abraham.user_service.interceptors;
 import io.grpc.*;
 import lombok.AllArgsConstructor;
 import org.abraham.constants.Constants;
-import org.abraham.user_service.jwt.JwtUtil;
+import org.abraham.user_service.auth.jwt.JwtUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.context.ReactiveSecurityContextHolder;
 import org.springframework.stereotype.Component;
 
-import java.util.Collections;
 import java.util.Objects;
 
 
@@ -40,12 +36,15 @@ public class GrpcJwtInterceptor implements ServerInterceptor {
 
 //        GET AUTHORIZATION HEADER & TOKEN
         var authHeader = metadata.get(Constants.AUTHORIZATION_KEY);
+        log.info("Authorization header is {}", authHeader);
         var jwtToken = extractToken(authHeader);
         if (Objects.isNull(jwtToken)) {
            return close(serverCall,metadata,Status.UNAUTHENTICATED.withDescription("Missing Authorization Header"));
         }
+
+        log.info("Token {}",  jwtToken);
 //        PARSE THE TOKEN
-        var jwt = jwtUtil.parseToken(jwtToken);
+        var jwt = jwtUtil.parseToken(jwtToken.trim());
         var x = "xs";
         log.info("JWT Token is {}", jwt);
 
@@ -56,6 +55,8 @@ public class GrpcJwtInterceptor implements ServerInterceptor {
 //        Authenticate User
 //        ReactiveSecurityContextHolder.withAuthentication(new UsernamePasswordAuthenticationToken(jwt.getEmail(),"" , Collections.singletonList(new SimpleGrantedAuthority(jwt.getRole().toString()))));
 
+
+//        If MFA is not enabled proc
 //        SET GRPC CONTEXT
         var ctx = Context.current()
                 .withValue(Constants.USER_ID, jwt.getUserId())

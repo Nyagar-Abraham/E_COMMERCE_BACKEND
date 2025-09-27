@@ -79,4 +79,10 @@ public interface RegisterUserRequestOrBuilder extends
    */
   com.google.protobuf.ByteString
       getPhoneNumberBytes();
+
+  /**
+   * <code>bool enable_mfa = 7;</code>
+   * @return The enableMfa.
+   */
+  boolean getEnableMfa();
 }

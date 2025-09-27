@@ -10,6 +10,7 @@ org/abraham/models/AuthServiceGrpc$1.class
 org/abraham/models/LoginRequestOrBuilder.class
 org/abraham/models/User$1.class
 org/abraham/models/UserServiceGrpc$UserServiceMethodDescriptorSupplier.class
+org/abraham/models/SocialLinkOrBuilder.class
 org/abraham/models/RegisterUserRequest$1.class
 org/abraham/models/LoginRequest$1.class
 org/abraham/models/UserServiceOuterClass.class
@@ -24,6 +25,7 @@ org/abraham/Main.class
 org/abraham/models/AuthServiceGrpc$AuthServiceBlockingV2Stub.class
 org/abraham/models/User$Builder.class
 org/abraham/models/AddressType$1.class
+org/abraham/models/SocialLink$Builder.class
 org/abraham/models/AuthServiceGrpc$AuthServiceFutureStub.class
 org/abraham/models/LoginResponseOrBuilder.class
 org/abraham/models/UserPreference$1.class
@@ -32,6 +34,7 @@ org/abraham/constants/Constants.class
 org/abraham/models/UserServiceGrpc$UserServiceFileDescriptorSupplier.class
 org/abraham/models/UserPreference$Builder.class
 org/abraham/models/LoginRequest.class
+org/abraham/models/SocialLink.class
 org/abraham/models/UserServiceGrpc$2.class
 org/abraham/models/AuthServiceGrpc$AuthServiceFileDescriptorSupplier.class
 org/abraham/models/AddressType.class
@@ -60,6 +63,7 @@ org/abraham/models/UserServiceGrpc$UserServiceBlockingV2Stub.class
 org/abraham/models/UserServiceGrpc$4.class
 org/abraham/models/UserServiceGrpc$UserServiceStub.class
 org/abraham/models/UserStatus.class
+org/abraham/models/SocialLink$1.class
 org/abraham/models/AuthServiceGrpc$2.class
 org/abraham/models/AuthServiceGrpc$AuthServiceStub.class
 org/abraham/models/UserPreference.class

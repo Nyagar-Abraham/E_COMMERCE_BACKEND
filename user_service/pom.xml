@@ -139,6 +139,12 @@
             <version>0.12.5</version> <!-- Use the same version as jjwt-api -->
             <scope>runtime</scope>
         </dependency>
+        <!-- MFA -->
+        <dependency>
+            <groupId>dev.samstevens.totp</groupId>
+            <artifactId>totp-spring-boot-starter</artifactId>
+            <version>1.7.1</version>
+        </dependency>
 
         <!-- LOAD ENV -->
         <dependency>

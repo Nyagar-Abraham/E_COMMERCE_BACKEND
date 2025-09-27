@@ -1,11 +1,9 @@
-package org.abraham.user_service.jwt;
+package org.abraham.user_service.auth.jwt;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import org.abraham.user_service.entity.UserEntity;
-import org.checkerframework.checker.units.qual.C;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;

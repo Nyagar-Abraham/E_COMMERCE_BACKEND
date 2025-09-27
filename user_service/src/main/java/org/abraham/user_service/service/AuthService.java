@@ -1,11 +1,14 @@
 package org.abraham.user_service.service;
 
 
+import dev.samstevens.totp.exceptions.QrGenerationException;
+import io.grpc.Status;
 import io.grpc.stub.StreamObserver;
 import org.abraham.constants.Constants;
 import org.abraham.models.*;
+import org.abraham.user_service.auth.mfa.TotpManagerImpl;
 import org.abraham.user_service.handlers.AuthHandler;
-import org.abraham.user_service.jwt.JwtUtil;
+import org.abraham.user_service.auth.jwt.JwtUtil;
 import org.abraham.user_service.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,13 +28,15 @@ public class AuthService extends AuthServiceGrpc.AuthServiceImplBase {
     private final AuthenticationManager authenticationManager;
     private final JwtUtil jwtUtil;
     private final UserRepository userRepository;
+    private final TotpManagerImpl totpManagerImpl;
 
-    public AuthService(AuthHandler authHandler, AuthenticationManager authenticationManager, JwtUtil jwtUtil, UserRepository userRepository) {
+    public AuthService(AuthHandler authHandler, AuthenticationManager authenticationManager, JwtUtil jwtUtil, UserRepository userRepository, TotpManagerImpl totpManagerImpl) {
         super();
         this.authHandler = authHandler;
         this.authenticationManager = authenticationManager;
         this.jwtUtil = jwtUtil;
         this.userRepository = userRepository;
+        this.totpManagerImpl = totpManagerImpl;
     }
 
     //    =====================================
@@ -39,7 +44,6 @@ public class AuthService extends AuthServiceGrpc.AuthServiceImplBase {
     //    =====================================
     @Override
     public void registerUser(RegisterUserRequest request, StreamObserver<User> responseObserver) {
-
         log.info("Context User Id, {}", Constants.USER_ID.get());
         log.info("Context User Id, {}", Constants.USER_ID.get());
         log.info("Context User Id, {}", Constants.USER_ID.get());
@@ -60,34 +64,28 @@ public class AuthService extends AuthServiceGrpc.AuthServiceImplBase {
     public void loginUser(LoginRequest request, StreamObserver<LoginResponse> responseObserver) {
         log.info("Received login request: {}", request);
 
+//        Authenticate user
         var user = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword())
         );
+//        TODO HANDLE ERROR
 
         log.info("Context User Id, {}", Constants.USER_ID.get());
         log.info("Context User Id, {}", Constants.USER_ID.get());
         log.info("Context User Id, {}", Constants.USER_ID.get());
 
-        log.info("Email, {}", request.getEmail());
-        userRepository.findByEmail(request.getEmail())
-                .flatMap(u -> userRepository.updateLastLoginAt(LocalDateTime.now(ZoneId.systemDefault()), u.getId()).map(i -> u))
-                .doOnNext(u -> {
-                    log.info("Run: {}", u);
-                    var accessToken = jwtUtil.generateAccessToken(u);
-                    log.debug("Generated access token: {}", accessToken);
-                    var refreshToken = jwtUtil.generateRefreshToken(u);
-
-
-                    log.debug("Generated refresh token: {}", refreshToken);
-
-                    var response = LoginResponse.newBuilder()
-                            .setAccessToken(accessToken)
-                            .setRefreshToken(refreshToken)
-                            .build();
+     authHandler.login(request)
+                .doOnNext(response -> {
                     responseObserver.onNext(response);
                     responseObserver.onCompleted();
                 })
-                .doOnError(err -> log.error("Error while logging user in: {}", err.getMessage()))
+                .doOnError(err -> {
+                    log.error("Error while logging user in: {}", err.getMessage());
+                    responseObserver.onError(Status.INTERNAL
+                            .withDescription("Login failed: " + err.getMessage())
+                            .asRuntimeException());
+                })
                 .subscribe();
+
     }
 }

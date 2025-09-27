@@ -1,4 +1,4 @@
-package org.abraham.user_service.jwt;
+package org.abraham.user_service.auth.jwt;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

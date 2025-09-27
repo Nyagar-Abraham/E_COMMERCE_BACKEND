@@ -10,4 +10,4 @@ spring:
           address: 0.0.0.0:9090
 
 server:
-  port: 8086
+  port: 8081

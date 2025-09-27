@@ -1,0 +1,202 @@
+
+# =====================================
+# Extending java scalars
+# =====================================
+scalar DateTime
+scalar Date
+
+
+type Query {
+    "Get the current logged in user"
+    getCurrentUser: User
+    "gets user by their id"
+    getUserById(id: ID!): User
+#    users(filter: UserFilter, pagination: PaginationInput): UserConnection!
+}
+
+type Mutation {
+    "For Signing up new users"
+    register(input: RegisterInput!): User!
+    "For logging in signed up users"
+    login(input: LoginInput!): AuthPayload!
+    "For updating the user profile"
+    updateProfile(input: UpdateProfileInput!): User!
+    "For adding user address"
+    addAddress(input: AddressInput!): Address!
+    "For Updating user address"
+    updateAddress(id: ID!, input: AddressInput!): Address!
+    "For deleting users by their id"
+    deleteAddress(id: ID!): Boolean!
+    "For updating users preferences"
+    updatePreferences(input: UserPreferencesInput!): UserPreferences!
+}
+# ==========================================
+# ENUMS
+# ==========================================
+enum UserStatus {
+    ACTIVE
+    INACTIVE
+    SUSPENDED
+    PENDING_VERIFICATION
+}
+
+enum AddressType {
+    BILLING
+    SHIPPING
+    BOTH
+}
+
+
+# ==========================================
+# INPUTS
+# ==========================================
+"The request sent to signup new user"
+input RegisterInput{
+    "unique user email"
+    email: String!
+    "unique username "
+    username: String!
+    firstName: String!
+    lastName: String!
+    password: String!
+    phoneNumber: String!
+    "if true MFA with be activated during login"
+    enableMfa: Boolean!
+}
+
+"Request sent to login user"
+input LoginInput{
+    "unique user email"
+    email: String!
+    password: String!
+}
+
+"Request sent to add address to user"
+input AddressInput{
+    "The user the address belongs to"
+    userId: ID!
+    "Specifies how the address will the user, should be oneOf (SHIPPING, BILLING,BOTH)"
+    type: AddressType!
+    "Sets address as the default if true"
+    isDefault: Boolean = false
+    "Primary Address line"
+    addressLine1: String!
+    "Secondary address Line"
+    addressLine2: String
+    city: String!
+    state: String!
+    postalCode: String!
+    country: String!
+    createdAt: DateTime!
+    updatedAt: DateTime!
+}
+
+"Request to update users profile"
+input UpdateProfileInput{
+    "The users profile photo url"
+    avatar: String
+    "A short description of the user"
+    bio: String
+    "Portfolio website"
+    website: String
+    socialLinks: SocialLinksInput
+}
+
+"request to add social media links"
+input SocialLinksInput{
+    facebook: String
+    twitter: String
+    instagram: String
+    linkedin: String
+}
+
+"Request to add user preferences user to customize user experience"
+input UserPreferencesInput{
+    currency: String!
+    language: String!
+    timezone: String!
+    "Determine whether user should receive marketing emails or not"
+    marketingEmails: Boolean!
+    "Determine whether user should receive orders emails or not"
+    orderNotifications: Boolean!
+    newsletter: Boolean!
+}
+
+# ==========================================
+# Explicit Response Types
+# ==========================================
+"Returned after successful login and it contains the users jwtTokens"
+type AuthPayload{
+    accessToken: String!
+    refreshToken:String!
+    qrCodeImage:String
+}
+
+# ==========================================
+# TYPES
+# ==========================================
+"Holds user data"
+type User{
+    id: ID!
+    email: String!
+    username: String
+    firstName: String
+    lastName: String
+    phoneNumber: String
+    dateOfBirth: Date
+    status: UserStatus!
+    emailVerified: Boolean!
+    phoneVerified: Boolean!
+    profile: UserProfile
+    addresses: [Address!]!
+    preferences: UserPreferences
+    createdAt: DateTime!
+    updatedAt: DateTime!
+    lastLoginAt: DateTime
+}
+
+"Hold profile information for specific user"
+type UserProfile {
+    avatar: String
+    bio: String
+    website: String
+    socialLinks: SocialLinks
+}
+
+"Hold user social media account links"
+type SocialLinks {
+    facebook: String
+    twitter: String
+    instagram: String
+    linkedin: String
+}
+
+"User address data"
+type Address{
+    id: ID!
+    userId: ID!
+    type: AddressType!
+    isDefault: Boolean!
+    firstName: String!
+    lastName: String!
+    company: String
+    addressLine1: String!
+    addressLine2: String
+    city: String!
+    state: String!
+    postalCode: String!
+    country: String!
+    phoneNumber: String
+    createdAt: DateTime!
+    updatedAt: DateTime!
+}
+
+"Holds user personal preferences"
+type UserPreferences {
+    currency: String!
+    language: String!
+    timezone: String!
+    marketingEmails: Boolean!
+    orderNotifications: Boolean!
+    newsletter: Boolean!
+}

@@ -20,4 +20,7 @@ public interface UserRepository extends ReactiveCrudRepository<UserEntity, UUID>
     Mono<Integer> updateLastLoginAt(@Param("lastLoginAt") LocalDateTime lastLoginAt,
                                     @Param("id") UUID id);
 
+    @Modifying
+    @Query("UPDATE users SET mfa_secret = :secret WHERE id = :id")
+    Mono<Integer> updateMfaSecret(@Param("secret") String secret, @Param("id") UUID id);
 }

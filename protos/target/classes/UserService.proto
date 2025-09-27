@@ -48,6 +48,7 @@ message User {
   UserPreference preferences =19;
   UserProfile profile = 20;
   repeated Address addresses = 21;
+  bool enable_mfa = 22;
 }
 
 message Address {
@@ -83,12 +84,18 @@ message UserProfile {
   string avatar = 3;
   string bio = 4;
   string website = 5;
-  string facebook = 6;
-  string twitter = 7;
-  string instagram = 8;
-  string linkedin = 9;
-  google.protobuf.Timestamp created_at = 10;
-  google.protobuf.Timestamp updated_at = 11;
+  SocialLink social_links = 6;
+  google.protobuf.Timestamp created_at = 7;
+  google.protobuf.Timestamp updated_at = 8;
+}
+
+message SocialLink {
+  string id = 1;
+  string user_profile_id = 2;
+  string facebook = 3;
+  string twitter = 4;
+  string instagram = 5;
+  string linkedin = 6;
 }
 
 // =============================
@@ -101,6 +108,7 @@ message RegisterUserRequest {
   string last_name = 4;
   string password = 5;
   string phone_number = 6;
+  bool enable_mfa = 7;
 }
 
 message LoginRequest {
@@ -114,6 +122,7 @@ message LoginRequest {
 message LoginResponse {
   string access_token = 1;
   string refresh_token = 2;
+  string qr_code_image = 3;
 }
 
 // ===================================
