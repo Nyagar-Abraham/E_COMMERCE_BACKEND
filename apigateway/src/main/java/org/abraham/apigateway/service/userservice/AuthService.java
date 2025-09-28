@@ -3,15 +3,10 @@ package org.abraham.apigateway.service.userservice;
 import io.grpc.stub.StreamObserver;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.abraham.apigateway.dtos.userservice.AuthPayloadDto;
-import org.abraham.apigateway.dtos.userservice.LoginInputDto;
-import org.abraham.apigateway.dtos.userservice.RegisterInputDto;
-import org.abraham.apigateway.dtos.userservice.UserDto;
+import org.abraham.apigateway.auth.Credentials;
+import org.abraham.apigateway.dtos.userservice.*;
 import org.abraham.apigateway.mappers.userservice.UserMapper;
-import org.abraham.models.AuthServiceGrpc;
-import org.abraham.models.LoginResponse;
-import org.abraham.models.RegisterUserRequest;
-import org.abraham.models.User;
+import org.abraham.models.*;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
@@ -24,7 +19,7 @@ public class AuthService {
 
     //    ============================================
     //    Method (registerUser)
-    //    Handles signup business logic
+    //    Handles signup business logic, call the rpc method
     //    ============================================
     public Mono<UserDto> registerUser(RegisterInputDto  requestDto) {
         return Mono.create(sink -> {
@@ -50,7 +45,7 @@ public class AuthService {
 
     //    ============================================
     //    Method (registerUser)
-    //    Handles signup business logic
+    //    Handles signup business logic, call the rpc method
     //    ============================================
     public Mono<AuthPayloadDto> login(LoginInputDto requestDto) {
         return Mono.create(sink -> {
@@ -71,6 +66,33 @@ public class AuthService {
                 public void onCompleted() {
 
                 }
+            });
+        });
+    }
+
+    //    ========================================
+    //    mutation (verifyMfaCode)
+    //    Handler Method that makes a rpc call to AuthService to verify user MfaCode
+    //    =======================================
+    public Mono<VerifyMfaCodePayloadDto> verifyMfaCode(VerifyMfaCodeInputDto input, String jwtToken) {
+        var request = VerifyMfaCodeRequest.newBuilder().setCode(input.getCode()).build();
+        return Mono.create(sink -> {
+
+            authServiceStub
+                    .withCallCredentials(new Credentials(jwtToken))
+                    .verifyMfaCode(request, new StreamObserver<VerifyMfaCodeResponse>() {
+                @Override
+                public void onNext(VerifyMfaCodeResponse response) {
+                    log.info("MFA Response {}" , response);
+                    sink.success(UserMapper.verifyMfaCodeResponseToDto(response));
+                }
+
+                @Override
+                public void onError(Throwable t) {
+                    sink.error(t);
+                }
+                @Override
+                public void onCompleted() {}
             });
         });
     }

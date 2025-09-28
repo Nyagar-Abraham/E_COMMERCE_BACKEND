@@ -1,15 +1,13 @@
 package org.abraham.apigateway.mappers.userservice;
 
 import org.abraham.apigateway.Utils.Utils;
-import org.abraham.apigateway.dtos.userservice.AuthPayloadDto;
-import org.abraham.apigateway.dtos.userservice.LoginInputDto;
-import org.abraham.apigateway.dtos.userservice.RegisterInputDto;
-import org.abraham.apigateway.dtos.userservice.UserDto;
+import org.abraham.apigateway.dtos.userservice.*;
 import org.abraham.apigateway.types.UserStatus;
+import org.abraham.models.User;
+import org.abraham.models.RegisterUserRequest;
 import org.abraham.models.LoginRequest;
 import org.abraham.models.LoginResponse;
-import org.abraham.models.RegisterUserRequest;
-import org.abraham.models.User;
+import org.abraham.models.VerifyMfaCodeResponse;
 
 public class UserMapper {
 
@@ -57,4 +55,14 @@ public class UserMapper {
 
         return authPayloadDto;
     }
+
+    public static VerifyMfaCodePayloadDto verifyMfaCodeResponseToDto(VerifyMfaCodeResponse response) {
+        var verifyMfaCodePayloadDto = new VerifyMfaCodePayloadDto();
+        verifyMfaCodePayloadDto.setMessage(response.getMessage());
+        if (response.hasUser()) verifyMfaCodePayloadDto.setUser(userToDto(response.getUser()));
+        return verifyMfaCodePayloadDto;
+    };
+
+
+
 }
