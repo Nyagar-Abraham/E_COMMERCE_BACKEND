@@ -1,14 +1,13 @@
 package org.abraham.user_service.service;
 
 
-import dev.samstevens.totp.exceptions.QrGenerationException;
 import io.grpc.Status;
 import io.grpc.stub.StreamObserver;
 import org.abraham.constants.Constants;
 import org.abraham.models.*;
+import org.abraham.user_service.auth.jwt.JwtUtil;
 import org.abraham.user_service.auth.mfa.TotpManagerImpl;
 import org.abraham.user_service.handlers.AuthHandler;
-import org.abraham.user_service.auth.jwt.JwtUtil;
 import org.abraham.user_service.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,8 +16,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import reactor.core.publisher.Mono;
 
-import java.time.LocalDateTime;
-import java.time.ZoneId;
+import java.util.UUID;
 
 @GrpcService
 public class AuthService extends AuthServiceGrpc.AuthServiceImplBase {
@@ -57,8 +55,17 @@ public class AuthService extends AuthServiceGrpc.AuthServiceImplBase {
                 .subscribe();
     }
 
+    //    =================================
+//    VERIFY USER EMAIL
+//    =================================
+    @Override
+    public void verifyEmailToken(VerifyEmailTokenRequest request, StreamObserver<VerifyEmailTokenResponse> responseObserver) {
+        log.info("Received VerifyEmailTokenRequest {}", request);
+        authHandler.verifyEmailToken(request.getToken()).subscribe();
+    }
+
     //    =====================================
-    //    REGISTER USER METHOD (registerUser)
+    //    LOGIN USER METHOD (registerUser)
     //    =====================================
     @Override
     public void loginUser(LoginRequest request, StreamObserver<LoginResponse> responseObserver) {
@@ -74,7 +81,7 @@ public class AuthService extends AuthServiceGrpc.AuthServiceImplBase {
         log.info("Context User Id, {}", Constants.USER_ID.get());
         log.info("Context User Id, {}", Constants.USER_ID.get());
 
-     authHandler.login(request)
+        authHandler.login(request)
                 .doOnNext(response -> {
                     responseObserver.onNext(response);
                     responseObserver.onCompleted();
@@ -88,4 +95,29 @@ public class AuthService extends AuthServiceGrpc.AuthServiceImplBase {
                 .subscribe();
 
     }
+
+//    =================================
+//    VERIFY MFA
+//    =================================
+
+    @Override
+    public void verifyMfaCode(VerifyMfaCodeRequest request, StreamObserver<VerifyMfaCodeResponse> responseObserver) {
+        var code = request.getCode();
+        var UserId = UUID.fromString(Constants.USER_ID.get());
+        authHandler.verifyMfaCode(code, UserId)
+                .doOnNext(response -> {
+                    responseObserver.onNext(response);
+                    responseObserver.onCompleted();
+                })
+                .doOnError(err -> {
+                    log.error("Error while verifying mfa code: {}", err.getMessage());
+                    responseObserver.onError(Status.INTERNAL
+                            .withDescription("Mfa Verification failed" + err.getMessage())
+                            .asRuntimeException());
+                })
+                .subscribe();
+
+    }
+
+
 }

@@ -1,55 +1,102 @@
 package org.abraham.user_service.handlers;
 
-import com.google.protobuf.Timestamp;
 import dev.samstevens.totp.exceptions.QrGenerationException;
 import lombok.AllArgsConstructor;
-import org.abraham.models.LoginRequest;
-import org.abraham.models.LoginResponse;
-import org.abraham.models.RegisterUserRequest;
-import org.abraham.models.User;
-
+import org.abraham.models.*;
 import org.abraham.user_service.auth.jwt.JwtUtil;
-
 import org.abraham.user_service.auth.mfa.TotpManagerImpl;
+import org.abraham.user_service.dto.UserStatus;
+import org.abraham.user_service.entity.EmailVerificationToken;
 import org.abraham.user_service.entity.UserEntity;
 import org.abraham.user_service.mapper.UserMapper;
+import org.abraham.user_service.repository.EmailVerificationTokenRepository;
 import org.abraham.user_service.repository.UserRepository;
+import org.abraham.user_service.service.MailService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import reactor.core.publisher.Mono;
+import reactor.core.scheduler.Schedulers;
 
-import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.Objects;
+import java.util.UUID;
 
 //Handles User Login, Registration, PasswordReset, Email And phone Verification.
 @Service
 @AllArgsConstructor
 public class AuthHandler {
+    private static final String EMAIL_TEMPLATE = "Hi %s,\n" +
+            "Thanks for signing up! We just need to verify your email address before you can get started.\n" +
+            "Click the button below to complete the process:\n" +
+            "%s\n" +
+            "If you didn't create an account with us, you can safely ignore this email.\n" +
+            "Thanks,\n" +
+            "The %s Team";
+    private static final String COMPANY_NAME = "MY COMPANY";
     private static final Logger log = LoggerFactory.getLogger(AuthHandler.class);
     private final UserRepository userRepository;
-    private  final PasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder;
     private final JwtUtil jwtUtil;
     private final TotpManagerImpl totpManagerImpl;
+    private final EmailVerificationTokenRepository emailVerificationTokenRepository;
+    private final MailService mailService;
 
 
+    @Transactional
     public Mono<User> registerUser(Mono<RegisterUserRequest> request) {
+        var secret = UUID.randomUUID().toString();
         return request
-                .map(user -> UserMapper.registerUserRequestToUserEntity(user, passwordEncoder.encode(user.getPassword())) )
-                .flatMap(userRepository::save)
+                .map(user -> UserMapper.registerUserRequestToUserEntity(user, passwordEncoder.encode(user.getPassword())))
+                .flatMap(user ->
+                                userRepository.save(user)
+                                        .flatMap(u -> {
+
+                                            var verifyEmailToken = new EmailVerificationToken();
+                                            verifyEmailToken.setToken(secret);
+                                            verifyEmailToken.setUserId(u.getId());
+                                            verifyEmailToken.setExpiresAt(
+                                                    LocalDateTime.now(ZoneId.of("Africa/Nairobi")).plusMinutes(30)
+                                            );
+
+                                            return emailVerificationTokenRepository.save(verifyEmailToken).map(vet -> u);
+                                        })
+                                        .flatMap(savedUser ->
+//                                        SEND EMAIL
+                                                        Mono.fromCallable(() -> {
+                                                            var url = "http://localhost:8081/verify-email?token=%s".formatted(secret);
+                                                            var companyWebsiteUrl = "https://www.yourcompany.com";
+                                                            mailService.sendRegistrationEmail(savedUser, url, "ECOMMERCE", companyWebsiteUrl);
+                                                            return savedUser; // return the user after sending email
+                                                        }).subscribeOn(Schedulers.boundedElastic())
+                                        )
+                )
                 .flatMap(user -> userRepository.findById(user.getId()))
                 .map(UserMapper::userEntityToUser);
     }
 
     @Transactional
     public Mono<LoginResponse> login(LoginRequest request) {
-      return userRepository.findByEmail(request.getEmail())
-                .flatMap(u -> userRepository.updateLastLoginAt(LocalDateTime.now(ZoneId.systemDefault()), u.getId())
-                        .map(i -> u))
+        return userRepository.findByEmail(request.getEmail())
+                .flatMap(u -> {
+                    if (u.getEnableMfa())
+                        return userRepository.updateLastLoginAt(LocalDateTime.now(ZoneId.systemDefault()), u.getId())
+                                .map(i -> u);
+                    return updateUserLastLoginAtAndStatus(Mono.just(u));
+                })
                 .flatMap(this::buildLoginResponse);
+    }
+
+    //    ==============================================
+    //    Update last log in and status if mfa is not set to true
+    //    ==============================================
+    private Mono<UserEntity> updateUserLastLoginAtAndStatus(Mono<UserEntity> userEntity) {
+        var lastLoginAt = LocalDateTime.now(ZoneId.systemDefault());
+        return userEntity
+                .flatMap(u -> userRepository.updateLastLoginAtAndStatus(lastLoginAt, UserStatus.ACTIVE, u.getId()).map(i -> u));
     }
 
     private Mono<LoginResponse> buildLoginResponse(UserEntity u) {
@@ -60,9 +107,10 @@ public class AuthHandler {
                 .setAccessToken(accessToken)
                 .setRefreshToken(refreshToken);
 
-        if (!u.getEnableMfa()) {
+        if (!u.getEnableMfa() || Objects.nonNull(u.getMfaSecret())) {
             return Mono.just(responseBuilder.build());
         }
+
 
         // MFA is enabled - generate secret and QR code
         var secret = totpManagerImpl.generateSecret();
@@ -77,5 +125,54 @@ public class AuthHandler {
                     }
                 });
     }
+
+    public Mono<VerifyMfaCodeResponse> verifyMfaCode(String code, UUID userId) {
+        return userRepository.findById(userId)
+                .flatMap(userEntity -> {
+                    var isValid = totpManagerImpl.verifyCode(userEntity.getMfaSecret(), code);
+
+                    var response = VerifyMfaCodeResponse.newBuilder();
+
+                    if (!isValid)
+                        return Mono.just(response.setMessage("Invalid MFA code").build());
+
+                    return userRepository.updateStatus(UserStatus.ACTIVE, userEntity.getId())
+                            .map(u -> response.setMessage("Success")
+                                    .setUser(UserMapper.userEntityToUser(userEntity))
+                                    .build());
+                });
+    }
+
+    public Mono<VerifyEmailTokenResponse> verifyEmailToken(String token) {
+        return emailVerificationTokenRepository.findByToken(token)
+                .flatMap(emailVerificationToken -> {
+                    if (emailVerificationToken.expired()) {
+                        return emailVerificationTokenRepository.delete(emailVerificationToken)
+                                .thenReturn(
+                                        VerifyEmailTokenResponse.newBuilder()
+                                                .setSuccess(false)
+                                                .setMessage("Verification email token expired")
+                                                .build()
+                                );
+                    }
+
+                    // Mark the user's email as verified
+                    return userRepository.updateEmailVerified(true, emailVerificationToken.getUserId())
+                            .thenReturn(
+                                    VerifyEmailTokenResponse.newBuilder()
+                                            .setSuccess(true)
+                                            .setMessage("Email successfully verified")
+                                            .build()
+                            );
+                })
+                .switchIfEmpty(Mono.just(
+                        VerifyEmailTokenResponse.newBuilder()
+                                .setSuccess(false)
+                                .setMessage("Invalid or missing token")
+                                .build()
+                ));
+    }
+
+
 
 }

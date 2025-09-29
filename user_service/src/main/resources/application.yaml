@@ -2,6 +2,8 @@ server:
   port: 8082
 
 spring:
+#  config:
+#    import: optional:file:.env[.properties]
   grpc:
     server:
       port: 9090
@@ -16,9 +18,20 @@ spring:
     username: postgres
     password: pass1234
   jwt:
-    secret: 8df235b60454947172088a5fe1082fcbf9cfa5b431d50216bcbdd6b03a70ff63
-    accessTokenExpiration: 10
+    secret: ${SPRING_JWT_SECRET}
+    accessTokenExpiration: 60
     refreshTokenExpiration: 60
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: ${SPRING_GMAIL_USERNAME}
+    password: ${SPRING_GMAIL_APP_PASSWORD}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
 
 
 logging:

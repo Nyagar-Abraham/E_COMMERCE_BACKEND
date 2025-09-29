@@ -7,6 +7,7 @@ import org.abraham.apigateway.auth.Credentials;
 import org.abraham.apigateway.dtos.userservice.*;
 import org.abraham.apigateway.mappers.userservice.UserMapper;
 import org.abraham.models.*;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
@@ -87,6 +88,25 @@ public class AuthService {
                     sink.success(UserMapper.verifyMfaCodeResponseToDto(response));
                 }
 
+                @Override
+                public void onError(Throwable t) {
+                    sink.error(t);
+                }
+                @Override
+                public void onCompleted() {}
+            });
+        });
+    }
+
+    public Mono<VerifyEmailResponseDto> verifyEmail(String token) {
+        var request = VerifyEmailTokenRequest.newBuilder().setToken(token).build();
+        return Mono.create(sink -> {
+            authServiceStub.verifyEmailToken(request, new  StreamObserver<VerifyEmailTokenResponse>() {
+                @Override
+                public void onNext(VerifyEmailTokenResponse response) {
+                    log.info("Verify email token response {}" , response);
+                    sink.success(UserMapper.verifyEmailResponseToDto(response));
+                }
                 @Override
                 public void onError(Throwable t) {
                     sink.error(t);

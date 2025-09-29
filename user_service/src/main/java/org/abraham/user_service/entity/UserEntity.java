@@ -46,23 +46,14 @@ public class UserEntity {
     @Column("enable_mfa")
     private Boolean enableMfa;
 
+    @Column("mfa_secret")
+    private String mfaSecret;
+
     @Column("email_verified")
     private Boolean emailVerified;
 
     @Column("phone_verified")
     private Boolean phoneVerified;
-
-    @Column("email_verification_token")
-    private String emailVerificationToken;
-
-    @Column("email_verification_expires_at")
-    private LocalDateTime emailVerificationExpiresAt;
-
-    @Column("phone_verification_token")
-    private String phoneVerificationToken;
-
-    @Column("phone_verification_expires_at")
-    private LocalDateTime phoneVerificationExpiresAt;
 
     @Column("password_reset_token")
     private String passwordResetToken;

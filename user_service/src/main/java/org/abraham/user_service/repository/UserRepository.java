@@ -1,11 +1,13 @@
 package org.abraham.user_service.repository;
 
+import org.abraham.user_service.dto.UserStatus;
 import org.abraham.user_service.entity.UserEntity;
 import org.springframework.data.r2dbc.repository.Modifying;
 import org.springframework.data.r2dbc.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.data.repository.reactive.ReactiveCrudRepository;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.BindParam;
 import reactor.core.publisher.Mono;
 
 import java.time.LocalDateTime;
@@ -21,6 +23,21 @@ public interface UserRepository extends ReactiveCrudRepository<UserEntity, UUID>
                                     @Param("id") UUID id);
 
     @Modifying
-    @Query("UPDATE users SET mfa_secret = :secret WHERE id = :id")
+    @Query("UPDATE users SET status = CAST(:status AS user_status_enum) WHERE id = :id ")
+    Mono<Integer> updateStatus(@BindParam("status") UserStatus status, @BindParam("id") UUID id);
+
+    @Modifying
+    @Query("UPDATE users SET last_login_at = :lastLoginAt, status =  CAST(:status AS user_status_enum)  WHERE id = :id")
+    Mono<Integer> updateLastLoginAtAndStatus(@Param("lastLoginAt") LocalDateTime lastLoginAt,@Param("status") UserStatus status,
+                                    @Param("id") UUID id);
+
+    @Modifying
+    @Query("UPDATE users SET mfa_secret = :secret WHERE id = :id AND mfa_secret IS NULL")
     Mono<Integer> updateMfaSecret(@Param("secret") String secret, @Param("id") UUID id);
+
+    @Modifying
+    @Query("UPDATE users SET email_verified = :emailVerified WHERE id = :id ")
+    Mono<Integer> updateEmailVerified(@Param("emailVerified") boolean emailVerified, @Param("id") UUID id);
+
+
 }

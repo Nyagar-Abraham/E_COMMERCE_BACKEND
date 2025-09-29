@@ -28,7 +28,9 @@ public class GrpcJwtInterceptor implements ServerInterceptor {
                 .anyMatch(message::contains);
 
         if (isPublic) {
-           return serverCallHandler.startCall(serverCall, metadata);
+            var ctx = Context.current();
+                    ctx.withValue(Constants.IS_PUBLIC,"true");
+           return Contexts.interceptCall(ctx, serverCall, metadata, serverCallHandler);
         }
 
         log.info("{} , not filtered",message);
@@ -45,8 +47,7 @@ public class GrpcJwtInterceptor implements ServerInterceptor {
         log.info("Token {}",  jwtToken);
 //        PARSE THE TOKEN
         var jwt = jwtUtil.parseToken(jwtToken.trim());
-        var x = "xs";
-        log.info("JWT Token is {}", jwt);
+
 
         if (Objects.isNull(jwt) || jwt.isExpired()) {
            return close(serverCall,metadata,Status.UNAUTHENTICATED.withDescription("JWT Token is expired or invalid"));

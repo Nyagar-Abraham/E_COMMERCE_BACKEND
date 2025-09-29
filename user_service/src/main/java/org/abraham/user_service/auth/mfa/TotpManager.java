@@ -7,5 +7,5 @@ public interface TotpManager {
 
     String generateCode(String secret, String email) throws QrGenerationException;
 
-    Boolean verifyCode(String code, String secret);
+    Boolean verifyCode(String secret, String code);
 }

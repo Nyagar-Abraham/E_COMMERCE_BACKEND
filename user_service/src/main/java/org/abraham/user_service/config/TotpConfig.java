@@ -36,11 +36,8 @@ public class TotpConfig {
     @ConditionalOnMissingBean
     public CodeVerifier codeVerifier() {
         var systemTimeProvider = new SystemTimeProvider();
-        var codeGenerator = new DefaultCodeGenerator(HashingAlgorithm.SHA512);
+        var codeGenerator = new DefaultCodeGenerator();
         return new DefaultCodeVerifier(codeGenerator, systemTimeProvider);
     }
-
-
-
 
 }

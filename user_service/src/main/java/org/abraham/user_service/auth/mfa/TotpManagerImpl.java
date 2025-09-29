@@ -37,7 +37,7 @@ public class TotpManagerImpl implements TotpManager {
                 .label(email)
                 .secret(secret)
                 .issuer("E_COMMERCE")
-                .algorithm(HashingAlgorithm.SHA512)
+                .algorithm(HashingAlgorithm.SHA1)
                 .digits(6)
                 .period(30)
                 .build();
@@ -48,7 +48,7 @@ public class TotpManagerImpl implements TotpManager {
     }
 
     @Override
-    public Boolean verifyCode(String code, String secret) {
-            return verifier.isValidCode(code, secret);
+    public Boolean verifyCode(String secret, String code) {
+            return verifier.isValidCode(secret, code);
     }
 }
