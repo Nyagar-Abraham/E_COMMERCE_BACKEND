@@ -98,6 +98,10 @@ public class AuthService {
         });
     }
 
+    //    ========================================
+    //    mutation (verifyEmail)
+    //    Handler Method that makes a rpc call to AuthService to verify user email
+    //    =======================================
     public Mono<VerifyEmailResponseDto> verifyEmail(String token) {
         var request = VerifyEmailTokenRequest.newBuilder().setToken(token).build();
         return Mono.create(sink -> {
@@ -111,6 +115,56 @@ public class AuthService {
                 public void onError(Throwable t) {
                     sink.error(t);
                 }
+                @Override
+                public void onCompleted() {}
+            });
+        });
+    }
+
+    //    ========================================
+    //    mutation (forgotPassword)
+    //    Handler Method that makes a rpc call to AuthService to request for password reset
+    //    =======================================
+    public Mono<ForgotPasswordPayloadDto> forgotPassword(ForgotPasswordInputDto input) {
+        var request = ForgotPasswordRequest.newBuilder().setEmail(input.getEmail()).build();
+
+        return Mono.create(sink -> {
+            authServiceStub.forgotPassword(request, new StreamObserver<ForgotPasswordResponse>() {
+                @Override
+                public void onNext(ForgotPasswordResponse response) {
+                    sink.success(UserMapper.forgotPasswordResponseToDTO(response));
+                }
+
+                @Override
+                public void onError(Throwable t) {
+                    sink.error(t);
+                }
+
+                @Override
+                public void onCompleted() {}
+            });
+        });
+    }
+
+    //    ========================================
+    //    mutation (resetPassword)
+    //    Handler Method that makes a rpc call to AuthService to reset password
+    //    =======================================
+    public Mono<ResetPasswordPayloadDto> resetPassword(RegisterInputDto input) {
+        var request = ResetPasswordRequest.newBuilder().setPassword(input.getPassword()).build();
+
+        return Mono.create(sink -> {
+            authServiceStub.resetPassword(request, new   StreamObserver<ResetPasswordResponse>() {
+                @Override
+                public void onNext(ResetPasswordResponse response) {
+                    log.info("Reset Password Response {}" , response);
+                     sink.success(UserMapper.resetPasswordResponseToDto(response));
+                }
+                @Override
+                public void onError(Throwable t) {
+                    sink.error(t);
+                }
+
                 @Override
                 public void onCompleted() {}
             });

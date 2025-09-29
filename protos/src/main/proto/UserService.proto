@@ -124,6 +124,14 @@ message VerifyEmailTokenRequest{
   string  token = 1;
 }
 
+message ForgotPasswordRequest{
+  string email = 1;
+}
+
+message ResetPasswordRequest{
+  string password = 1;
+}
+
 
 
 // =================================
@@ -145,6 +153,16 @@ message VerifyEmailTokenResponse{
   string message = 2;
 }
 
+message ForgotPasswordResponse{
+  bool success = 1;
+  string message = 2;
+}
+
+message ResetPasswordResponse{
+  bool success = 1;
+  string message = 2;
+}
+
 
 
 // ===================================
@@ -155,6 +173,8 @@ service AuthService {
   rpc loginUser(LoginRequest) returns (LoginResponse) {}
   rpc verifyMfaCode(VerifyMfaCodeRequest) returns (VerifyMfaCodeResponse) {}
   rpc verifyEmailToken(VerifyEmailTokenRequest) returns (VerifyEmailTokenResponse) {}
+  rpc forgotPassword(ForgotPasswordRequest) returns (ForgotPasswordResponse) {}
+  rpc resetPassword(ResetPasswordRequest) returns (ResetPasswordResponse) {}
 }
 
 service UserService{

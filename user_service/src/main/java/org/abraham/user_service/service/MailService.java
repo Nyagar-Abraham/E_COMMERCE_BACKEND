@@ -45,4 +45,30 @@ public class MailService {
         helper.setText(htmlContent, true);
         sender.send(message);
     }
+
+    public void sendPasswordResetEmail(UserEntity user, String resetPasswordUrl, String companyName, String companyUrl) throws MessagingException, IOException, TemplateException {
+        var message = sender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(message);
+        helper.setSubject("Reset Password");
+        helper.setTo(user.getEmail());
+
+        Map<String, Object> model = new HashMap<>();
+        model.put("user_name", user.getUsername());
+        model.put("company_name", companyName);
+        model.put("logo_url", "https://www.example.com/logo.png");
+        model.put("reset_url", resetPasswordUrl);
+        model.put("expiration_time", "30 mins");
+        model.put("support_email", "support@example.com");
+        model.put("website_url", companyUrl);
+        model.put("unsubscribe_url", "https://www.example.com/unsubscribe");
+        model.put("current_year", 2025);
+
+        // Load the template
+        Template template = freeMarkerConfig.getConfiguration().getTemplate("reset_password.ftl");
+
+        String htmlContent = FreeMarkerTemplateUtils.processTemplateIntoString(template, model);
+
+        helper.setText(htmlContent, true);
+        sender.send(message);
+    }
 }

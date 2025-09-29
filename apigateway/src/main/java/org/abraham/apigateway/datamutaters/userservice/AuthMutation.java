@@ -43,4 +43,24 @@ public class AuthMutation {
         String jwtToken = dfe.getGraphQlContext().get(Constants.JWT_TOKEN);
         return authService.verifyMfaCode(input,jwtToken);
     }
+
+
+    //    ===========================
+    //    mutation (forgotPassword)
+    //    Call the forgotPassword handler
+    //    ===========================
+    @DgsMutation
+    public Mono<ForgotPasswordPayloadDto> forgotPassword(@InputArgument ForgotPasswordInputDto input ){
+        return authService.forgotPassword(input);
+    }
+
+
+    //    ===========================
+    //    mutation (resetPassword)
+    //    Call the resetPassword handler
+    //    ===========================
+    @DgsMutation
+    public Mono<ResetPasswordPayloadDto> resetPassword(@InputArgument RegisterInputDto input ){
+        return authService.resetPassword(input);
+    }
 }

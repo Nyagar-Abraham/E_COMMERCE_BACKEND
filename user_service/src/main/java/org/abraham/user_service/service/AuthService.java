@@ -96,10 +96,9 @@ public class AuthService extends AuthServiceGrpc.AuthServiceImplBase {
 
     }
 
-//    =================================
+    //    =================================
 //    VERIFY MFA
 //    =================================
-
     @Override
     public void verifyMfaCode(VerifyMfaCodeRequest request, StreamObserver<VerifyMfaCodeResponse> responseObserver) {
         var code = request.getCode();
@@ -116,8 +115,34 @@ public class AuthService extends AuthServiceGrpc.AuthServiceImplBase {
                             .asRuntimeException());
                 })
                 .subscribe();
-
     }
 
 
+    //    =================================
+//    FORGOT PASSWORD
+//    =================================
+    @Override
+    public void forgotPassword(ForgotPasswordRequest request, StreamObserver<ForgotPasswordResponse> responseObserver) {
+        authHandler.forgotPassword(request)
+                .doOnNext(response -> {
+                    responseObserver.onNext(response);
+                    responseObserver.onCompleted();
+                })
+                .doOnError(err -> {
+                    log.error("Error while forgotting password: {}", err.getMessage());
+                    responseObserver.onError(Status.INTERNAL
+                            .withDescription("Password Reset Request Failed" + err.getMessage())
+                            .asRuntimeException());
+                })
+                .subscribe();
+    }
+
+
+    //    =================================
+//    RESET PASSWORD
+//    =================================
+    @Override
+    public void resetPassword(ResetPasswordRequest request, StreamObserver<ResetPasswordResponse> responseObserver) {
+        super.resetPassword(request, responseObserver);
+    }
 }

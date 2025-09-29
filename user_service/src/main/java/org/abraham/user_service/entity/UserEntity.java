@@ -55,11 +55,6 @@ public class UserEntity {
     @Column("phone_verified")
     private Boolean phoneVerified;
 
-    @Column("password_reset_token")
-    private String passwordResetToken;
-
-    @Column("password_reset_expires_at")
-    private LocalDateTime passwordResetExpiresAt;
 
     @Column("last_login_at")
     private LocalDateTime lastLoginAt;

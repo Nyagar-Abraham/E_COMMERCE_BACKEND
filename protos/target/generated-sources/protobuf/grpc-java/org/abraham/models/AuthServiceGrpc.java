@@ -144,6 +144,68 @@ public final class AuthServiceGrpc {
     return getVerifyEmailTokenMethod;
   }
 
+  private static volatile io.grpc.MethodDescriptor<org.abraham.models.ForgotPasswordRequest,
+      org.abraham.models.ForgotPasswordResponse> getForgotPasswordMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "forgotPassword",
+      requestType = org.abraham.models.ForgotPasswordRequest.class,
+      responseType = org.abraham.models.ForgotPasswordResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<org.abraham.models.ForgotPasswordRequest,
+      org.abraham.models.ForgotPasswordResponse> getForgotPasswordMethod() {
+    io.grpc.MethodDescriptor<org.abraham.models.ForgotPasswordRequest, org.abraham.models.ForgotPasswordResponse> getForgotPasswordMethod;
+    if ((getForgotPasswordMethod = AuthServiceGrpc.getForgotPasswordMethod) == null) {
+      synchronized (AuthServiceGrpc.class) {
+        if ((getForgotPasswordMethod = AuthServiceGrpc.getForgotPasswordMethod) == null) {
+          AuthServiceGrpc.getForgotPasswordMethod = getForgotPasswordMethod =
+              io.grpc.MethodDescriptor.<org.abraham.models.ForgotPasswordRequest, org.abraham.models.ForgotPasswordResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "forgotPassword"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  org.abraham.models.ForgotPasswordRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  org.abraham.models.ForgotPasswordResponse.getDefaultInstance()))
+              .setSchemaDescriptor(new AuthServiceMethodDescriptorSupplier("forgotPassword"))
+              .build();
+        }
+      }
+    }
+    return getForgotPasswordMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<org.abraham.models.ResetPasswordRequest,
+      org.abraham.models.ResetPasswordResponse> getResetPasswordMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "resetPassword",
+      requestType = org.abraham.models.ResetPasswordRequest.class,
+      responseType = org.abraham.models.ResetPasswordResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<org.abraham.models.ResetPasswordRequest,
+      org.abraham.models.ResetPasswordResponse> getResetPasswordMethod() {
+    io.grpc.MethodDescriptor<org.abraham.models.ResetPasswordRequest, org.abraham.models.ResetPasswordResponse> getResetPasswordMethod;
+    if ((getResetPasswordMethod = AuthServiceGrpc.getResetPasswordMethod) == null) {
+      synchronized (AuthServiceGrpc.class) {
+        if ((getResetPasswordMethod = AuthServiceGrpc.getResetPasswordMethod) == null) {
+          AuthServiceGrpc.getResetPasswordMethod = getResetPasswordMethod =
+              io.grpc.MethodDescriptor.<org.abraham.models.ResetPasswordRequest, org.abraham.models.ResetPasswordResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "resetPassword"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  org.abraham.models.ResetPasswordRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  org.abraham.models.ResetPasswordResponse.getDefaultInstance()))
+              .setSchemaDescriptor(new AuthServiceMethodDescriptorSupplier("resetPassword"))
+              .build();
+        }
+      }
+    }
+    return getResetPasswordMethod;
+  }
+
   /**
    * Creates a new async stub that supports all call types for the service
    */
@@ -239,6 +301,20 @@ public final class AuthServiceGrpc {
         io.grpc.stub.StreamObserver<org.abraham.models.VerifyEmailTokenResponse> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getVerifyEmailTokenMethod(), responseObserver);
     }
+
+    /**
+     */
+    default void forgotPassword(org.abraham.models.ForgotPasswordRequest request,
+        io.grpc.stub.StreamObserver<org.abraham.models.ForgotPasswordResponse> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getForgotPasswordMethod(), responseObserver);
+    }
+
+    /**
+     */
+    default void resetPassword(org.abraham.models.ResetPasswordRequest request,
+        io.grpc.stub.StreamObserver<org.abraham.models.ResetPasswordResponse> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getResetPasswordMethod(), responseObserver);
+    }
   }
 
   /**
@@ -309,6 +385,22 @@ public final class AuthServiceGrpc {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getVerifyEmailTokenMethod(), getCallOptions()), request, responseObserver);
     }
+
+    /**
+     */
+    public void forgotPassword(org.abraham.models.ForgotPasswordRequest request,
+        io.grpc.stub.StreamObserver<org.abraham.models.ForgotPasswordResponse> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getForgotPasswordMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     */
+    public void resetPassword(org.abraham.models.ResetPasswordRequest request,
+        io.grpc.stub.StreamObserver<org.abraham.models.ResetPasswordResponse> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getResetPasswordMethod(), getCallOptions()), request, responseObserver);
+    }
   }
 
   /**
@@ -359,6 +451,20 @@ public final class AuthServiceGrpc {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getVerifyEmailTokenMethod(), getCallOptions(), request);
     }
+
+    /**
+     */
+    public org.abraham.models.ForgotPasswordResponse forgotPassword(org.abraham.models.ForgotPasswordRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getForgotPasswordMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public org.abraham.models.ResetPasswordResponse resetPassword(org.abraham.models.ResetPasswordRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getResetPasswordMethod(), getCallOptions(), request);
+    }
   }
 
   /**
@@ -408,6 +514,20 @@ public final class AuthServiceGrpc {
     public org.abraham.models.VerifyEmailTokenResponse verifyEmailToken(org.abraham.models.VerifyEmailTokenRequest request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getVerifyEmailTokenMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public org.abraham.models.ForgotPasswordResponse forgotPassword(org.abraham.models.ForgotPasswordRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getForgotPasswordMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public org.abraham.models.ResetPasswordResponse resetPassword(org.abraham.models.ResetPasswordRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getResetPasswordMethod(), getCallOptions(), request);
     }
   }
 
@@ -463,12 +583,30 @@ public final class AuthServiceGrpc {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getVerifyEmailTokenMethod(), getCallOptions()), request);
     }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<org.abraham.models.ForgotPasswordResponse> forgotPassword(
+        org.abraham.models.ForgotPasswordRequest request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getForgotPasswordMethod(), getCallOptions()), request);
+    }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<org.abraham.models.ResetPasswordResponse> resetPassword(
+        org.abraham.models.ResetPasswordRequest request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getResetPasswordMethod(), getCallOptions()), request);
+    }
   }
 
   private static final int METHODID_REGISTER_USER = 0;
   private static final int METHODID_LOGIN_USER = 1;
   private static final int METHODID_VERIFY_MFA_CODE = 2;
   private static final int METHODID_VERIFY_EMAIL_TOKEN = 3;
+  private static final int METHODID_FORGOT_PASSWORD = 4;
+  private static final int METHODID_RESET_PASSWORD = 5;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -502,6 +640,14 @@ public final class AuthServiceGrpc {
         case METHODID_VERIFY_EMAIL_TOKEN:
           serviceImpl.verifyEmailToken((org.abraham.models.VerifyEmailTokenRequest) request,
               (io.grpc.stub.StreamObserver<org.abraham.models.VerifyEmailTokenResponse>) responseObserver);
+          break;
+        case METHODID_FORGOT_PASSWORD:
+          serviceImpl.forgotPassword((org.abraham.models.ForgotPasswordRequest) request,
+              (io.grpc.stub.StreamObserver<org.abraham.models.ForgotPasswordResponse>) responseObserver);
+          break;
+        case METHODID_RESET_PASSWORD:
+          serviceImpl.resetPassword((org.abraham.models.ResetPasswordRequest) request,
+              (io.grpc.stub.StreamObserver<org.abraham.models.ResetPasswordResponse>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -549,6 +695,20 @@ public final class AuthServiceGrpc {
               org.abraham.models.VerifyEmailTokenRequest,
               org.abraham.models.VerifyEmailTokenResponse>(
                 service, METHODID_VERIFY_EMAIL_TOKEN)))
+        .addMethod(
+          getForgotPasswordMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              org.abraham.models.ForgotPasswordRequest,
+              org.abraham.models.ForgotPasswordResponse>(
+                service, METHODID_FORGOT_PASSWORD)))
+        .addMethod(
+          getResetPasswordMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              org.abraham.models.ResetPasswordRequest,
+              org.abraham.models.ResetPasswordResponse>(
+                service, METHODID_RESET_PASSWORD)))
         .build();
   }
 
@@ -601,6 +761,8 @@ public final class AuthServiceGrpc {
               .addMethod(getLoginUserMethod())
               .addMethod(getVerifyMfaCodeMethod())
               .addMethod(getVerifyEmailTokenMethod())
+              .addMethod(getForgotPasswordMethod())
+              .addMethod(getResetPasswordMethod())
               .build();
         }
       }

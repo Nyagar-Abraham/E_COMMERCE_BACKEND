@@ -64,4 +64,17 @@ public class UserMapper {
     }
 
 
+    public static ForgotPasswordPayloadDto forgotPasswordResponseToDTO(ForgotPasswordResponse response) {
+        var  forgotPasswordPayloadDto = new ForgotPasswordPayloadDto();
+        forgotPasswordPayloadDto.setMessage(response.getMessage());
+        forgotPasswordPayloadDto.setSuccess(response.getSuccess());
+        return forgotPasswordPayloadDto;
+    }
+
+    public static ResetPasswordPayloadDto resetPasswordResponseToDto(ResetPasswordResponse response) {
+        var resetPasswordPayloadDto = new ResetPasswordPayloadDto();
+        resetPasswordPayloadDto.setMessage(response.getMessage());
+        resetPasswordPayloadDto.setSuccess(response.getSuccess());
+        return resetPasswordPayloadDto;
+    }
 }
