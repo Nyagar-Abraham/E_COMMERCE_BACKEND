@@ -71,6 +71,11 @@ public final class UserServiceOuterClass {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_ResetPasswordRequest_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_ChangePasswordRequest_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_ChangePasswordRequest_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
     internal_static_LoginResponse_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -95,6 +100,11 @@ public final class UserServiceOuterClass {
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_ResetPasswordResponse_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_ChangePasswordResponse_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_ChangePasswordResponse_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -154,31 +164,36 @@ public final class UserServiceOuterClass {
       "\014\n\004code\030\001 \001(\t\"(\n\027VerifyEmailTokenRequest" +
       "\022\r\n\005token\030\001 \001(\t\"&\n\025ForgotPasswordRequest" +
       "\022\r\n\005email\030\001 \001(\t\"7\n\024ResetPasswordRequest\022" +
-      "\r\n\005token\030\001 \001(\t\022\020\n\010password\030\002 \001(\t\"S\n\rLogi" +
-      "nResponse\022\024\n\014access_token\030\001 \001(\t\022\025\n\rrefre" +
-      "sh_token\030\002 \001(\t\022\025\n\rqr_code_image\030\003 \001(\t\"=\n" +
-      "\025VerifyMfaCodeResponse\022\017\n\007message\030\001 \001(\t\022" +
-      "\023\n\004user\030\002 \001(\0132\005.User\"<\n\030VerifyEmailToken" +
-      "Response\022\017\n\007success\030\001 \001(\010\022\017\n\007message\030\002 \001" +
-      "(\t\":\n\026ForgotPasswordResponse\022\017\n\007success\030" +
-      "\001 \001(\010\022\017\n\007message\030\002 \001(\t\"9\n\025ResetPasswordR" +
-      "esponse\022\017\n\007success\030\001 \001(\010\022\017\n\007message\030\002 \001(" +
-      "\t*O\n\nUserStatus\022\n\n\006ACTIVE\020\000\022\014\n\010INACTIVE\020" +
-      "\001\022\r\n\tSUSPENDED\020\002\022\030\n\024PENDING_VERIFICATION" +
-      "\020\003*2\n\013AddressType\022\013\n\007BILLING\020\000\022\014\n\010SHIPPI" +
-      "NG\020\001\022\010\n\004BOTH\020\0022\376\002\n\013AuthService\022-\n\014regist" +
-      "erUser\022\024.RegisterUserRequest\032\005.User\"\000\022,\n" +
-      "\tloginUser\022\r.LoginRequest\032\016.LoginRespons" +
-      "e\"\000\022@\n\rverifyMfaCode\022\025.VerifyMfaCodeRequ" +
-      "est\032\026.VerifyMfaCodeResponse\"\000\022I\n\020verifyE" +
-      "mailToken\022\030.VerifyEmailTokenRequest\032\031.Ve" +
-      "rifyEmailTokenResponse\"\000\022C\n\016forgotPasswo" +
-      "rd\022\026.ForgotPasswordRequest\032\027.ForgotPassw" +
-      "ordResponse\"\000\022@\n\rresetPassword\022\025.ResetPa" +
-      "sswordRequest\032\026.ResetPasswordResponse\"\0002" +
-      "@\n\013UserService\0221\n\016getCurrentUser\022\026.googl" +
-      "e.protobuf.Empty\032\005.User\"\000B\026\n\022org.abraham" +
-      ".modelsP\001b\006proto3"
+      "\r\n\005token\030\001 \001(\t\022\020\n\010password\030\002 \001(\t\"C\n\025Chan" +
+      "gePasswordRequest\022\024\n\014old_password\030\001 \001(\t\022" +
+      "\024\n\014new_password\030\002 \001(\t\"S\n\rLoginResponse\022\024" +
+      "\n\014access_token\030\001 \001(\t\022\025\n\rrefresh_token\030\002 " +
+      "\001(\t\022\025\n\rqr_code_image\030\003 \001(\t\"=\n\025VerifyMfaC" +
+      "odeResponse\022\017\n\007message\030\001 \001(\t\022\023\n\004user\030\002 \001" +
+      "(\0132\005.User\"<\n\030VerifyEmailTokenResponse\022\017\n" +
+      "\007success\030\001 \001(\010\022\017\n\007message\030\002 \001(\t\":\n\026Forgo" +
+      "tPasswordResponse\022\017\n\007success\030\001 \001(\010\022\017\n\007me" +
+      "ssage\030\002 \001(\t\"9\n\025ResetPasswordResponse\022\017\n\007" +
+      "success\030\001 \001(\010\022\017\n\007message\030\002 \001(\t\":\n\026Change" +
+      "PasswordResponse\022\017\n\007success\030\001 \001(\010\022\017\n\007mes" +
+      "sage\030\002 \001(\t*O\n\nUserStatus\022\n\n\006ACTIVE\020\000\022\014\n\010" +
+      "INACTIVE\020\001\022\r\n\tSUSPENDED\020\002\022\030\n\024PENDING_VER" +
+      "IFICATION\020\003*2\n\013AddressType\022\013\n\007BILLING\020\000\022" +
+      "\014\n\010SHIPPING\020\001\022\010\n\004BOTH\020\0022\303\003\n\013AuthService\022" +
+      "-\n\014registerUser\022\024.RegisterUserRequest\032\005." +
+      "User\"\000\022,\n\tloginUser\022\r.LoginRequest\032\016.Log" +
+      "inResponse\"\000\022@\n\rverifyMfaCode\022\025.VerifyMf" +
+      "aCodeRequest\032\026.VerifyMfaCodeResponse\"\000\022I" +
+      "\n\020verifyEmailToken\022\030.VerifyEmailTokenReq" +
+      "uest\032\031.VerifyEmailTokenResponse\"\000\022C\n\016for" +
+      "gotPassword\022\026.ForgotPasswordRequest\032\027.Fo" +
+      "rgotPasswordResponse\"\000\022@\n\rresetPassword\022" +
+      "\025.ResetPasswordRequest\032\026.ResetPasswordRe" +
+      "sponse\"\000\022C\n\016changePassword\022\026.ChangePassw" +
+      "ordRequest\032\027.ChangePasswordResponse\"\0002@\n" +
+      "\013UserService\0221\n\016getCurrentUser\022\026.google." +
+      "protobuf.Empty\032\005.User\"\000B\026\n\022org.abraham.m" +
+      "odelsP\001b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -252,35 +267,47 @@ public final class UserServiceOuterClass {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_ResetPasswordRequest_descriptor,
         new java.lang.String[] { "Token", "Password", });
-    internal_static_LoginResponse_descriptor =
+    internal_static_ChangePasswordRequest_descriptor =
       getDescriptor().getMessageTypes().get(11);
+    internal_static_ChangePasswordRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_ChangePasswordRequest_descriptor,
+        new java.lang.String[] { "OldPassword", "NewPassword", });
+    internal_static_LoginResponse_descriptor =
+      getDescriptor().getMessageTypes().get(12);
     internal_static_LoginResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_LoginResponse_descriptor,
         new java.lang.String[] { "AccessToken", "RefreshToken", "QrCodeImage", });
     internal_static_VerifyMfaCodeResponse_descriptor =
-      getDescriptor().getMessageTypes().get(12);
+      getDescriptor().getMessageTypes().get(13);
     internal_static_VerifyMfaCodeResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_VerifyMfaCodeResponse_descriptor,
         new java.lang.String[] { "Message", "User", });
     internal_static_VerifyEmailTokenResponse_descriptor =
-      getDescriptor().getMessageTypes().get(13);
+      getDescriptor().getMessageTypes().get(14);
     internal_static_VerifyEmailTokenResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_VerifyEmailTokenResponse_descriptor,
         new java.lang.String[] { "Success", "Message", });
     internal_static_ForgotPasswordResponse_descriptor =
-      getDescriptor().getMessageTypes().get(14);
+      getDescriptor().getMessageTypes().get(15);
     internal_static_ForgotPasswordResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_ForgotPasswordResponse_descriptor,
         new java.lang.String[] { "Success", "Message", });
     internal_static_ResetPasswordResponse_descriptor =
-      getDescriptor().getMessageTypes().get(15);
+      getDescriptor().getMessageTypes().get(16);
     internal_static_ResetPasswordResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_ResetPasswordResponse_descriptor,
+        new java.lang.String[] { "Success", "Message", });
+    internal_static_ChangePasswordResponse_descriptor =
+      getDescriptor().getMessageTypes().get(17);
+    internal_static_ChangePasswordResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_ChangePasswordResponse_descriptor,
         new java.lang.String[] { "Success", "Message", });
     com.google.protobuf.TimestampProto.getDescriptor();
     com.google.protobuf.EmptyProto.getDescriptor();

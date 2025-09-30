@@ -133,6 +133,11 @@ message ResetPasswordRequest{
   string password = 2;
 }
 
+message ChangePasswordRequest{
+  string old_password = 1;
+  string new_password = 2;
+}
+
 
 
 // =================================
@@ -164,6 +169,12 @@ message ResetPasswordResponse{
   string message = 2;
 }
 
+message ChangePasswordResponse{
+  bool success = 1;
+  string message = 2;
+}
+
+
 
 
 // ===================================
@@ -176,6 +187,7 @@ service AuthService {
   rpc verifyEmailToken(VerifyEmailTokenRequest) returns (VerifyEmailTokenResponse) {}
   rpc forgotPassword(ForgotPasswordRequest) returns (ForgotPasswordResponse) {}
   rpc resetPassword(ResetPasswordRequest) returns (ResetPasswordResponse) {}
+  rpc changePassword(ChangePasswordRequest) returns (ChangePasswordResponse) {}
 }
 
 service UserService{

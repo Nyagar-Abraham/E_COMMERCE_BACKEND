@@ -5,6 +5,10 @@
 /home/abrahamnyagar/IdeaProjects/E_COMMERCE_BACKEND/protos/target/generated-sources/protobuf/java/org/abraham/models/Address.java
 /home/abrahamnyagar/IdeaProjects/E_COMMERCE_BACKEND/protos/target/generated-sources/protobuf/java/org/abraham/models/AddressOrBuilder.java
 /home/abrahamnyagar/IdeaProjects/E_COMMERCE_BACKEND/protos/target/generated-sources/protobuf/java/org/abraham/models/AddressType.java
+/home/abrahamnyagar/IdeaProjects/E_COMMERCE_BACKEND/protos/target/generated-sources/protobuf/java/org/abraham/models/ChangePasswordRequest.java
+/home/abrahamnyagar/IdeaProjects/E_COMMERCE_BACKEND/protos/target/generated-sources/protobuf/java/org/abraham/models/ChangePasswordRequestOrBuilder.java
+/home/abrahamnyagar/IdeaProjects/E_COMMERCE_BACKEND/protos/target/generated-sources/protobuf/java/org/abraham/models/ChangePasswordResponse.java
+/home/abrahamnyagar/IdeaProjects/E_COMMERCE_BACKEND/protos/target/generated-sources/protobuf/java/org/abraham/models/ChangePasswordResponseOrBuilder.java
 /home/abrahamnyagar/IdeaProjects/E_COMMERCE_BACKEND/protos/target/generated-sources/protobuf/java/org/abraham/models/ForgotPasswordRequest.java
 /home/abrahamnyagar/IdeaProjects/E_COMMERCE_BACKEND/protos/target/generated-sources/protobuf/java/org/abraham/models/ForgotPasswordRequestOrBuilder.java
 /home/abrahamnyagar/IdeaProjects/E_COMMERCE_BACKEND/protos/target/generated-sources/protobuf/java/org/abraham/models/ForgotPasswordResponse.java

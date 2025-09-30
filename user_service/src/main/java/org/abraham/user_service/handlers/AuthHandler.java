@@ -273,4 +273,24 @@ verifies the email token submitted by user
                         .build()))
                 ;
     }
+
+    public Mono<ChangePasswordResponse> changePassword(ChangePasswordRequest request, UUID userId) {
+        var response = ChangePasswordResponse.newBuilder();
+        return userRepository.findById(userId)
+                .flatMap(user -> {
+//                    return error if old password is incorrect
+                    if (!passwordEncoder.matches(request.getOldPassword(), user.getPasswordHash()))
+                        return Mono.just(response
+                                .setMessage("Incorrect old password")
+                                .build());
+
+                    var passwordHash = passwordEncoder.encode(request.getNewPassword());
+                    return userRepository.updatePasswordHash(passwordHash, user.getId())
+                            .map(i -> response.setMessage("Password reset successful").setSuccess(true).build());
+                })
+                .switchIfEmpty(Mono.just(response
+                        .setMessage("Something went wrong")
+                        .build())
+                );
+    }
 }

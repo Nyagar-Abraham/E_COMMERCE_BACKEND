@@ -23,8 +23,8 @@ type Mutation {
     verifyUserMfaCode(input: VerifyMfaCodeInput!): VerifyMfaCodePayload!
     "Enable user to make a request for password reset"
     forgotPassword(input: ForgotPasswordInput!): ForgotPasswordPayload!
-#    "enable user to actually reset password"
-#    resetPassword(input: ResetPasswordInput!): ResetPasswordPayload!
+#    "enable user to change their password"
+     changePassword(input: ChangePasswordInput!): ChangePasswordPayload!
     "For updating the user profile"
     updateProfile(input: UpdateProfileInput!): User!
     "For adding user address"
@@ -89,10 +89,12 @@ input ForgotPasswordInput{
     email: String!
 }
 
-"Sends the users new password"
-input ResetPasswordInput{
-    "users new password"
-    password: String!
+"Sends the users new password and old password"
+input ChangePasswordInput{
+    "users old password"
+    oldPassword: String!
+    "users old password"
+    newPassword: String!
 }
 
 "Request sent to add address to user"
@@ -172,8 +174,8 @@ type ForgotPasswordPayload{
     message: String!
 }
 
-"Return the out come of reset password request"
-type ResetPasswordPayload{
+"Return the out come of change password request"
+type ChangePasswordPayload{
     "A success of or error message"
     success: Boolean!
     "error or success message"

@@ -56,11 +56,13 @@ public class AuthMutation {
 
 
     //    ===========================
-    //    mutation (resetPassword)
-    //    Call the resetPassword handler
+    //    mutation (changePassword)
+    //    Call the changePassword handler
     //    ===========================
-//    @DgsMutation
-//    public Mono<ResetPasswordPayloadDto> resetPassword(@InputArgument RegisterInputDto input ){
-//        return authService.resetPassword(input);
-//    }
+    @DgsMutation
+    public Mono<ChangePasswordPayloadDto> changePassword(@InputArgument ChangePasswordInputDto input, DataFetchingEnvironment dfe ) {
+        String jwtToken = dfe.getGraphQlContext().get(Constants.JWT_TOKEN);
+        return authService.changePassword(input, jwtToken);
+
+    }
 }

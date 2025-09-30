@@ -156,4 +156,22 @@ public class AuthService extends AuthServiceGrpc.AuthServiceImplBase {
                 })
                 .subscribe();
     }
+
+    @Override
+    public void changePassword(ChangePasswordRequest request, StreamObserver<ChangePasswordResponse> responseObserver) {
+        var userId = UUID.fromString(Constants.USER_ID.get());
+        authHandler.changePassword(request, userId)
+                .doOnNext(response -> {
+                    responseObserver.onNext(response);
+                    responseObserver.onCompleted();
+                })
+                .doOnError(err -> {
+                    log.error("Error while changing password: {}", err.getMessage());
+                    responseObserver.onError(Status.INTERNAL
+                            .withDescription("Password Reset Failed: " + err.getMessage())
+                            .asRuntimeException());
+                })
+                .subscribe();
+
+    }
 }

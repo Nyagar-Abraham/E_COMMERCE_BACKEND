@@ -2,6 +2,7 @@ org/abraham/models/VerifyEmailTokenResponse$Builder.class
 org/abraham/models/RegisterUserRequest.class
 org/abraham/models/AuthServiceGrpc$1.class
 org/abraham/models/UserServiceGrpc$UserServiceMethodDescriptorSupplier.class
+org/abraham/models/ChangePasswordRequest.class
 org/abraham/models/VerifyMfaCodeRequestOrBuilder.class
 org/abraham/models/VerifyEmailTokenResponse$1.class
 org/abraham/models/ForgotPasswordRequestOrBuilder.class
@@ -13,7 +14,9 @@ org/abraham/models/AuthServiceGrpc$4.class
 org/abraham/models/ForgotPasswordResponse.class
 org/abraham/models/UserServiceGrpc$UserServiceBlockingStub.class
 org/abraham/Main.class
+org/abraham/models/ChangePasswordRequest$1.class
 org/abraham/models/AuthServiceGrpc$AuthServiceBlockingV2Stub.class
+org/abraham/models/ChangePasswordRequest$Builder.class
 org/abraham/models/ResetPasswordRequestOrBuilder.class
 org/abraham/models/VerifyMfaCodeResponse.class
 org/abraham/models/AuthServiceGrpc$AuthServiceFutureStub.class
@@ -35,6 +38,7 @@ org/abraham/models/LoginResponse$Builder.class
 org/abraham/models/AuthServiceGrpc$3.class
 org/abraham/models/ResetPasswordResponse.class
 org/abraham/models/VerifyMfaCodeResponseOrBuilder.class
+org/abraham/models/ChangePasswordResponse$Builder.class
 org/abraham/models/UserServiceGrpc$1.class
 org/abraham/models/AuthServiceGrpc$AuthServiceBlockingStub.class
 org/abraham/models/VerifyMfaCodeRequest$1.class
@@ -58,6 +62,7 @@ org/abraham/models/User$1.class
 org/abraham/models/ForgotPasswordRequest$1.class
 org/abraham/models/SocialLinkOrBuilder.class
 org/abraham/models/VerifyEmailTokenRequestOrBuilder.class
+org/abraham/models/ChangePasswordResponse$1.class
 org/abraham/models/LoginResponse.class
 org/abraham/models/VerifyEmailTokenResponse.class
 org/abraham/models/LoginRequest$Builder.class
@@ -76,9 +81,11 @@ org/abraham/models/VerifyMfaCodeResponse$Builder.class
 org/abraham/models/ResetPasswordRequest$Builder.class
 org/abraham/models/UserServiceGrpc$UserServiceFutureStub.class
 org/abraham/models/VerifyMfaCodeRequest$Builder.class
+org/abraham/models/ChangePasswordResponse.class
 org/abraham/models/ResetPasswordRequest.class
 org/abraham/models/UserProfileOrBuilder.class
 org/abraham/models/VerifyMfaCodeRequest.class
+org/abraham/models/ChangePasswordRequestOrBuilder.class
 org/abraham/models/AuthServiceGrpc$AuthServiceMethodDescriptorSupplier.class
 org/abraham/models/UserServiceGrpc$AsyncService.class
 org/abraham/models/UserPreferenceOrBuilder.class
@@ -99,3 +106,4 @@ org/abraham/models/UserStatus.class
 org/abraham/models/SocialLink$1.class
 org/abraham/models/AuthServiceGrpc$AuthServiceStub.class
 org/abraham/models/UserPreference.class
+org/abraham/models/ChangePasswordResponseOrBuilder.class

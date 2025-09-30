@@ -206,6 +206,37 @@ public final class AuthServiceGrpc {
     return getResetPasswordMethod;
   }
 
+  private static volatile io.grpc.MethodDescriptor<org.abraham.models.ChangePasswordRequest,
+      org.abraham.models.ChangePasswordResponse> getChangePasswordMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "changePassword",
+      requestType = org.abraham.models.ChangePasswordRequest.class,
+      responseType = org.abraham.models.ChangePasswordResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<org.abraham.models.ChangePasswordRequest,
+      org.abraham.models.ChangePasswordResponse> getChangePasswordMethod() {
+    io.grpc.MethodDescriptor<org.abraham.models.ChangePasswordRequest, org.abraham.models.ChangePasswordResponse> getChangePasswordMethod;
+    if ((getChangePasswordMethod = AuthServiceGrpc.getChangePasswordMethod) == null) {
+      synchronized (AuthServiceGrpc.class) {
+        if ((getChangePasswordMethod = AuthServiceGrpc.getChangePasswordMethod) == null) {
+          AuthServiceGrpc.getChangePasswordMethod = getChangePasswordMethod =
+              io.grpc.MethodDescriptor.<org.abraham.models.ChangePasswordRequest, org.abraham.models.ChangePasswordResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "changePassword"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  org.abraham.models.ChangePasswordRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  org.abraham.models.ChangePasswordResponse.getDefaultInstance()))
+              .setSchemaDescriptor(new AuthServiceMethodDescriptorSupplier("changePassword"))
+              .build();
+        }
+      }
+    }
+    return getChangePasswordMethod;
+  }
+
   /**
    * Creates a new async stub that supports all call types for the service
    */
@@ -315,6 +346,13 @@ public final class AuthServiceGrpc {
         io.grpc.stub.StreamObserver<org.abraham.models.ResetPasswordResponse> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getResetPasswordMethod(), responseObserver);
     }
+
+    /**
+     */
+    default void changePassword(org.abraham.models.ChangePasswordRequest request,
+        io.grpc.stub.StreamObserver<org.abraham.models.ChangePasswordResponse> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getChangePasswordMethod(), responseObserver);
+    }
   }
 
   /**
@@ -401,6 +439,14 @@ public final class AuthServiceGrpc {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getResetPasswordMethod(), getCallOptions()), request, responseObserver);
     }
+
+    /**
+     */
+    public void changePassword(org.abraham.models.ChangePasswordRequest request,
+        io.grpc.stub.StreamObserver<org.abraham.models.ChangePasswordResponse> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getChangePasswordMethod(), getCallOptions()), request, responseObserver);
+    }
   }
 
   /**
@@ -465,6 +511,13 @@ public final class AuthServiceGrpc {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getResetPasswordMethod(), getCallOptions(), request);
     }
+
+    /**
+     */
+    public org.abraham.models.ChangePasswordResponse changePassword(org.abraham.models.ChangePasswordRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getChangePasswordMethod(), getCallOptions(), request);
+    }
   }
 
   /**
@@ -528,6 +581,13 @@ public final class AuthServiceGrpc {
     public org.abraham.models.ResetPasswordResponse resetPassword(org.abraham.models.ResetPasswordRequest request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getResetPasswordMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public org.abraham.models.ChangePasswordResponse changePassword(org.abraham.models.ChangePasswordRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getChangePasswordMethod(), getCallOptions(), request);
     }
   }
 
@@ -599,6 +659,14 @@ public final class AuthServiceGrpc {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getResetPasswordMethod(), getCallOptions()), request);
     }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<org.abraham.models.ChangePasswordResponse> changePassword(
+        org.abraham.models.ChangePasswordRequest request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getChangePasswordMethod(), getCallOptions()), request);
+    }
   }
 
   private static final int METHODID_REGISTER_USER = 0;
@@ -607,6 +675,7 @@ public final class AuthServiceGrpc {
   private static final int METHODID_VERIFY_EMAIL_TOKEN = 3;
   private static final int METHODID_FORGOT_PASSWORD = 4;
   private static final int METHODID_RESET_PASSWORD = 5;
+  private static final int METHODID_CHANGE_PASSWORD = 6;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -648,6 +717,10 @@ public final class AuthServiceGrpc {
         case METHODID_RESET_PASSWORD:
           serviceImpl.resetPassword((org.abraham.models.ResetPasswordRequest) request,
               (io.grpc.stub.StreamObserver<org.abraham.models.ResetPasswordResponse>) responseObserver);
+          break;
+        case METHODID_CHANGE_PASSWORD:
+          serviceImpl.changePassword((org.abraham.models.ChangePasswordRequest) request,
+              (io.grpc.stub.StreamObserver<org.abraham.models.ChangePasswordResponse>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -709,6 +782,13 @@ public final class AuthServiceGrpc {
               org.abraham.models.ResetPasswordRequest,
               org.abraham.models.ResetPasswordResponse>(
                 service, METHODID_RESET_PASSWORD)))
+        .addMethod(
+          getChangePasswordMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              org.abraham.models.ChangePasswordRequest,
+              org.abraham.models.ChangePasswordResponse>(
+                service, METHODID_CHANGE_PASSWORD)))
         .build();
   }
 
@@ -763,6 +843,7 @@ public final class AuthServiceGrpc {
               .addMethod(getVerifyEmailTokenMethod())
               .addMethod(getForgotPasswordMethod())
               .addMethod(getResetPasswordMethod())
+              .addMethod(getChangePasswordMethod())
               .build();
         }
       }

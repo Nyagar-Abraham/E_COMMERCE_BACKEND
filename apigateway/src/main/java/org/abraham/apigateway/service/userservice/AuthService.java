@@ -153,7 +153,7 @@ public class AuthService {
     public Mono<ResetPasswordPayloadDto> resetPassword(ResetPasswordInputDto input, String token) {
         var request = ResetPasswordRequest.newBuilder()
                 .setToken(token)
-                .setPassword(input.getPassword())
+                .setPassword(input.password())
                 .build();
 
         return Mono.create(sink -> {
@@ -171,6 +171,36 @@ public class AuthService {
                 @Override
                 public void onCompleted() {}
             });
+        });
+    }
+
+    //    ========================================
+    //    mutation (changePassword)
+    //    Handler Method that makes a rpc call to AuthService to change password
+    //    =======================================
+    public Mono<ChangePasswordPayloadDto> changePassword(ChangePasswordInputDto input, String jwtToken) {
+        var request = ChangePasswordRequest.newBuilder()
+                .setOldPassword(input.getOldPassword())
+                .setNewPassword(input.getNewPassword())
+                .build();
+
+        return Mono.create(sink -> {
+            authServiceStub
+                    .withCallCredentials(new Credentials(jwtToken))
+                    .changePassword(request, new StreamObserver<ChangePasswordResponse>() {
+                        @Override
+                        public void onNext(ChangePasswordResponse response) {
+                            log.info("Change Password Response {}" , response);
+                            sink.success(UserMapper.changePasswordResponseToDto(response));
+                        }
+
+                        @Override
+                        public void onError(Throwable t) {
+                            sink.error(t);
+                        }
+                        @Override
+                        public void onCompleted() {}
+                    });
         });
     }
 }
