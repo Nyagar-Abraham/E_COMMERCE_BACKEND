@@ -1,6 +1,7 @@
 package org.abraham.user_service.handlers;
 
 import dev.samstevens.totp.exceptions.QrGenerationException;
+import io.grpc.Status;
 import lombok.AllArgsConstructor;
 import org.abraham.constants.Constants;
 import org.abraham.models.*;
@@ -10,6 +11,7 @@ import org.abraham.user_service.dto.UserStatus;
 import org.abraham.user_service.entity.EmailVerificationToken;
 import org.abraham.user_service.entity.PasswordResetToken;
 import org.abraham.user_service.entity.UserEntity;
+import org.abraham.user_service.exceptions.TokenExpiredException;
 import org.abraham.user_service.mapper.UserMapper;
 import org.abraham.user_service.repository.EmailVerificationTokenRepository;
 import org.abraham.user_service.repository.PasswordResetTokenRepository;
@@ -39,7 +41,7 @@ public class AuthHandler {
             "If you didn't create an account with us, you can safely ignore this email.\n" +
             "Thanks,\n" +
             "The %s Team";
-   private static final LocalDateTime EMAIL_TOKEN_EXPIRATION =   LocalDateTime.now(ZoneId.of("Africa/Nairobi")).plusMinutes(30);
+    private static final LocalDateTime EMAIL_TOKEN_EXPIRATION = LocalDateTime.now(ZoneId.of("Africa/Nairobi")).plusMinutes(30);
     private static final Logger log = LoggerFactory.getLogger(AuthHandler.class);
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
@@ -50,6 +52,10 @@ public class AuthHandler {
     private final PasswordResetTokenRepository passwordResetTokenRepository;
 
 
+    /*
+     Method (registerUser)
+     Registers new user and sends an email to confirm their email
+     */
     @Transactional
     public Mono<User> registerUser(Mono<RegisterUserRequest> request) {
         var secret = UUID.randomUUID().toString();
@@ -63,7 +69,7 @@ public class AuthHandler {
                                             verifyEmailToken.setToken(secret);
                                             verifyEmailToken.setUserId(u.getId());
                                             verifyEmailToken.setExpiresAt(
-                                                  EMAIL_TOKEN_EXPIRATION
+                                                    EMAIL_TOKEN_EXPIRATION
                                             );
 
                                             return emailVerificationTokenRepository.save(verifyEmailToken).map(vet -> u);
@@ -81,6 +87,10 @@ public class AuthHandler {
                 .map(UserMapper::userEntityToUser);
     }
 
+    /*
+ Method (login)
+ Login existing and sends  mfa qrCode if Mfa is enabled
+ */
     @Transactional
     public Mono<LoginResponse> login(LoginRequest request) {
         return userRepository.findByEmail(request.getEmail())
@@ -102,6 +112,10 @@ public class AuthHandler {
                 .flatMap(u -> userRepository.updateLastLoginAtAndStatus(lastLoginAt, UserStatus.ACTIVE, u.getId()).map(i -> u));
     }
 
+    /*
+private Method (buildLoginResponse)
+creates login response depending on whether mfa is enabled
+*/
     private Mono<LoginResponse> buildLoginResponse(UserEntity u) {
         var accessToken = jwtUtil.generateAccessToken(u);
         var refreshToken = jwtUtil.generateRefreshToken(u);
@@ -129,6 +143,11 @@ public class AuthHandler {
                 });
     }
 
+
+    /*
+Method (verifyMfaCode)
+verifies the mfa code submitted by user
+ */
     public Mono<VerifyMfaCodeResponse> verifyMfaCode(String code, UUID userId) {
         return userRepository.findById(userId)
                 .flatMap(userEntity -> {
@@ -146,6 +165,10 @@ public class AuthHandler {
                 });
     }
 
+    /*
+Method (verifyEmailToken)
+verifies the email token submitted by user
+ */
     public Mono<VerifyEmailTokenResponse> verifyEmailToken(String token) {
         return emailVerificationTokenRepository.findByToken(token)
                 .flatMap(emailVerificationToken -> {
@@ -159,8 +182,9 @@ public class AuthHandler {
                                 );
                     }
 
-                    // Mark the user's email as verified
+                    // Mark the user's email as verified and delete EmailVerification Token
                     return userRepository.updateEmailVerified(true, emailVerificationToken.getUserId())
+                            .flatMap(i -> emailVerificationTokenRepository.delete(emailVerificationToken))
                             .thenReturn(
                                     VerifyEmailTokenResponse.newBuilder()
                                             .setSuccess(true)
@@ -176,7 +200,10 @@ public class AuthHandler {
                 ));
     }
 
-
+    //=======================================
+//Method (forgotPassword)
+//Send user a reset password email
+// =====================================
     public Mono<ForgotPasswordResponse> forgotPassword(ForgotPasswordRequest request) {
         return userRepository.findByEmail(request.getEmail())
                 .flatMap(userEntity -> {
@@ -213,4 +240,37 @@ public class AuthHandler {
                 ));
     }
 
+
+    //=======================================
+//Method (resetPassword)
+//Resets user password
+// =====================================
+    public Mono<ResetPasswordResponse> resetPassword(ResetPasswordRequest request) {
+        var response = ResetPasswordResponse.newBuilder();
+        return passwordResetTokenRepository.findByToken(request.getToken())
+                .flatMap(prt -> {
+//                   If token expires, delete and the error
+                    if (prt.expired())
+                        return passwordResetTokenRepository.delete(prt)
+                                .thenReturn(Mono.error(new TokenExpiredException("Password reset ")));
+
+                    var passwordHash = passwordEncoder.encode(request.getPassword());
+//                   update User password the delete the password reset token
+                    return userRepository.updatePasswordHash(passwordHash, prt.getUserId())
+                            .flatMap(user -> passwordResetTokenRepository.delete(prt));
+                })
+                .onErrorMap(TokenExpiredException.class, e -> Status.INTERNAL
+                        .withDescription(e.getMessage())
+                        .asRuntimeException())
+                .thenReturn(
+                        response
+                                .setSuccess(true)
+                                .setMessage("Password reset successful")
+                                .build()
+                )
+                .switchIfEmpty(Mono.just(response
+                        .setMessage("Invalid or token")
+                        .build()))
+                ;
+    }
 }

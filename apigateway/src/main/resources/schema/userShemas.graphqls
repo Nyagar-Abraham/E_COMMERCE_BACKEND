@@ -23,8 +23,8 @@ type Mutation {
     verifyUserMfaCode(input: VerifyMfaCodeInput!): VerifyMfaCodePayload!
     "Enable user to make a request for password reset"
     forgotPassword(input: ForgotPasswordInput!): ForgotPasswordPayload!
-    "enable user to actually reset password"
-    resetPassword(input: ResetPasswordInput!): ResetPasswordPayload!
+#    "enable user to actually reset password"
+#    resetPassword(input: ResetPasswordInput!): ResetPasswordPayload!
     "For updating the user profile"
     updateProfile(input: UpdateProfileInput!): User!
     "For adding user address"

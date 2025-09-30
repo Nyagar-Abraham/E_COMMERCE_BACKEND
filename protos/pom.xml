@@ -119,6 +119,16 @@
                     </execution>
                 </executions>
             </plugin>
+<!--     RUNS MVN-->
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>exec-maven-plugin</artifactId>
+                        <version>3.0.0</version> <!-- Use a recent version -->
+                        <configuration>
+                            <mainClass>org.abraham.Main</mainClass>
+                        </configuration>
+                    </plugin>
+
         </plugins>
     </build>
 

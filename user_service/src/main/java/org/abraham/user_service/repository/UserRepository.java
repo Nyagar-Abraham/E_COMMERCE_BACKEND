@@ -19,8 +19,8 @@ public interface UserRepository extends ReactiveCrudRepository<UserEntity, UUID>
 
     @Modifying
     @Query("UPDATE users SET last_login_at = :lastLoginAt WHERE id = :id")
-    Mono<Integer> updateLastLoginAt(@Param("lastLoginAt") LocalDateTime lastLoginAt,
-                                    @Param("id") UUID id);
+    Mono<Integer> updateLastLoginAt(@BindParam("lastLoginAt") LocalDateTime lastLoginAt,
+                                    @BindParam("id") UUID id);
 
     @Modifying
     @Query("UPDATE users SET status = CAST(:status AS user_status_enum) WHERE id = :id ")
@@ -28,16 +28,20 @@ public interface UserRepository extends ReactiveCrudRepository<UserEntity, UUID>
 
     @Modifying
     @Query("UPDATE users SET last_login_at = :lastLoginAt, status =  CAST(:status AS user_status_enum)  WHERE id = :id")
-    Mono<Integer> updateLastLoginAtAndStatus(@Param("lastLoginAt") LocalDateTime lastLoginAt,@Param("status") UserStatus status,
-                                    @Param("id") UUID id);
+    Mono<Integer> updateLastLoginAtAndStatus(@BindParam("lastLoginAt") LocalDateTime lastLoginAt,@BindParam("status") UserStatus status,
+                                    @BindParam("id") UUID id);
 
     @Modifying
     @Query("UPDATE users SET mfa_secret = :secret WHERE id = :id AND mfa_secret IS NULL")
-    Mono<Integer> updateMfaSecret(@Param("secret") String secret, @Param("id") UUID id);
+    Mono<Integer> updateMfaSecret(@BindParam("secret") String secret, @BindParam("id") UUID id);
 
     @Modifying
     @Query("UPDATE users SET email_verified = :emailVerified WHERE id = :id ")
-    Mono<Integer> updateEmailVerified(@Param("emailVerified") boolean emailVerified, @Param("id") UUID id);
+    Mono<Integer> updateEmailVerified(@BindParam("emailVerified") boolean emailVerified, @BindParam("id") UUID id);
+
+    @Modifying
+    @Query("UPDATE users SET password_hash = :passwordHash WHERE id = :id ")
+    Mono<Integer> updatePasswordHash(@BindParam("passwordHash") String passwordHash, @BindParam("id") UUID id);
 
 
 }

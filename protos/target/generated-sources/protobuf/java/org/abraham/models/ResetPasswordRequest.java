@@ -17,6 +17,7 @@ private static final long serialVersionUID = 0L;
     super(builder);
   }
   private ResetPasswordRequest() {
+    token_ = "";
     password_ = "";
   }
 
@@ -40,11 +41,50 @@ private static final long serialVersionUID = 0L;
             org.abraham.models.ResetPasswordRequest.class, org.abraham.models.ResetPasswordRequest.Builder.class);
   }
 
-  public static final int PASSWORD_FIELD_NUMBER = 1;
+  public static final int TOKEN_FIELD_NUMBER = 1;
+  @SuppressWarnings("serial")
+  private volatile java.lang.Object token_ = "";
+  /**
+   * <code>string token = 1;</code>
+   * @return The token.
+   */
+  @java.lang.Override
+  public java.lang.String getToken() {
+    java.lang.Object ref = token_;
+    if (ref instanceof java.lang.String) {
+      return (java.lang.String) ref;
+    } else {
+      com.google.protobuf.ByteString bs = 
+          (com.google.protobuf.ByteString) ref;
+      java.lang.String s = bs.toStringUtf8();
+      token_ = s;
+      return s;
+    }
+  }
+  /**
+   * <code>string token = 1;</code>
+   * @return The bytes for token.
+   */
+  @java.lang.Override
+  public com.google.protobuf.ByteString
+      getTokenBytes() {
+    java.lang.Object ref = token_;
+    if (ref instanceof java.lang.String) {
+      com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString.copyFromUtf8(
+              (java.lang.String) ref);
+      token_ = b;
+      return b;
+    } else {
+      return (com.google.protobuf.ByteString) ref;
+    }
+  }
+
+  public static final int PASSWORD_FIELD_NUMBER = 2;
   @SuppressWarnings("serial")
   private volatile java.lang.Object password_ = "";
   /**
-   * <code>string password = 1;</code>
+   * <code>string password = 2;</code>
    * @return The password.
    */
   @java.lang.Override
@@ -61,7 +101,7 @@ private static final long serialVersionUID = 0L;
     }
   }
   /**
-   * <code>string password = 1;</code>
+   * <code>string password = 2;</code>
    * @return The bytes for password.
    */
   @java.lang.Override
@@ -93,8 +133,11 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(token_)) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 1, token_);
+    }
     if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(password_)) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 1, password_);
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 2, password_);
     }
     getUnknownFields().writeTo(output);
   }
@@ -105,8 +148,11 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(token_)) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, token_);
+    }
     if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(password_)) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, password_);
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, password_);
     }
     size += getUnknownFields().getSerializedSize();
     memoizedSize = size;
@@ -123,6 +169,8 @@ private static final long serialVersionUID = 0L;
     }
     org.abraham.models.ResetPasswordRequest other = (org.abraham.models.ResetPasswordRequest) obj;
 
+    if (!getToken()
+        .equals(other.getToken())) return false;
     if (!getPassword()
         .equals(other.getPassword())) return false;
     if (!getUnknownFields().equals(other.getUnknownFields())) return false;
@@ -136,6 +184,8 @@ private static final long serialVersionUID = 0L;
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (37 * hash) + TOKEN_FIELD_NUMBER;
+    hash = (53 * hash) + getToken().hashCode();
     hash = (37 * hash) + PASSWORD_FIELD_NUMBER;
     hash = (53 * hash) + getPassword().hashCode();
     hash = (29 * hash) + getUnknownFields().hashCode();
@@ -269,6 +319,7 @@ private static final long serialVersionUID = 0L;
     public Builder clear() {
       super.clear();
       bitField0_ = 0;
+      token_ = "";
       password_ = "";
       return this;
     }
@@ -304,6 +355,9 @@ private static final long serialVersionUID = 0L;
     private void buildPartial0(org.abraham.models.ResetPasswordRequest result) {
       int from_bitField0_ = bitField0_;
       if (((from_bitField0_ & 0x00000001) != 0)) {
+        result.token_ = token_;
+      }
+      if (((from_bitField0_ & 0x00000002) != 0)) {
         result.password_ = password_;
       }
     }
@@ -352,9 +406,14 @@ private static final long serialVersionUID = 0L;
 
     public Builder mergeFrom(org.abraham.models.ResetPasswordRequest other) {
       if (other == org.abraham.models.ResetPasswordRequest.getDefaultInstance()) return this;
+      if (!other.getToken().isEmpty()) {
+        token_ = other.token_;
+        bitField0_ |= 0x00000001;
+        onChanged();
+      }
       if (!other.getPassword().isEmpty()) {
         password_ = other.password_;
-        bitField0_ |= 0x00000001;
+        bitField0_ |= 0x00000002;
         onChanged();
       }
       this.mergeUnknownFields(other.getUnknownFields());
@@ -384,10 +443,15 @@ private static final long serialVersionUID = 0L;
               done = true;
               break;
             case 10: {
-              password_ = input.readStringRequireUtf8();
+              token_ = input.readStringRequireUtf8();
               bitField0_ |= 0x00000001;
               break;
             } // case 10
+            case 18: {
+              password_ = input.readStringRequireUtf8();
+              bitField0_ |= 0x00000002;
+              break;
+            } // case 18
             default: {
               if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                 done = true; // was an endgroup tag
@@ -405,9 +469,81 @@ private static final long serialVersionUID = 0L;
     }
     private int bitField0_;
 
+    private java.lang.Object token_ = "";
+    /**
+     * <code>string token = 1;</code>
+     * @return The token.
+     */
+    public java.lang.String getToken() {
+      java.lang.Object ref = token_;
+      if (!(ref instanceof java.lang.String)) {
+        com.google.protobuf.ByteString bs =
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        token_ = s;
+        return s;
+      } else {
+        return (java.lang.String) ref;
+      }
+    }
+    /**
+     * <code>string token = 1;</code>
+     * @return The bytes for token.
+     */
+    public com.google.protobuf.ByteString
+        getTokenBytes() {
+      java.lang.Object ref = token_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        token_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    /**
+     * <code>string token = 1;</code>
+     * @param value The token to set.
+     * @return This builder for chaining.
+     */
+    public Builder setToken(
+        java.lang.String value) {
+      if (value == null) { throw new NullPointerException(); }
+      token_ = value;
+      bitField0_ |= 0x00000001;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>string token = 1;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearToken() {
+      token_ = getDefaultInstance().getToken();
+      bitField0_ = (bitField0_ & ~0x00000001);
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>string token = 1;</code>
+     * @param value The bytes for token to set.
+     * @return This builder for chaining.
+     */
+    public Builder setTokenBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) { throw new NullPointerException(); }
+      checkByteStringIsUtf8(value);
+      token_ = value;
+      bitField0_ |= 0x00000001;
+      onChanged();
+      return this;
+    }
+
     private java.lang.Object password_ = "";
     /**
-     * <code>string password = 1;</code>
+     * <code>string password = 2;</code>
      * @return The password.
      */
     public java.lang.String getPassword() {
@@ -423,7 +559,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>string password = 1;</code>
+     * <code>string password = 2;</code>
      * @return The bytes for password.
      */
     public com.google.protobuf.ByteString
@@ -440,7 +576,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>string password = 1;</code>
+     * <code>string password = 2;</code>
      * @param value The password to set.
      * @return This builder for chaining.
      */
@@ -448,22 +584,22 @@ private static final long serialVersionUID = 0L;
         java.lang.String value) {
       if (value == null) { throw new NullPointerException(); }
       password_ = value;
-      bitField0_ |= 0x00000001;
+      bitField0_ |= 0x00000002;
       onChanged();
       return this;
     }
     /**
-     * <code>string password = 1;</code>
+     * <code>string password = 2;</code>
      * @return This builder for chaining.
      */
     public Builder clearPassword() {
       password_ = getDefaultInstance().getPassword();
-      bitField0_ = (bitField0_ & ~0x00000001);
+      bitField0_ = (bitField0_ & ~0x00000002);
       onChanged();
       return this;
     }
     /**
-     * <code>string password = 1;</code>
+     * <code>string password = 2;</code>
      * @param value The bytes for password to set.
      * @return This builder for chaining.
      */
@@ -472,7 +608,7 @@ private static final long serialVersionUID = 0L;
       if (value == null) { throw new NullPointerException(); }
       checkByteStringIsUtf8(value);
       password_ = value;
-      bitField0_ |= 0x00000001;
+      bitField0_ |= 0x00000002;
       onChanged();
       return this;
     }

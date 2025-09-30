@@ -143,6 +143,17 @@ public class AuthService extends AuthServiceGrpc.AuthServiceImplBase {
 //    =================================
     @Override
     public void resetPassword(ResetPasswordRequest request, StreamObserver<ResetPasswordResponse> responseObserver) {
-        super.resetPassword(request, responseObserver);
+        authHandler.resetPassword(request)
+                .doOnNext(response -> {
+                    responseObserver.onNext(response);
+                    responseObserver.onCompleted();
+                })
+                .doOnError(err -> {
+                    log.error("Error while resetting password: {}", err.getMessage());
+                    responseObserver.onError(Status.INTERNAL
+                            .withDescription("Password Reset Failed: " + err.getMessage())
+                            .asRuntimeException());
+                })
+                .subscribe();
     }
 }

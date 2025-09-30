@@ -153,32 +153,32 @@ public final class UserServiceOuterClass {
       "\010password\030\002 \001(\t\"$\n\024VerifyMfaCodeRequest\022" +
       "\014\n\004code\030\001 \001(\t\"(\n\027VerifyEmailTokenRequest" +
       "\022\r\n\005token\030\001 \001(\t\"&\n\025ForgotPasswordRequest" +
-      "\022\r\n\005email\030\001 \001(\t\"(\n\024ResetPasswordRequest\022" +
-      "\020\n\010password\030\001 \001(\t\"S\n\rLoginResponse\022\024\n\014ac" +
-      "cess_token\030\001 \001(\t\022\025\n\rrefresh_token\030\002 \001(\t\022" +
-      "\025\n\rqr_code_image\030\003 \001(\t\"=\n\025VerifyMfaCodeR" +
-      "esponse\022\017\n\007message\030\001 \001(\t\022\023\n\004user\030\002 \001(\0132\005" +
-      ".User\"<\n\030VerifyEmailTokenResponse\022\017\n\007suc" +
-      "cess\030\001 \001(\010\022\017\n\007message\030\002 \001(\t\":\n\026ForgotPas" +
-      "swordResponse\022\017\n\007success\030\001 \001(\010\022\017\n\007messag" +
-      "e\030\002 \001(\t\"9\n\025ResetPasswordResponse\022\017\n\007succ" +
-      "ess\030\001 \001(\010\022\017\n\007message\030\002 \001(\t*O\n\nUserStatus" +
-      "\022\n\n\006ACTIVE\020\000\022\014\n\010INACTIVE\020\001\022\r\n\tSUSPENDED\020" +
-      "\002\022\030\n\024PENDING_VERIFICATION\020\003*2\n\013AddressTy" +
-      "pe\022\013\n\007BILLING\020\000\022\014\n\010SHIPPING\020\001\022\010\n\004BOTH\020\0022" +
-      "\376\002\n\013AuthService\022-\n\014registerUser\022\024.Regist" +
-      "erUserRequest\032\005.User\"\000\022,\n\tloginUser\022\r.Lo" +
-      "ginRequest\032\016.LoginResponse\"\000\022@\n\rverifyMf" +
-      "aCode\022\025.VerifyMfaCodeRequest\032\026.VerifyMfa" +
-      "CodeResponse\"\000\022I\n\020verifyEmailToken\022\030.Ver" +
-      "ifyEmailTokenRequest\032\031.VerifyEmailTokenR" +
-      "esponse\"\000\022C\n\016forgotPassword\022\026.ForgotPass" +
-      "wordRequest\032\027.ForgotPasswordResponse\"\000\022@" +
-      "\n\rresetPassword\022\025.ResetPasswordRequest\032\026" +
-      ".ResetPasswordResponse\"\0002@\n\013UserService\022" +
-      "1\n\016getCurrentUser\022\026.google.protobuf.Empt" +
-      "y\032\005.User\"\000B\026\n\022org.abraham.modelsP\001b\006prot" +
-      "o3"
+      "\022\r\n\005email\030\001 \001(\t\"7\n\024ResetPasswordRequest\022" +
+      "\r\n\005token\030\001 \001(\t\022\020\n\010password\030\002 \001(\t\"S\n\rLogi" +
+      "nResponse\022\024\n\014access_token\030\001 \001(\t\022\025\n\rrefre" +
+      "sh_token\030\002 \001(\t\022\025\n\rqr_code_image\030\003 \001(\t\"=\n" +
+      "\025VerifyMfaCodeResponse\022\017\n\007message\030\001 \001(\t\022" +
+      "\023\n\004user\030\002 \001(\0132\005.User\"<\n\030VerifyEmailToken" +
+      "Response\022\017\n\007success\030\001 \001(\010\022\017\n\007message\030\002 \001" +
+      "(\t\":\n\026ForgotPasswordResponse\022\017\n\007success\030" +
+      "\001 \001(\010\022\017\n\007message\030\002 \001(\t\"9\n\025ResetPasswordR" +
+      "esponse\022\017\n\007success\030\001 \001(\010\022\017\n\007message\030\002 \001(" +
+      "\t*O\n\nUserStatus\022\n\n\006ACTIVE\020\000\022\014\n\010INACTIVE\020" +
+      "\001\022\r\n\tSUSPENDED\020\002\022\030\n\024PENDING_VERIFICATION" +
+      "\020\003*2\n\013AddressType\022\013\n\007BILLING\020\000\022\014\n\010SHIPPI" +
+      "NG\020\001\022\010\n\004BOTH\020\0022\376\002\n\013AuthService\022-\n\014regist" +
+      "erUser\022\024.RegisterUserRequest\032\005.User\"\000\022,\n" +
+      "\tloginUser\022\r.LoginRequest\032\016.LoginRespons" +
+      "e\"\000\022@\n\rverifyMfaCode\022\025.VerifyMfaCodeRequ" +
+      "est\032\026.VerifyMfaCodeResponse\"\000\022I\n\020verifyE" +
+      "mailToken\022\030.VerifyEmailTokenRequest\032\031.Ve" +
+      "rifyEmailTokenResponse\"\000\022C\n\016forgotPasswo" +
+      "rd\022\026.ForgotPasswordRequest\032\027.ForgotPassw" +
+      "ordResponse\"\000\022@\n\rresetPassword\022\025.ResetPa" +
+      "sswordRequest\032\026.ResetPasswordResponse\"\0002" +
+      "@\n\013UserService\0221\n\016getCurrentUser\022\026.googl" +
+      "e.protobuf.Empty\032\005.User\"\000B\026\n\022org.abraham" +
+      ".modelsP\001b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -251,7 +251,7 @@ public final class UserServiceOuterClass {
     internal_static_ResetPasswordRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_ResetPasswordRequest_descriptor,
-        new java.lang.String[] { "Password", });
+        new java.lang.String[] { "Token", "Password", });
     internal_static_LoginResponse_descriptor =
       getDescriptor().getMessageTypes().get(11);
     internal_static_LoginResponse_fieldAccessorTable = new

@@ -59,8 +59,8 @@ public class AuthMutation {
     //    mutation (resetPassword)
     //    Call the resetPassword handler
     //    ===========================
-    @DgsMutation
-    public Mono<ResetPasswordPayloadDto> resetPassword(@InputArgument RegisterInputDto input ){
-        return authService.resetPassword(input);
-    }
+//    @DgsMutation
+//    public Mono<ResetPasswordPayloadDto> resetPassword(@InputArgument RegisterInputDto input ){
+//        return authService.resetPassword(input);
+//    }
 }

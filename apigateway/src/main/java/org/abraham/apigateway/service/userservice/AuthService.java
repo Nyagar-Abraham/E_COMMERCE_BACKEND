@@ -150,8 +150,11 @@ public class AuthService {
     //    mutation (resetPassword)
     //    Handler Method that makes a rpc call to AuthService to reset password
     //    =======================================
-    public Mono<ResetPasswordPayloadDto> resetPassword(RegisterInputDto input) {
-        var request = ResetPasswordRequest.newBuilder().setPassword(input.getPassword()).build();
+    public Mono<ResetPasswordPayloadDto> resetPassword(ResetPasswordInputDto input, String token) {
+        var request = ResetPasswordRequest.newBuilder()
+                .setToken(token)
+                .setPassword(input.getPassword())
+                .build();
 
         return Mono.create(sink -> {
             authServiceStub.resetPassword(request, new   StreamObserver<ResetPasswordResponse>() {
