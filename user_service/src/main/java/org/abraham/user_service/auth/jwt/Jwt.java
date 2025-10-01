@@ -2,7 +2,7 @@ package org.abraham.user_service.auth.jwt;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
-import org.abraham.user_service.dto.UserRoles;
+import org.abraham.commondtos.UserRoles;
 
 import javax.crypto.SecretKey;
 import java.util.Date;

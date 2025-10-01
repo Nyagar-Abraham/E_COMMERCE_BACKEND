@@ -6,11 +6,15 @@ import org.abraham.user_service.repository.AddressRepository;
 import org.abraham.user_service.repository.UserPreferenceRepository;
 import org.abraham.user_service.repository.UserProfileRepository;
 import org.abraham.user_service.repository.UserRepository;
+import org.apache.kafka.clients.producer.ProducerRecord;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
+import reactor.core.publisher.Flux;
+import reactor.kafka.sender.KafkaSender;
+import reactor.kafka.sender.SenderRecord;
 
 @Slf4j
 @SpringBootApplication
@@ -20,19 +24,7 @@ public class UserServiceApplication {
 	public static void main(String[] args) {
 
      var context =   SpringApplication.run(UserServiceApplication.class, args);
-//        var user = UserEntity.builder()
-//                .id(UUID.randomUUID())
-//                .username("username")
-//                .email("email@gmail.com")
-//                .role(UserRoles.ADMIN)
-//                .phoneNumber("0746537543")
-//                .build();
-//        var accessToken =  context.getBean(JwtUtil.class).generateAccessToken(user);
-//        var refreshToken =  context.getBean(JwtUtil.class).generateAccessToken(user);
-//        log.info("accessToken: {}", accessToken);
-//        log.info("refreshtoken: {}", refreshToken);
-
-	}
+    }
 
     @Bean
     public CommandLineRunner init(UserRepository userRepository, UserProfileRepository userProfileRepository, UserPreferenceRepository userPreferenceRepository, AddressRepository addressRepository) {

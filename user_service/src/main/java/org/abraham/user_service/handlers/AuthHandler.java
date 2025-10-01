@@ -4,10 +4,11 @@ import dev.samstevens.totp.exceptions.QrGenerationException;
 import io.grpc.Status;
 import lombok.AllArgsConstructor;
 import org.abraham.constants.Constants;
+import org.abraham.messages.UserCreatedMessage;
 import org.abraham.models.*;
 import org.abraham.user_service.auth.jwt.JwtUtil;
 import org.abraham.user_service.auth.mfa.TotpManagerImpl;
-import org.abraham.user_service.dto.UserStatus;
+import org.abraham.commondtos.UserStatus;
 import org.abraham.user_service.entity.EmailVerificationToken;
 import org.abraham.user_service.entity.PasswordResetToken;
 import org.abraham.user_service.entity.UserEntity;
@@ -17,6 +18,7 @@ import org.abraham.user_service.repository.EmailVerificationTokenRepository;
 import org.abraham.user_service.repository.PasswordResetTokenRepository;
 import org.abraham.user_service.repository.UserRepository;
 import org.abraham.user_service.service.MailService;
+import org.apache.kafka.clients.producer.ProducerRecord;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -24,9 +26,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import reactor.core.publisher.Mono;
 import reactor.core.scheduler.Schedulers;
+import reactor.kafka.sender.KafkaSender;
+import reactor.kafka.sender.SenderRecord;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.AbstractMap;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -34,13 +39,6 @@ import java.util.UUID;
 @Service
 @AllArgsConstructor
 public class AuthHandler {
-    private static final String EMAIL_TEMPLATE = "Hi %s,\n" +
-            "Thanks for signing up! We just need to verify your email address before you can get started.\n" +
-            "Click the button below to complete the process:\n" +
-            "%s\n" +
-            "If you didn't create an account with us, you can safely ignore this email.\n" +
-            "Thanks,\n" +
-            "The %s Team";
     private static final LocalDateTime EMAIL_TOKEN_EXPIRATION = LocalDateTime.now(ZoneId.of("Africa/Nairobi")).plusMinutes(30);
     private static final Logger log = LoggerFactory.getLogger(AuthHandler.class);
     private final UserRepository userRepository;
@@ -50,6 +48,7 @@ public class AuthHandler {
     private final EmailVerificationTokenRepository emailVerificationTokenRepository;
     private final MailService mailService;
     private final PasswordResetTokenRepository passwordResetTokenRepository;
+    private final KafkaSender<String, UserCreatedMessage> kafkaSender;
 
 
     /*
@@ -58,34 +57,59 @@ public class AuthHandler {
      */
     @Transactional
     public Mono<User> registerUser(Mono<RegisterUserRequest> request) {
-        var secret = UUID.randomUUID().toString();
-        return request
-                .map(user -> UserMapper.registerUserRequestToUserEntity(user, passwordEncoder.encode(user.getPassword())))
-                .flatMap(user ->
-                                userRepository.save(user)
-                                        .flatMap(u -> {
+        return request.flatMap(req -> {
+            var userEntity = UserMapper.registerUserRequestToUserEntity(
+                    req, passwordEncoder.encode(req.getPassword())
+            );
 
-                                            var verifyEmailToken = new EmailVerificationToken();
-                                            verifyEmailToken.setToken(secret);
-                                            verifyEmailToken.setUserId(u.getId());
-                                            verifyEmailToken.setExpiresAt(
-                                                    EMAIL_TOKEN_EXPIRATION
-                                            );
+            return userRepository.save(userEntity)
+                    .flatMap(savedUser -> {
+                        var secret = UUID.randomUUID().toString();
+                        var verifyEmailToken = new EmailVerificationToken();
+                        verifyEmailToken.setToken(secret);
+                        verifyEmailToken.setUserId(savedUser.getId());
+                        verifyEmailToken.setExpiresAt(EMAIL_TOKEN_EXPIRATION);
 
-                                            return emailVerificationTokenRepository.save(verifyEmailToken).map(vet -> u);
-                                        })
-                                        .flatMap(savedUser ->
-//                                        SEND EMAIL
-                                                        Mono.fromCallable(() -> {
-                                                            var url = "http://localhost:8081/verify-email?token=%s".formatted(secret);
-                                                            mailService.sendRegistrationEmail(savedUser, url, Constants.COMPANY_NAME, Constants.COMPANY_URL);
-                                                            return savedUser; // return the user after sending email
-                                                        }).subscribeOn(Schedulers.boundedElastic())
-                                        )
-                )
-                .flatMap(user -> userRepository.findById(user.getId()))
-                .map(UserMapper::userEntityToUser);
+                        return emailVerificationTokenRepository.save(verifyEmailToken)
+                                .thenReturn(new AbstractMap.SimpleEntry<>(savedUser, secret));
+                    })
+                    .flatMap(tuple -> {
+                        UserEntity savedUser = tuple.getKey();
+                        var secret = tuple.getValue();
+
+                        // Send email asynchronously
+                        return Mono.fromCallable(() -> {
+                            var url = "http://localhost:8081/verify-email?token=%s".formatted(secret);
+                            mailService.sendRegistrationEmail(savedUser, url, Constants.COMPANY_NAME, Constants.COMPANY_URL);
+                            return savedUser;
+                        }).subscribeOn(Schedulers.boundedElastic());
+
+                    })
+                    .flatMap(user -> userRepository.findById(user.getId()))
+                    .flatMap(savedUser -> {
+                        var userCreateEvent = UserCreatedMessage.newBuilder()
+                                .setId(savedUser.getId().toString())
+                                .setEmail(savedUser.getEmail())
+                                .setPhoneNumber(savedUser.getPhoneNumber())
+                                .setUsername(savedUser.getUsername())
+                                .setStatus(org.abraham.commons.UserStatus.valueOf(savedUser.getStatus().name()))
+                                .build();
+
+                        var senderRecord = SenderRecord.create(
+                                new ProducerRecord<>("user_created_topic", userCreateEvent.getId(),userCreateEvent),
+                                userCreateEvent.getId()
+                        );
+
+                        return kafkaSender.send(Mono.just(senderRecord))
+                                .doOnError(e-> log.error("Send failed", e))
+                                .doOnNext(r -> System.out.printf("Message #%s send response: %s\n", r.correlationMetadata(), r.recordMetadata()))
+                                .then(Mono.just(savedUser));
+                    })
+
+                    .map(UserMapper::userEntityToUser);
+        });
     }
+
 
     /*
  Method (login)

@@ -37,6 +37,7 @@
         <protobuf.maven.plugin.version>0.6.1</protobuf.maven.plugin.version>
         <javax.annotation.version>1.3.2</javax.annotation.version>
         <grpc.version>1.72.0</grpc.version>
+        <reactor.kafka.version>1.3.23</reactor.kafka.version>
     </properties>
 
 
@@ -162,6 +163,21 @@
             <artifactId>spring-boot-starter-mail</artifactId>
         </dependency>
 
+<!-- REACTOR KAFKA-->
+        <dependency>
+            <groupId>io.projectreactor.kafka</groupId>
+            <artifactId>reactor-kafka</artifactId>
+            <version>${reactor.kafka.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.kafka</groupId>
+            <artifactId>spring-kafka</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.kafka</groupId>
+            <artifactId>spring-kafka-test</artifactId>
+            <scope>test</scope>
+        </dependency>
 
     </dependencies>
 

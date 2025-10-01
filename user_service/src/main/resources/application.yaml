@@ -2,7 +2,10 @@ server:
   port: 8082
 
 spring:
-#  config:
+  kafka:
+    bootstrap-servers:
+      - "localhost:29092"
+  #  config:
 #    import: optional:file:.env[.properties]
   grpc:
     server:

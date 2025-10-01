@@ -89,7 +89,7 @@ public interface UserOrBuilder extends
    * <code>.UserStatus status = 7;</code>
    * @return The status.
    */
-  org.abraham.models.UserStatus getStatus();
+  org.abraham.commons.UserStatus getStatus();
 
   /**
    * <code>bool email_verified = 8;</code>

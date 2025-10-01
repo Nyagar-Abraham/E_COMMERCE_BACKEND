@@ -2,6 +2,9 @@ syntax = "proto3";
 
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/empty.proto";
+//import "buf/validate/validate.proto";
+
+import "commons/commons.proto";
 
 option java_multiple_files = true;
 option java_package = "org.abraham.models";
@@ -9,13 +12,6 @@ option java_package = "org.abraham.models";
 // =========================================
 // Enums
 // =========================================
-enum UserStatus {
-  ACTIVE = 0;
-  INACTIVE = 1;
-  SUSPENDED = 2;
-  PENDING_VERIFICATION = 3;
-}
-
 enum AddressType {
   BILLING = 0;
   SHIPPING = 1;
@@ -28,7 +24,7 @@ enum AddressType {
 
 message User {
   string id = 1;
-  string email = 2;
+  string email = 2 ;
   string username = 3;
   string first_name = 4;
   string last_name = 5;

@@ -116,90 +116,89 @@ public final class UserServiceOuterClass {
     java.lang.String[] descriptorData = {
       "\n\021UserService.proto\032\037google/protobuf/tim" +
       "estamp.proto\032\033google/protobuf/empty.prot" +
-      "o\"\234\005\n\004User\022\n\n\002id\030\001 \001(\t\022\r\n\005email\030\002 \001(\t\022\020\n" +
-      "\010username\030\003 \001(\t\022\022\n\nfirst_name\030\004 \001(\t\022\021\n\tl" +
-      "ast_name\030\005 \001(\t\022\024\n\014phone_number\030\006 \001(\t\022\033\n\006" +
-      "status\030\007 \001(\0162\013.UserStatus\022\026\n\016email_verif" +
-      "ied\030\010 \001(\010\022\026\n\016phone_verified\030\t \001(\010\022 \n\030ema" +
-      "il_verification_token\030\n \001(\t\022%\n\035email_ver" +
-      "ification_expires_at\030\013 \001(\t\022 \n\030phone_veri" +
-      "fication_token\030\014 \001(\t\022%\n\035phone_verificati" +
-      "on_expires_at\030\r \001(\t\022\034\n\024password_reset_to" +
-      "ken\030\016 \001(\t\022\'\n\037password_reset_token_expire" +
-      "s_at\030\017 \001(\t\022.\n\nlast_login\030\020 \001(\0132\032.google." +
-      "protobuf.Timestamp\022.\n\ncreated_at\030\021 \001(\0132\032" +
-      ".google.protobuf.Timestamp\022.\n\nupdated_at" +
-      "\030\022 \001(\0132\032.google.protobuf.Timestamp\022$\n\013pr" +
-      "eferences\030\023 \001(\0132\017.UserPreference\022\035\n\007prof" +
-      "ile\030\024 \001(\0132\014.UserProfile\022\033\n\taddresses\030\025 \003" +
-      "(\0132\010.Address\022\022\n\nenable_mfa\030\026 \001(\010\"\247\002\n\007Add" +
-      "ress\022\n\n\002id\030\001 \001(\t\022\017\n\007user_id\030\002 \001(\t\022\032\n\004typ" +
-      "e\030\003 \001(\0162\014.AddressType\022\022\n\nis_default\030\004 \001(" +
-      "\010\022\025\n\raddress_line1\030\005 \001(\t\022\025\n\raddress_line" +
-      "2\030\006 \001(\t\022\014\n\004city\030\007 \001(\t\022\r\n\005state\030\010 \001(\t\022\023\n\013" +
-      "postal_code\030\t \001(\t\022\017\n\007country\030\n \001(\t\022.\n\ncr" +
-      "eated_at\030\013 \001(\0132\032.google.protobuf.Timesta" +
-      "mp\022.\n\nupdated_at\030\014 \001(\0132\032.google.protobuf" +
-      ".Timestamp\"\374\001\n\016UserPreference\022\n\n\002id\030\001 \001(" +
-      "\t\022\017\n\007user_id\030\002 \001(\t\022\020\n\010currency\030\003 \001(\t\022\020\n\010" +
-      "language\030\004 \001(\t\022\030\n\020marketing_emails\030\005 \001(\010" +
-      "\022\033\n\023order_notifications\030\006 \001(\010\022\022\n\nnewslet" +
-      "ter\030\007 \001(\010\022.\n\ncreated_at\030\010 \001(\0132\032.google.p" +
-      "rotobuf.Timestamp\022.\n\nupdated_at\030\t \001(\0132\032." +
-      "google.protobuf.Timestamp\"\333\001\n\013UserProfil" +
-      "e\022\n\n\002id\030\001 \001(\t\022\017\n\007user_id\030\002 \001(\t\022\016\n\006avatar" +
-      "\030\003 \001(\t\022\013\n\003bio\030\004 \001(\t\022\017\n\007website\030\005 \001(\t\022!\n\014" +
-      "social_links\030\006 \001(\0132\013.SocialLink\022.\n\ncreat" +
-      "ed_at\030\007 \001(\0132\032.google.protobuf.Timestamp\022" +
-      ".\n\nupdated_at\030\010 \001(\0132\032.google.protobuf.Ti" +
-      "mestamp\"y\n\nSocialLink\022\n\n\002id\030\001 \001(\t\022\027\n\017use" +
-      "r_profile_id\030\002 \001(\t\022\020\n\010facebook\030\003 \001(\t\022\017\n\007" +
-      "twitter\030\004 \001(\t\022\021\n\tinstagram\030\005 \001(\t\022\020\n\010link" +
-      "edin\030\006 \001(\t\"\231\001\n\023RegisterUserRequest\022\r\n\005em" +
-      "ail\030\001 \001(\t\022\020\n\010username\030\002 \001(\t\022\022\n\nfirst_nam" +
-      "e\030\003 \001(\t\022\021\n\tlast_name\030\004 \001(\t\022\020\n\010password\030\005" +
-      " \001(\t\022\024\n\014phone_number\030\006 \001(\t\022\022\n\nenable_mfa" +
-      "\030\007 \001(\010\"/\n\014LoginRequest\022\r\n\005email\030\001 \001(\t\022\020\n" +
-      "\010password\030\002 \001(\t\"$\n\024VerifyMfaCodeRequest\022" +
-      "\014\n\004code\030\001 \001(\t\"(\n\027VerifyEmailTokenRequest" +
-      "\022\r\n\005token\030\001 \001(\t\"&\n\025ForgotPasswordRequest" +
-      "\022\r\n\005email\030\001 \001(\t\"7\n\024ResetPasswordRequest\022" +
-      "\r\n\005token\030\001 \001(\t\022\020\n\010password\030\002 \001(\t\"C\n\025Chan" +
-      "gePasswordRequest\022\024\n\014old_password\030\001 \001(\t\022" +
-      "\024\n\014new_password\030\002 \001(\t\"S\n\rLoginResponse\022\024" +
-      "\n\014access_token\030\001 \001(\t\022\025\n\rrefresh_token\030\002 " +
-      "\001(\t\022\025\n\rqr_code_image\030\003 \001(\t\"=\n\025VerifyMfaC" +
-      "odeResponse\022\017\n\007message\030\001 \001(\t\022\023\n\004user\030\002 \001" +
-      "(\0132\005.User\"<\n\030VerifyEmailTokenResponse\022\017\n" +
-      "\007success\030\001 \001(\010\022\017\n\007message\030\002 \001(\t\":\n\026Forgo" +
-      "tPasswordResponse\022\017\n\007success\030\001 \001(\010\022\017\n\007me" +
-      "ssage\030\002 \001(\t\"9\n\025ResetPasswordResponse\022\017\n\007" +
-      "success\030\001 \001(\010\022\017\n\007message\030\002 \001(\t\":\n\026Change" +
-      "PasswordResponse\022\017\n\007success\030\001 \001(\010\022\017\n\007mes" +
-      "sage\030\002 \001(\t*O\n\nUserStatus\022\n\n\006ACTIVE\020\000\022\014\n\010" +
-      "INACTIVE\020\001\022\r\n\tSUSPENDED\020\002\022\030\n\024PENDING_VER" +
-      "IFICATION\020\003*2\n\013AddressType\022\013\n\007BILLING\020\000\022" +
-      "\014\n\010SHIPPING\020\001\022\010\n\004BOTH\020\0022\303\003\n\013AuthService\022" +
-      "-\n\014registerUser\022\024.RegisterUserRequest\032\005." +
-      "User\"\000\022,\n\tloginUser\022\r.LoginRequest\032\016.Log" +
-      "inResponse\"\000\022@\n\rverifyMfaCode\022\025.VerifyMf" +
-      "aCodeRequest\032\026.VerifyMfaCodeResponse\"\000\022I" +
-      "\n\020verifyEmailToken\022\030.VerifyEmailTokenReq" +
-      "uest\032\031.VerifyEmailTokenResponse\"\000\022C\n\016for" +
-      "gotPassword\022\026.ForgotPasswordRequest\032\027.Fo" +
-      "rgotPasswordResponse\"\000\022@\n\rresetPassword\022" +
-      "\025.ResetPasswordRequest\032\026.ResetPasswordRe" +
-      "sponse\"\000\022C\n\016changePassword\022\026.ChangePassw" +
-      "ordRequest\032\027.ChangePasswordResponse\"\0002@\n" +
-      "\013UserService\0221\n\016getCurrentUser\022\026.google." +
-      "protobuf.Empty\032\005.User\"\000B\026\n\022org.abraham.m" +
-      "odelsP\001b\006proto3"
+      "o\032\025commons/commons.proto\"\234\005\n\004User\022\n\n\002id\030" +
+      "\001 \001(\t\022\r\n\005email\030\002 \001(\t\022\020\n\010username\030\003 \001(\t\022\022" +
+      "\n\nfirst_name\030\004 \001(\t\022\021\n\tlast_name\030\005 \001(\t\022\024\n" +
+      "\014phone_number\030\006 \001(\t\022\033\n\006status\030\007 \001(\0162\013.Us" +
+      "erStatus\022\026\n\016email_verified\030\010 \001(\010\022\026\n\016phon" +
+      "e_verified\030\t \001(\010\022 \n\030email_verification_t" +
+      "oken\030\n \001(\t\022%\n\035email_verification_expires" +
+      "_at\030\013 \001(\t\022 \n\030phone_verification_token\030\014 " +
+      "\001(\t\022%\n\035phone_verification_expires_at\030\r \001" +
+      "(\t\022\034\n\024password_reset_token\030\016 \001(\t\022\'\n\037pass" +
+      "word_reset_token_expires_at\030\017 \001(\t\022.\n\nlas" +
+      "t_login\030\020 \001(\0132\032.google.protobuf.Timestam" +
+      "p\022.\n\ncreated_at\030\021 \001(\0132\032.google.protobuf." +
+      "Timestamp\022.\n\nupdated_at\030\022 \001(\0132\032.google.p" +
+      "rotobuf.Timestamp\022$\n\013preferences\030\023 \001(\0132\017" +
+      ".UserPreference\022\035\n\007profile\030\024 \001(\0132\014.UserP" +
+      "rofile\022\033\n\taddresses\030\025 \003(\0132\010.Address\022\022\n\ne" +
+      "nable_mfa\030\026 \001(\010\"\247\002\n\007Address\022\n\n\002id\030\001 \001(\t\022" +
+      "\017\n\007user_id\030\002 \001(\t\022\032\n\004type\030\003 \001(\0162\014.Address" +
+      "Type\022\022\n\nis_default\030\004 \001(\010\022\025\n\raddress_line" +
+      "1\030\005 \001(\t\022\025\n\raddress_line2\030\006 \001(\t\022\014\n\004city\030\007" +
+      " \001(\t\022\r\n\005state\030\010 \001(\t\022\023\n\013postal_code\030\t \001(\t" +
+      "\022\017\n\007country\030\n \001(\t\022.\n\ncreated_at\030\013 \001(\0132\032." +
+      "google.protobuf.Timestamp\022.\n\nupdated_at\030" +
+      "\014 \001(\0132\032.google.protobuf.Timestamp\"\374\001\n\016Us" +
+      "erPreference\022\n\n\002id\030\001 \001(\t\022\017\n\007user_id\030\002 \001(" +
+      "\t\022\020\n\010currency\030\003 \001(\t\022\020\n\010language\030\004 \001(\t\022\030\n" +
+      "\020marketing_emails\030\005 \001(\010\022\033\n\023order_notific" +
+      "ations\030\006 \001(\010\022\022\n\nnewsletter\030\007 \001(\010\022.\n\ncrea" +
+      "ted_at\030\010 \001(\0132\032.google.protobuf.Timestamp" +
+      "\022.\n\nupdated_at\030\t \001(\0132\032.google.protobuf.T" +
+      "imestamp\"\333\001\n\013UserProfile\022\n\n\002id\030\001 \001(\t\022\017\n\007" +
+      "user_id\030\002 \001(\t\022\016\n\006avatar\030\003 \001(\t\022\013\n\003bio\030\004 \001" +
+      "(\t\022\017\n\007website\030\005 \001(\t\022!\n\014social_links\030\006 \001(" +
+      "\0132\013.SocialLink\022.\n\ncreated_at\030\007 \001(\0132\032.goo" +
+      "gle.protobuf.Timestamp\022.\n\nupdated_at\030\010 \001" +
+      "(\0132\032.google.protobuf.Timestamp\"y\n\nSocial" +
+      "Link\022\n\n\002id\030\001 \001(\t\022\027\n\017user_profile_id\030\002 \001(" +
+      "\t\022\020\n\010facebook\030\003 \001(\t\022\017\n\007twitter\030\004 \001(\t\022\021\n\t" +
+      "instagram\030\005 \001(\t\022\020\n\010linkedin\030\006 \001(\t\"\231\001\n\023Re" +
+      "gisterUserRequest\022\r\n\005email\030\001 \001(\t\022\020\n\010user" +
+      "name\030\002 \001(\t\022\022\n\nfirst_name\030\003 \001(\t\022\021\n\tlast_n" +
+      "ame\030\004 \001(\t\022\020\n\010password\030\005 \001(\t\022\024\n\014phone_num" +
+      "ber\030\006 \001(\t\022\022\n\nenable_mfa\030\007 \001(\010\"/\n\014LoginRe" +
+      "quest\022\r\n\005email\030\001 \001(\t\022\020\n\010password\030\002 \001(\t\"$" +
+      "\n\024VerifyMfaCodeRequest\022\014\n\004code\030\001 \001(\t\"(\n\027" +
+      "VerifyEmailTokenRequest\022\r\n\005token\030\001 \001(\t\"&" +
+      "\n\025ForgotPasswordRequest\022\r\n\005email\030\001 \001(\t\"7" +
+      "\n\024ResetPasswordRequest\022\r\n\005token\030\001 \001(\t\022\020\n" +
+      "\010password\030\002 \001(\t\"C\n\025ChangePasswordRequest" +
+      "\022\024\n\014old_password\030\001 \001(\t\022\024\n\014new_password\030\002" +
+      " \001(\t\"S\n\rLoginResponse\022\024\n\014access_token\030\001 " +
+      "\001(\t\022\025\n\rrefresh_token\030\002 \001(\t\022\025\n\rqr_code_im" +
+      "age\030\003 \001(\t\"=\n\025VerifyMfaCodeResponse\022\017\n\007me" +
+      "ssage\030\001 \001(\t\022\023\n\004user\030\002 \001(\0132\005.User\"<\n\030Veri" +
+      "fyEmailTokenResponse\022\017\n\007success\030\001 \001(\010\022\017\n" +
+      "\007message\030\002 \001(\t\":\n\026ForgotPasswordResponse" +
+      "\022\017\n\007success\030\001 \001(\010\022\017\n\007message\030\002 \001(\t\"9\n\025Re" +
+      "setPasswordResponse\022\017\n\007success\030\001 \001(\010\022\017\n\007" +
+      "message\030\002 \001(\t\":\n\026ChangePasswordResponse\022" +
+      "\017\n\007success\030\001 \001(\010\022\017\n\007message\030\002 \001(\t*2\n\013Add" +
+      "ressType\022\013\n\007BILLING\020\000\022\014\n\010SHIPPING\020\001\022\010\n\004B" +
+      "OTH\020\0022\303\003\n\013AuthService\022-\n\014registerUser\022\024." +
+      "RegisterUserRequest\032\005.User\"\000\022,\n\tloginUse" +
+      "r\022\r.LoginRequest\032\016.LoginResponse\"\000\022@\n\rve" +
+      "rifyMfaCode\022\025.VerifyMfaCodeRequest\032\026.Ver" +
+      "ifyMfaCodeResponse\"\000\022I\n\020verifyEmailToken" +
+      "\022\030.VerifyEmailTokenRequest\032\031.VerifyEmail" +
+      "TokenResponse\"\000\022C\n\016forgotPassword\022\026.Forg" +
+      "otPasswordRequest\032\027.ForgotPasswordRespon" +
+      "se\"\000\022@\n\rresetPassword\022\025.ResetPasswordReq" +
+      "uest\032\026.ResetPasswordResponse\"\000\022C\n\016change" +
+      "Password\022\026.ChangePasswordRequest\032\027.Chang" +
+      "ePasswordResponse\"\0002@\n\013UserService\0221\n\016ge" +
+      "tCurrentUser\022\026.google.protobuf.Empty\032\005.U" +
+      "ser\"\000B\026\n\022org.abraham.modelsP\001b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
           com.google.protobuf.TimestampProto.getDescriptor(),
           com.google.protobuf.EmptyProto.getDescriptor(),
+          org.abraham.commons.Commons.getDescriptor(),
         });
     internal_static_User_descriptor =
       getDescriptor().getMessageTypes().get(0);
@@ -311,6 +310,7 @@ public final class UserServiceOuterClass {
         new java.lang.String[] { "Success", "Message", });
     com.google.protobuf.TimestampProto.getDescriptor();
     com.google.protobuf.EmptyProto.getDescriptor();
+    org.abraham.commons.Commons.getDescriptor();
   }
 
   // @@protoc_insertion_point(outer_class_scope)

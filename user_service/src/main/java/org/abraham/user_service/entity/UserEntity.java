@@ -1,8 +1,8 @@
 package org.abraham.user_service.entity;
 
 import lombok.*;
-import org.abraham.user_service.dto.UserRoles;
-import org.abraham.user_service.dto.UserStatus;
+import org.abraham.commondtos.UserRoles;
+import org.abraham.commondtos.UserStatus;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
 import org.springframework.data.relational.core.mapping.Column;

@@ -301,9 +301,9 @@ private static final long serialVersionUID = 0L;
    * <code>.UserStatus status = 7;</code>
    * @return The status.
    */
-  @java.lang.Override public org.abraham.models.UserStatus getStatus() {
-    org.abraham.models.UserStatus result = org.abraham.models.UserStatus.forNumber(status_);
-    return result == null ? org.abraham.models.UserStatus.UNRECOGNIZED : result;
+  @java.lang.Override public org.abraham.commons.UserStatus getStatus() {
+    org.abraham.commons.UserStatus result = org.abraham.commons.UserStatus.forNumber(status_);
+    return result == null ? org.abraham.commons.UserStatus.UNRECOGNIZED : result;
   }
 
   public static final int EMAIL_VERIFIED_FIELD_NUMBER = 8;
@@ -776,7 +776,7 @@ private static final long serialVersionUID = 0L;
     if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(phoneNumber_)) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 6, phoneNumber_);
     }
-    if (status_ != org.abraham.models.UserStatus.ACTIVE.getNumber()) {
+    if (status_ != org.abraham.commons.UserStatus.ACTIVE.getNumber()) {
       output.writeEnum(7, status_);
     }
     if (emailVerified_ != false) {
@@ -851,7 +851,7 @@ private static final long serialVersionUID = 0L;
     if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(phoneNumber_)) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(6, phoneNumber_);
     }
-    if (status_ != org.abraham.models.UserStatus.ACTIVE.getNumber()) {
+    if (status_ != org.abraham.commons.UserStatus.ACTIVE.getNumber()) {
       size += com.google.protobuf.CodedOutputStream
         .computeEnumSize(7, status_);
     }
@@ -2154,16 +2154,16 @@ private static final long serialVersionUID = 0L;
      * @return The status.
      */
     @java.lang.Override
-    public org.abraham.models.UserStatus getStatus() {
-      org.abraham.models.UserStatus result = org.abraham.models.UserStatus.forNumber(status_);
-      return result == null ? org.abraham.models.UserStatus.UNRECOGNIZED : result;
+    public org.abraham.commons.UserStatus getStatus() {
+      org.abraham.commons.UserStatus result = org.abraham.commons.UserStatus.forNumber(status_);
+      return result == null ? org.abraham.commons.UserStatus.UNRECOGNIZED : result;
     }
     /**
      * <code>.UserStatus status = 7;</code>
      * @param value The status to set.
      * @return This builder for chaining.
      */
-    public Builder setStatus(org.abraham.models.UserStatus value) {
+    public Builder setStatus(org.abraham.commons.UserStatus value) {
       if (value == null) {
         throw new NullPointerException();
       }

@@ -5,15 +5,11 @@ package org.abraham.user_service.config;
 import io.r2dbc.postgresql.PostgresqlConnectionConfiguration;
 import io.r2dbc.postgresql.PostgresqlConnectionFactory;
 import io.r2dbc.postgresql.codec.EnumCodec;
-import io.r2dbc.spi.Connection;
-import io.r2dbc.spi.ConnectionFactories;
 import io.r2dbc.spi.ConnectionFactory;
-import io.r2dbc.spi.ConnectionFactoryOptions;
 import lombok.AllArgsConstructor;
-import org.abraham.user_service.dto.AddressType;
-import org.abraham.user_service.dto.UserRoles;
-import org.abraham.user_service.dto.UserStatus;
-import org.reactivestreams.Publisher;
+import org.abraham.commondtos.AddressType;
+import org.abraham.commondtos.UserRoles;
+import org.abraham.commondtos.UserStatus;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.r2dbc.config.AbstractR2dbcConfiguration;
@@ -21,9 +17,6 @@ import org.springframework.data.r2dbc.config.AbstractR2dbcConfiguration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import static io.r2dbc.spi.ConnectionFactoryOptions.*;
-
 
 
 @Configuration

@@ -52,6 +52,7 @@ public class AuthService extends AuthServiceGrpc.AuthServiceImplBase {
                     responseObserver.onCompleted();
                 })
                 .doOnError(err -> log.error("Error while registering user: {}", err.getMessage()))
+
                 .subscribe();
     }
 

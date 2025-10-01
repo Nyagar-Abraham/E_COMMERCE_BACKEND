@@ -1,15 +1,10 @@
 package org.abraham.user_service.config;
 
-import org.abraham.user_service.dto.UserStatus;
-import org.springframework.context.annotation.Bean;
+import org.abraham.commondtos.UserStatus;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.convert.converter.Converter;
-import org.springframework.data.convert.CustomConversions;
 import org.springframework.data.convert.ReadingConverter;
 import org.springframework.data.convert.WritingConverter;
-import org.springframework.data.r2dbc.convert.R2dbcCustomConversions;
-
-import java.util.List;
 
 @Configuration
 public class EnumConverters {

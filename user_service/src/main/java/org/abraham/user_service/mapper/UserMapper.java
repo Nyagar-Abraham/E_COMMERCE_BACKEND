@@ -1,9 +1,9 @@
 package org.abraham.user_service.mapper;
 
 
+import org.abraham.commons.UserStatus;
 import org.abraham.models.RegisterUserRequest;
 import org.abraham.models.User;
-import org.abraham.models.UserStatus;
 import org.abraham.user_service.entity.UserEntity;
 import org.abraham.user_service.utils.Utils;
 

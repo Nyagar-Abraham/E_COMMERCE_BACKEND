@@ -5,6 +5,12 @@
 package org.abraham.models;
 
 /**
+ * <pre>
+ * =========================================
+ * Enums
+ * =========================================
+ * </pre>
+ *
  * Protobuf enum {@code AddressType}
  */
 public enum AddressType
@@ -95,7 +101,7 @@ public enum AddressType
   }
   public static final com.google.protobuf.Descriptors.EnumDescriptor
       getDescriptor() {
-    return org.abraham.models.UserServiceOuterClass.getDescriptor().getEnumTypes().get(1);
+    return org.abraham.models.UserServiceOuterClass.getDescriptor().getEnumTypes().get(0);
   }
 
   private static final AddressType[] VALUES = values();

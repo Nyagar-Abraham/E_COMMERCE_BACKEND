@@ -2,7 +2,7 @@ package org.abraham.user_service.entity;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.abraham.user_service.dto.AddressType;
+import org.abraham.commondtos.AddressType;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
 import org.springframework.data.relational.core.mapping.Column;

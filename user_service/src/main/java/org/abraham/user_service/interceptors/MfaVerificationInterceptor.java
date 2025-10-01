@@ -3,7 +3,7 @@
 //import io.grpc.*;
 //import lombok.AllArgsConstructor;
 //import org.abraham.constants.Constants;
-//import org.abraham.user_service.dto.UserStatus;
+//import org.abraham.commondtos.UserStatus;
 //import org.abraham.user_service.handlers.UserHandler;
 //import org.slf4j.Logger;
 //import org.slf4j.LoggerFactory;

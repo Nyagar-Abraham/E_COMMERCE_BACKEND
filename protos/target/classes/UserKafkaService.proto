@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+import "commons/commons.proto";
+
+option java_multiple_files = true;
+option java_package = "org.abraham.messages";
+
+
+message UserCreatedMessage {
+  string id = 1;
+  string email = 2;
+  string username = 3;
+  string phone_number =4;
+  UserStatus status = 5;
+
+}

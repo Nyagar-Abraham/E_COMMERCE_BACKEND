@@ -58,3 +58,4 @@ fi
 
 
 
+# export PATH=$PATH:/opt/kafka/bin/
