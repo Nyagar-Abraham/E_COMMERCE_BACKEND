@@ -1,19 +1,19 @@
 package org.abraham.user_service.config.kafka;
 
-import org.abraham.messages.UserCreatedMessage;
-import org.abraham.user_service.config.kafka.serializers.UserCreatedMessageSerializer;
+
+import org.abraham.user_service.dto.kafkamessages.UserRegistrationMessage;
 import org.apache.kafka.clients.producer.ProducerConfig;
-import org.apache.kafka.common.serialization.IntegerSerializer;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.kafka.support.serializer.JsonSerializer;
 import reactor.kafka.sender.KafkaSender;
 import reactor.kafka.sender.SenderOptions;
 
-import java.util.Arrays;
+
 import java.util.HashMap;
-import java.util.List;
+
 import java.util.Map;
 
 @Configuration
@@ -22,18 +22,23 @@ public class KafkaSenderConfig {
     private String bootstrapAddress;
 
     @Bean
-    public <K,V>  SenderOptions<K,V> senderOptions() {
+    public SenderOptions<String, UserRegistrationMessage> userCreatedSenderOptions() {
         Map<String, Object> producerProps = new HashMap<>();
         producerProps.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapAddress);
         producerProps.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
-        producerProps.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, UserCreatedMessageSerializer.class);
+        producerProps.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG,
+                org.springframework.kafka.support.serializer.JsonSerializer.class);
+        producerProps.put(JsonSerializer.TYPE_MAPPINGS,
+                "usercreatedevent:org.abraham.user_service.dto.kafkamessages.UserRegistrationMessage");
 
-        return SenderOptions.<K , V>create(producerProps);
+        // Optional but recommended
+        producerProps.put(ProducerConfig.ACKS_CONFIG, "all");
+        producerProps.put(ProducerConfig.RETRIES_CONFIG, 3);
+
+        return SenderOptions.create(producerProps);
     }
-
     @Bean
-    public KafkaSender<String, UserCreatedMessage> kafkaSender() {
-        return KafkaSender.create(senderOptions());
+    public KafkaSender<String, UserRegistrationMessage> userCreatedKafkaSender() {
+        return KafkaSender.create(userCreatedSenderOptions());
     }
-
 }

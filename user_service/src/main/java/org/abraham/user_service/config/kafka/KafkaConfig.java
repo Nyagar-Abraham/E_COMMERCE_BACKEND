@@ -1,5 +1,6 @@
 package org.abraham.user_service.config.kafka;
 
+import org.abraham.constants.Constants;
 import org.apache.kafka.clients.admin.AdminClientConfig;
 import org.apache.kafka.clients.admin.NewTopic;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,18 +21,12 @@ public class KafkaConfig {
 
 //    @Autowired
 //    private KafkaAdmin admin;
-//
-//    @Bean
-//    public KafkaAdmin admin() {
-//        Map<String, Object> configs = new HashMap<>();
-//        configs.put(AdminClientConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
-//        return new KafkaAdmin(configs);
-//    }
+
 
 
     @Bean
     public NewTopic topic5() {
-        return TopicBuilder.name("user_created_topic")
+        return TopicBuilder.name(Constants.USER_CREATED_TOPIC)
                 .replicas(1)
                 .build();
     }

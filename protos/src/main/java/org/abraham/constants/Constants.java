@@ -18,4 +18,9 @@ public class Constants {
     public static final String BEARER = "Bearer ";
     public static final String JWT_TOKEN = "Jwt";
     public static final String AUTHORIZATION_HEADER = "Authorization";
+
+//    =================================
+//    topics
+//    ================================
+    public static final String USER_CREATED_TOPIC = "user_created_topic";
 }

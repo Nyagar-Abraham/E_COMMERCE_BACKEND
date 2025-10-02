@@ -6,4 +6,3 @@ public enum UserRoles {
     ADMIN,
     GUEST
 }
-

@@ -3,12 +3,14 @@ package org.abraham.user_service.handlers;
 import dev.samstevens.totp.exceptions.QrGenerationException;
 import io.grpc.Status;
 import lombok.AllArgsConstructor;
+
 import org.abraham.constants.Constants;
 import org.abraham.messages.UserCreatedMessage;
 import org.abraham.models.*;
 import org.abraham.user_service.auth.jwt.JwtUtil;
 import org.abraham.user_service.auth.mfa.TotpManagerImpl;
 import org.abraham.commondtos.UserStatus;
+import org.abraham.user_service.dto.kafkamessages.UserRegistrationMessage;
 import org.abraham.user_service.entity.EmailVerificationToken;
 import org.abraham.user_service.entity.PasswordResetToken;
 import org.abraham.user_service.entity.UserEntity;
@@ -48,7 +50,7 @@ public class AuthHandler {
     private final EmailVerificationTokenRepository emailVerificationTokenRepository;
     private final MailService mailService;
     private final PasswordResetTokenRepository passwordResetTokenRepository;
-    private final KafkaSender<String, UserCreatedMessage> kafkaSender;
+    private final KafkaSender<String, UserRegistrationMessage> kafkaSender;
 
 
     /*
@@ -57,6 +59,7 @@ public class AuthHandler {
      */
     @Transactional
     public Mono<User> registerUser(Mono<RegisterUserRequest> request) {
+
         return request.flatMap(req -> {
             var userEntity = UserMapper.registerUserRequestToUserEntity(
                     req, passwordEncoder.encode(req.getPassword())
@@ -87,17 +90,11 @@ public class AuthHandler {
                     })
                     .flatMap(user -> userRepository.findById(user.getId()))
                     .flatMap(savedUser -> {
-                        var userCreateEvent = UserCreatedMessage.newBuilder()
-                                .setId(savedUser.getId().toString())
-                                .setEmail(savedUser.getEmail())
-                                .setPhoneNumber(savedUser.getPhoneNumber())
-                                .setUsername(savedUser.getUsername())
-                                .setStatus(org.abraham.commons.UserStatus.valueOf(savedUser.getStatus().name()))
-                                .build();
+                        var userCreateEvent = new UserRegistrationMessage(savedUser.getId(), savedUser.getEmail(), savedUser.getUsername(), savedUser.getStatus(), savedUser.getPhoneNumber());
 
                         var senderRecord = SenderRecord.create(
-                                new ProducerRecord<>("user_created_topic", userCreateEvent.getId(),userCreateEvent),
-                                userCreateEvent.getId()
+                                new ProducerRecord<>(Constants.USER_CREATED_TOPIC, userCreateEvent.id().toString(),userCreateEvent),
+                                userCreateEvent.id().toString()
                         );
 
                         return kafkaSender.send(Mono.just(senderRecord))
@@ -105,7 +102,6 @@ public class AuthHandler {
                                 .doOnNext(r -> System.out.printf("Message #%s send response: %s\n", r.correlationMetadata(), r.recordMetadata()))
                                 .then(Mono.just(savedUser));
                     })
-
                     .map(UserMapper::userEntityToUser);
         });
     }

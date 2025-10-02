@@ -12,5 +12,4 @@ message UserCreatedMessage {
   string username = 3;
   string phone_number =4;
   UserStatus status = 5;
-
 }

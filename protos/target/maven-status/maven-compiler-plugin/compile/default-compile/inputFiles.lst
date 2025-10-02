@@ -5,11 +5,11 @@
 /home/abrahamnyagar/IdeaProjects/E_COMMERCE_BACKEND/protos/src/main/java/org/abraham/constants/Constants.java
 /home/abrahamnyagar/IdeaProjects/E_COMMERCE_BACKEND/protos/target/generated-sources/protobuf/grpc-java/org/abraham/models/AuthServiceGrpc.java
 /home/abrahamnyagar/IdeaProjects/E_COMMERCE_BACKEND/protos/target/generated-sources/protobuf/grpc-java/org/abraham/models/UserServiceGrpc.java
-/home/abrahamnyagar/IdeaProjects/E_COMMERCE_BACKEND/protos/target/generated-sources/protobuf/java/com/example/Error.java
-/home/abrahamnyagar/IdeaProjects/E_COMMERCE_BACKEND/protos/target/generated-sources/protobuf/java/com/example/ErrorResponse.java
-/home/abrahamnyagar/IdeaProjects/E_COMMERCE_BACKEND/protos/target/generated-sources/protobuf/java/com/example/ErrorResponseOrBuilder.java
 /home/abrahamnyagar/IdeaProjects/E_COMMERCE_BACKEND/protos/target/generated-sources/protobuf/java/org/abraham/commons/Commons.java
 /home/abrahamnyagar/IdeaProjects/E_COMMERCE_BACKEND/protos/target/generated-sources/protobuf/java/org/abraham/commons/UserStatus.java
+/home/abrahamnyagar/IdeaProjects/E_COMMERCE_BACKEND/protos/target/generated-sources/protobuf/java/org/abraham/errors/Error.java
+/home/abrahamnyagar/IdeaProjects/E_COMMERCE_BACKEND/protos/target/generated-sources/protobuf/java/org/abraham/errors/ErrorResponse.java
+/home/abrahamnyagar/IdeaProjects/E_COMMERCE_BACKEND/protos/target/generated-sources/protobuf/java/org/abraham/errors/ErrorResponseOrBuilder.java
 /home/abrahamnyagar/IdeaProjects/E_COMMERCE_BACKEND/protos/target/generated-sources/protobuf/java/org/abraham/messages/UserCreatedMessage.java
 /home/abrahamnyagar/IdeaProjects/E_COMMERCE_BACKEND/protos/target/generated-sources/protobuf/java/org/abraham/messages/UserCreatedMessageOrBuilder.java
 /home/abrahamnyagar/IdeaProjects/E_COMMERCE_BACKEND/protos/target/generated-sources/protobuf/java/org/abraham/messages/UserKafkaService.java

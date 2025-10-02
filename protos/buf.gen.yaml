@@ -1,11 +1,11 @@
-version: v2
-inputs:
-  - directory: src/main/proto
-plugins:
-  - remote: buf.build/protocolbuffers/java:v29.3
-#  out: src/main/java
-managed:
-  enabled: true
-disable:
-  - file_option: java_package
-    module: buf.build/bufbuild/protovalidate
+#version: v2
+#inputs:
+#  - directory: src/main/proto
+#plugins:
+#  - remote: buf.build/protocolbuffers/java:v29.3
+#    out: target/generated-sources
+#managed:
+#  enabled: true
+#  disable:
+#    - file_option: java_package
+#      module: buf.build/bufbuild/protovalidate

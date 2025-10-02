@@ -11,15 +11,16 @@ org/abraham/models/ResetPasswordRequest$1.class
 org/abraham/models/RegisterUserRequest$1.class
 org/abraham/models/LoginRequest$1.class
 org/abraham/models/UserServiceOuterClass.class
+org/abraham/errors/ErrorResponse.class
 org/abraham/models/AuthServiceGrpc$4.class
+org/abraham/errors/Error.class
 org/abraham/models/ForgotPasswordResponse.class
 org/abraham/models/UserServiceGrpc$UserServiceBlockingStub.class
 org/abraham/messages/UserKafkaService.class
-com/example/ErrorResponse$Builder.class
-com/example/Error.class
 org/abraham/commondtos/UserRoles.class
 org/abraham/Main.class
 org/abraham/models/ChangePasswordRequest$1.class
+org/abraham/errors/ErrorResponse$Builder.class
 org/abraham/models/AuthServiceGrpc$AuthServiceBlockingV2Stub.class
 org/abraham/models/ChangePasswordRequest$Builder.class
 org/abraham/models/ResetPasswordRequestOrBuilder.class
@@ -44,12 +45,9 @@ org/abraham/models/UserOrBuilder.class
 org/abraham/models/LoginResponse$Builder.class
 org/abraham/models/AuthServiceGrpc$3.class
 org/abraham/models/ResetPasswordResponse.class
-com/example/ErrorResponse.class
 org/abraham/commondtos/AddressType.class
 org/abraham/models/VerifyMfaCodeResponseOrBuilder.class
 org/abraham/models/ChangePasswordResponse$Builder.class
-com/example/ErrorResponse$1.class
-com/example/ErrorResponseOrBuilder.class
 org/abraham/models/UserServiceGrpc$1.class
 org/abraham/models/AuthServiceGrpc$AuthServiceBlockingStub.class
 org/abraham/models/VerifyMfaCodeRequest$1.class
@@ -70,6 +68,7 @@ org/abraham/models/AddressOrBuilder.class
 org/abraham/models/AuthServiceGrpc$MethodHandlers.class
 org/abraham/models/LoginRequestOrBuilder.class
 org/abraham/models/User$1.class
+org/abraham/errors/ErrorResponseOrBuilder.class
 org/abraham/models/ForgotPasswordRequest$1.class
 org/abraham/models/SocialLinkOrBuilder.class
 org/abraham/models/VerifyEmailTokenRequestOrBuilder.class
@@ -118,6 +117,7 @@ org/abraham/models/ForgotPasswordResponseOrBuilder.class
 org/abraham/models/VerifyEmailTokenResponseOrBuilder.class
 org/abraham/models/UserServiceGrpc$UserServiceStub.class
 org/abraham/models/SocialLink$1.class
+org/abraham/errors/ErrorResponse$1.class
 org/abraham/models/AuthServiceGrpc$AuthServiceStub.class
 org/abraham/models/UserPreference.class
 org/abraham/models/ChangePasswordResponseOrBuilder.class

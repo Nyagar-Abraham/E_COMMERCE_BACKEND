@@ -2,7 +2,7 @@
 syntax = "proto3";
 
 option java_multiple_files = true;
-option java_package = "com.example";
+option java_package = "org.abraham.errors";
 
 import "google/protobuf/any.proto";
 //import "google/rpc/status.proto";

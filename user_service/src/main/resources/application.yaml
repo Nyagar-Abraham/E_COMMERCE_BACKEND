@@ -5,6 +5,13 @@ spring:
   kafka:
     bootstrap-servers:
       - "localhost:29092"
+    producer:
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      properties:
+        spring:
+          json:
+            type:
+              mapping: "usercreatedevent:org.abraham.user_service.dto.kafkamessages.UserRegistrationMessage"
   #  config:
 #    import: optional:file:.env[.properties]
   grpc:

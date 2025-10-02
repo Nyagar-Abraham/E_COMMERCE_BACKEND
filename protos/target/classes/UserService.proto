@@ -2,7 +2,9 @@ syntax = "proto3";
 
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/empty.proto";
-//import "buf/validate/validate.proto";
+//import "buf/";
+
+
 
 import "commons/commons.proto";
 
@@ -23,7 +25,7 @@ enum AddressType {
 // ==============================================
 
 message User {
-  string id = 1;
+  string id = 1 ;
   string email = 2 ;
   string username = 3;
   string first_name = 4;
@@ -41,7 +43,7 @@ message User {
   google.protobuf.Timestamp last_login = 16;
   google.protobuf.Timestamp created_at = 17;
   google.protobuf.Timestamp updated_at = 18;
-  UserPreference preferences =19;
+  UserPreference preferences = 19;
   UserProfile profile = 20;
   repeated Address addresses = 21;
   bool enable_mfa = 22;
@@ -187,5 +189,5 @@ service AuthService {
 }
 
 service UserService{
-   rpc getCurrentUser(google.protobuf.Empty) returns (User) {}
+  rpc getCurrentUser(google.protobuf.Empty) returns (User) {}
 }

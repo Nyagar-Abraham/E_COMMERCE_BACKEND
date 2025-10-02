@@ -54,13 +54,7 @@
             <artifactId>logback-classic</artifactId>
             <version>${logback.version}</version>
         </dependency>
-        <!--        &lt;!&ndash; Jackson lib for a performance test &ndash;&gt;-->
-        <!--        <dependency>-->
-        <!--            <groupId>com.fasterxml.jackson.core</groupId>-->
-        <!--            <artifactId>jackson-databind</artifactId>-->
-        <!--            <version>${jackson.version}</version>-->
-        <!--        </dependency>-->
-        <!--        &lt;!&ndash; junit &ndash;&gt;-->
+
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
@@ -79,11 +73,18 @@
         <dependency>
             <groupId>com.google.api.grpc</groupId>
             <artifactId>proto-google-common-protos</artifactId>
-            <version>2.29.0</version>
+            <version>2.61.0</version>
         </dependency>
-
-
-
+<!--        <dependency>-->
+<!--            <groupId>com.google.protobuf</groupId>-->
+<!--            <artifactId>protobuf-java</artifactId>-->
+<!--            <version>4.29.3</version> &lt;!&ndash; must match protoc/java plugin version &ndash;&gt;-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>build.buf</groupId>-->
+<!--            <artifactId>protovalidate</artifactId>-->
+<!--            <version>0.1.6</version>-->
+<!--        </dependency>-->
     </dependencies>
 
     <build>
@@ -132,9 +133,6 @@
                             <goal>compile-custom</goal>
                         </goals>
                     </execution>
-
-
-
                 </executions>
             </plugin>
             <!--     RUNS MVN-->

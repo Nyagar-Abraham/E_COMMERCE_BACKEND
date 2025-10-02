@@ -1,6 +1,7 @@
 package org.abraham.user_service.entity;
 
 import lombok.*;
+
 import org.abraham.commondtos.UserRoles;
 import org.abraham.commondtos.UserStatus;
 import org.springframework.data.annotation.Id;
