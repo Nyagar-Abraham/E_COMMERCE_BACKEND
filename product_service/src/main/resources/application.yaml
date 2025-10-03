@@ -1,0 +1,24 @@
+
+
+
+spring:
+  application:
+    name: product_service
+  r2dbc:
+    url: r2dbc:postgresql://localhost:5434/product_service_db
+    username: postgres
+    password: pass1234
+  kafka:
+    bootstrap-servers:
+      - "localhost:29092"
+    consumer:
+      key-deserializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring:
+          json:
+            type:
+              mapping: "usercreatedevent:org.abraham.product_service.dto.kafkaMessages.UserCreatedEvent"
+
+server:
+  port: 8083

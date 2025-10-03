@@ -1,7 +1,7 @@
 package org.abraham.user_service.config.kafka;
 
 
-import org.abraham.user_service.dto.kafkamessages.UserRegistrationMessage;
+import org.abraham.user_service.dto.kafkamessages.UserCreatedEvent;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.beans.factory.annotation.Value;
@@ -22,23 +22,21 @@ public class KafkaSenderConfig {
     private String bootstrapAddress;
 
     @Bean
-    public SenderOptions<String, UserRegistrationMessage> userCreatedSenderOptions() {
+    public SenderOptions<String, UserCreatedEvent> userCreatedSenderOptions() {
         Map<String, Object> producerProps = new HashMap<>();
         producerProps.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapAddress);
         producerProps.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
         producerProps.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG,
                 org.springframework.kafka.support.serializer.JsonSerializer.class);
         producerProps.put(JsonSerializer.TYPE_MAPPINGS,
-                "usercreatedevent:org.abraham.user_service.dto.kafkamessages.UserRegistrationMessage");
-
-        // Optional but recommended
+                "usercreatedevent:org.abraham.user_service.dto.kafkamessages.UserCreatedEvent");
         producerProps.put(ProducerConfig.ACKS_CONFIG, "all");
         producerProps.put(ProducerConfig.RETRIES_CONFIG, 3);
 
         return SenderOptions.create(producerProps);
     }
     @Bean
-    public KafkaSender<String, UserRegistrationMessage> userCreatedKafkaSender() {
+    public KafkaSender<String, UserCreatedEvent> userCreatedKafkaSender() {
         return KafkaSender.create(userCreatedSenderOptions());
     }
 }

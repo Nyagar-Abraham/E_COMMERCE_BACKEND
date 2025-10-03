@@ -11,7 +11,7 @@ spring:
         spring:
           json:
             type:
-              mapping: "usercreatedevent:org.abraham.user_service.dto.kafkamessages.UserRegistrationMessage"
+              mapping: "usercreatedevent:org.abraham.user_service.dto.kafkamessages.UserCreatedEvent"
   #  config:
 #    import: optional:file:.env[.properties]
   grpc:
@@ -19,10 +19,6 @@ spring:
       port: 9090
   application:
     name: user_service
-  flyway:
-    url: jdbc:postgresql://localhost:5434/user_service_db
-    user: postgres
-    password: pass1234
   r2dbc:
 #    url: r2dbc:postgresql://localhost:5434/user_service_db
     username: postgres

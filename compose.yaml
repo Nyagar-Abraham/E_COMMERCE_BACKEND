@@ -1,7 +1,5 @@
 
 services:
-
-
   # =================================================
   #  PostgreSQL Database for all services
   # =================================================
@@ -37,30 +35,6 @@ services:
       KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
       KAFKA_CONTROLLER_QUORUM_VOTERS: 1@controller-1:9093
       KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
-
-#  controller-2:
-#    image: apache/kafka:latest
-#    container_name: controller-2
-#    environment:
-#      KAFKA_NODE_ID: 2
-#       KAFKA_PROCESS_ROLES: controller
-#      KAFKA_LISTENERS: CONTROLLER://:9093
-#      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
-#      KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
-#      KAFKA_CONTROLLER_QUORUM_VOTERS: 1@controller-1:9093,2@controller-2:9093,3@controller-3:9093
-#      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
-#
-#  controller-3:
-#    image: apache/kafka:latest
-#    container_name: controller-3
-#    environment:
-#      KAFKA_NODE_ID: 3
-#      KAFKA_PROCESS_ROLES: controller
-#      KAFKA_LISTENERS: CONTROLLER://:9093
-#      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
-#      KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
-#      KAFKA_CONTROLLER_QUORUM_VOTERS: 1@controller-1:9093,2@controller-2:9093,3@controller-3:9093
-#      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
 
   # =================================================
   #  KAFKA BROKERS
@@ -104,6 +78,30 @@ services:
       - controller-1
 #      - controller-2
 #      - controller-3
+  user_service:
+    build: ./user_service
+    container_name: user_service
+    ports:
+       - 8082:8082
+    depends_on:
+      - postgres-db
+      - controller-1
+      - broker-1
+      - broker-2
+
+  api_gateway:
+    build: ./apigateway
+    container_name: api_gateway
+    ports:
+      - 8081:8081
+    depends_on:
+      - postgres-db
+      - controller-1
+      - broker-1
+      - broker-2
+
+
+
 
 #  broker-3:
 #    image: apache/kafka:latest

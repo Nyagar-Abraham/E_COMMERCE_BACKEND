@@ -5,12 +5,11 @@ import io.grpc.Status;
 import lombok.AllArgsConstructor;
 
 import org.abraham.constants.Constants;
-import org.abraham.messages.UserCreatedMessage;
 import org.abraham.models.*;
 import org.abraham.user_service.auth.jwt.JwtUtil;
 import org.abraham.user_service.auth.mfa.TotpManagerImpl;
 import org.abraham.commondtos.UserStatus;
-import org.abraham.user_service.dto.kafkamessages.UserRegistrationMessage;
+import org.abraham.user_service.dto.kafkamessages.UserCreatedEvent;
 import org.abraham.user_service.entity.EmailVerificationToken;
 import org.abraham.user_service.entity.PasswordResetToken;
 import org.abraham.user_service.entity.UserEntity;
@@ -50,7 +49,7 @@ public class AuthHandler {
     private final EmailVerificationTokenRepository emailVerificationTokenRepository;
     private final MailService mailService;
     private final PasswordResetTokenRepository passwordResetTokenRepository;
-    private final KafkaSender<String, UserRegistrationMessage> kafkaSender;
+    private final KafkaSender<String, UserCreatedEvent> kafkaSender;
 
 
     /*
@@ -90,7 +89,7 @@ public class AuthHandler {
                     })
                     .flatMap(user -> userRepository.findById(user.getId()))
                     .flatMap(savedUser -> {
-                        var userCreateEvent = new UserRegistrationMessage(savedUser.getId(), savedUser.getEmail(), savedUser.getUsername(), savedUser.getStatus(), savedUser.getPhoneNumber());
+                        var userCreateEvent = new UserCreatedEvent(savedUser.getId(), savedUser.getEmail(), savedUser.getUsername(), savedUser.getStatus(), savedUser.getPhoneNumber());
 
                         var senderRecord = SenderRecord.create(
                                 new ProducerRecord<>(Constants.USER_CREATED_TOPIC, userCreateEvent.id().toString(),userCreateEvent),

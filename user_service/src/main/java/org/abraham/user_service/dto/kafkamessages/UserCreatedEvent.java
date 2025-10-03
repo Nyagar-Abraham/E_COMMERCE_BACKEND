@@ -4,5 +4,5 @@ import org.abraham.commondtos.UserStatus;
 
 import java.util.UUID;
 
-public record UserRegistrationMessage(UUID id, String email, String username, UserStatus status,String phoneNumber ) {
+public record UserCreatedEvent(UUID id, String email, String username, UserStatus status, String phoneNumber ) {
 }
