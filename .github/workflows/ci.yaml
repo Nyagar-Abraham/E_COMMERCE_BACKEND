@@ -35,7 +35,7 @@ jobs:
       - name: Build with Mactions/setup-java@v4aven
         id: build-protos
         if: github.ref == 'refs/heads/main'
-        run: mvn -B package --file ./${{ env.PROTO_SERVICE }}/pom.xml
+        run: mvn -B install --file ./${{ env.PROTO_SERVICE }}/pom.xml  # install proto before other modules services can user it
 
       - name: Upload Maven artifact
         uses: actions/upload-artifact@v4
