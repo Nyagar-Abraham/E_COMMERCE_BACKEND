@@ -33,7 +33,7 @@ jobs:
 #      Build the protos and upload artifacts
 #      =====================
       - name: Build with Mactions/setup-java@v4aven
-        id: ${{ env.PROTO_SERVICE }}
+        id: build-${{ env.PROTO_SERVICE }}
         if: github.ref == 'refs/heads/main'
         run: mvn -B package --file ./${{ env.PROTO_SERVICE }}/pom.xml
 
