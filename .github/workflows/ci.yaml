@@ -25,7 +25,7 @@ jobs:
       - name: Set up JDK 21
         uses: actions/setup-java@v4
         with:
-          java-version: ${{ env.JAVA_VERION }}
+          java-version: ${{ env.JAVA_VERSION }}
           distribution: 'temurin'
           cache: maven
 
@@ -33,7 +33,7 @@ jobs:
 #      Build the protos and upload artifacts
 #      =====================
       - name: Build with Mactions/setup-java@v4aven
-        id: build-${{ env.PROTO_SERVICE }}
+        id: build-protos
         if: github.ref == 'refs/heads/main'
         run: mvn -B package --file ./${{ env.PROTO_SERVICE }}/pom.xml
 
@@ -41,13 +41,13 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: ${{ env.PROTO_SERVICE }}
-          path: target/*.jar
+          path: ./${{ env.PROTO_SERVICE }}/target/*.jar
 
       #      =====================
       #      Build the user_service and upload artifacts
       #      =====================
       - name: Build with Mactions/setup-java@v4aven
-        id: build-${{ env.USER_SERVICE }}
+        id: build-user-service
         if: github.ref == 'refs/heads/main'
         run: mvn -B package --file ./${{ env.USER_SERVICE }}/pom.xml
 
@@ -55,21 +55,21 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: ${{ env.USER_SERVICE }}
-          path: target/*.jar
+          path: ./${{ env.USER_SERVICE }}/target/*.jar
 
       #      =====================
       #      Build the api_gateway and upload artifacts
       #      =====================
       - name: Build with Mactions/setup-java@v4aven
-        id: build-${{ env.API_GATEWAY }}
+        id: build-api_gateway
         if: github.ref == 'refs/heads/main'
         run: mvn -B package --file ./${{ env.API_GATEWAY }}/pom.xml
 
       - name: Upload Maven artifact
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ env.USER_SERVICE }}
-          path: target/*.jar
+          name: ${{ env.API_GATEWAY }}
+          path: ./${{ env.API_GATEWAY }}/target/*.jar
 
       # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
       - name: Update dependency graph
